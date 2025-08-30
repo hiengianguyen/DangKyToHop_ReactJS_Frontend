@@ -1,0 +1,31 @@
+.box-img {
+  width: 100%;
+  background-image: url(https://res.cloudinary.com/dwoymvppw/image/upload/v1753606888/rwizislo9lhfuvctsvvj.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.box-img {
+  display: flex;
+  color: #fff;
+  position: relative;
+  pointer-events: none;
+  user-select: none;
+}
+
+.box-img h2 {
+  font-size: 55px;
+  font-weight: 800;
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.box-img p {
+  font-size: 20px;
+}
+
+.box-img img {
+  width: 10pc;
+  height: 10pc;
+  margin-right: 30px;
+}

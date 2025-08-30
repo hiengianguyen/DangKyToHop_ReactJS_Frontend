@@ -1,0 +1,96 @@
+.card-body {
+  margin-top: 30px;
+  border-style: double;
+  padding: 10px 20px;
+}
+
+.content-box {
+  ul {
+    margin-bottom: 16px;
+    padding-left: 32px;
+  }
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.title-step {
+  font-size: 24px;
+  h4 {
+    font-weight: 500;
+  }
+}
+
+.content {
+  font-family: "Times New Roman", Times, serif;
+  padding: 40px 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 23px;
+
+  .second-line {
+    font-weight: bold;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #000;
+  }
+}
+
+.matriculation {
+  display: flex;
+  justify-content: end;
+  font-style: italic;
+  gap: 5px;
+  margin: 20px 10px;
+  input {
+    font-size: 20px;
+    width: 6pc;
+    padding: 10px 5px;
+    border: 1px solid #000;
+    height: 30px;
+  }
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+
+  .first-line {
+    font-weight: bolder;
+    font-size: 40px;
+  }
+  .second-line {
+    font-weight: bolder;
+    font-size: 35px;
+  }
+}
+
+.place-label {
+  line-height: 1;
+  font-size: 22px;
+}
+
+.doc-info {
+  margin: 40px 0;
+
+  span {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .list-info {
+    margin-left: 40px;
+    font-size: 24px;
+  }
+}

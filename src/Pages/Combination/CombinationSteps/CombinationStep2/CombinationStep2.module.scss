@@ -1,0 +1,95 @@
+.title-step {
+  font-size: 24px;
+  h4 {
+    font-weight: 500;
+  }
+}
+
+.card-body {
+  margin-top: 30px;
+  border-style: double;
+  padding: 10px 20px;
+}
+
+.content {
+  font-family: "Times New Roman", Times, serif;
+  padding: 40px 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 23px;
+  gap: 30px;
+
+  .first-slogan,
+  .second-slogan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+
+    span {
+      line-height: 1;
+    }
+  }
+
+  .second-line {
+    font-weight: bold;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #000;
+  }
+}
+
+.title-doc {
+  margin: 20px 0;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.quote {
+  margin-top: 20px;
+  text-indent: 35px;
+  font-size: 25px;
+}
+
+.avchielement-label {
+  line-height: 1;
+  font-size: 22px;
+}
+
+.choose-avatar-box {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+
+  .title-avatar {
+    font-size: 20px;
+  }
+
+  .choose-avatar {
+    font-size: 15px;
+  }
+}
+
+.imgBoderFake {
+  width: 120px;
+  height: 160px;
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > p {
+    color: #ccc;
+    font-size: 30px;
+  }
+}
+
+.img-result {
+  border: 2px solid #ccc;
+  height: 160px;
+  width: 120px;
+}

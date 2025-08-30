@@ -1,0 +1,42 @@
+@import "normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap");
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+
+:root {
+  --primary: #007bff;
+  --white: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Lexend, sans-serif;
+  font-optical-sizing: auto;
+  line-height: 1.5;
+  font-size: 1.6rem;
+  font-style: normal;
+}
+
+button,
+input,
+[tabIndex] {
+  outline: none;
+  border: none;
+}
+
+a[href] {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.login__input {
+  font-size: 16px;
+}

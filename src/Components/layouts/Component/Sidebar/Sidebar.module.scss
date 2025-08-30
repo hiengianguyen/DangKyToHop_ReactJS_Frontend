@@ -1,0 +1,19 @@
+.wrapper {
+  width: 100%;
+  max-width: 280px;
+  min-height: 100vh;
+  padding: 16px;
+  background-color: #ffffff;
+  z-index: 100;
+  transition: all 0.3s ease;
+  box-shadow: 0 -5px 1rem #afafaf;
+}
+
+.content {
+  width: 280px;
+  min-height: 100vh;
+  padding: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

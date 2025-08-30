@@ -1,0 +1,41 @@
+.user-name {
+  margin: 0;
+  font-weight: 600;
+}
+
+img.profile-img-user {
+  width: 12pc;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+img.profile-img-user:hover {
+  opacity: 0.9;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.5s ease;
+}
+
+.info-sub p {
+  font-size: 18px;
+}
+
+.profile-user {
+  align-self: center;
+  padding-bottom: 1pc;
+}
+
+.info.profile-dad-name {
+  margin: 0 3rem;
+}
+
+.profile-dad-name label {
+  font-weight: 600;
+}
+
+.card-body-profile {
+  width: 80%;
+}
+
+.btn-edit {
+  justify-content: end;
+}

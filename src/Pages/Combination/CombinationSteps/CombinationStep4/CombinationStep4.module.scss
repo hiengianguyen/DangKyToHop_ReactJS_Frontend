@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  justify-content: center;
+  font-size: 23px;
+
+  .first-slogan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+
+    span {
+      line-height: 1;
+    }
+  }
+
+  .second-line {
+    font-weight: bold;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #000;
+  }
+}
+
+.card-body {
+  margin-top: 30px;
+  border-style: double;
+  padding: 10px 20px;
+}
+
+.content {
+  font-family: "Times New Roman", Times, serif;
+  padding: 40px 20px;
+}
+
+.title-doc {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.place-label {
+  line-height: 1;
+  font-size: 22px;
+}
+
+.student-type {
+  line-height: 2.3;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.health-status {
+  line-height: 2.4;
+  font-size: 22px;
+}

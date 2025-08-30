@@ -1,0 +1,32 @@
+.contact-teacher {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  gap: 20px;
+}
+
+.img-fluid {
+  width: 11pc;
+  height: 11pc;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 4pc;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

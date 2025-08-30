@@ -1,0 +1,72 @@
+.img-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 4;
+
+  .img-detail {
+    border-radius: 10px;
+  }
+
+  p {
+    margin-top: 12px;
+  }
+}
+
+.img-activity-container .img-act-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background-image: url("https://res.cloudinary.com/dwoymvppw/image/upload/v1752893673/73141113_730983574035387_2818179285607514112_n.jpg_plvcef.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.img-activity-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 35pc;
+  overflow: hidden;
+}
+
+.img-activity-container .text {
+  flex: 1;
+  padding: 40px;
+  width: 45%;
+  z-index: 2;
+  background: linear-gradient(to right, papayawhip 45%, transparent);
+  display: flex;
+  justify-content: end;
+}
+
+.img-activity-container .text.left {
+  flex: 1;
+  padding: 40px;
+  width: 45%;
+  z-index: 2;
+  background: linear-gradient(to right, papayawhip 45%, transparent);
+  display: flex;
+  justify-content: start;
+}
+
+.img-activity-container .text-child {
+  width: 45%;
+  > h3 {
+    text-shadow: 0px 5px 5px #999999;
+  }
+  > p {
+    text-align: justify;
+    text-shadow: 1px 1px 2px #37454b;
+  }
+}

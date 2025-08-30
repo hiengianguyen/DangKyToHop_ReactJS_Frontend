@@ -1,0 +1,35 @@
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 0;
+  background: url("https://res.cloudinary.com/dwd3gdhpf/image/upload/v1755160828/bg-footer_d62asl.png") no-repeat center top #29a9ef !important;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.8);
+}
+
+.box-main {
+  display: flex;
+  align-items: center;
+  width: 1160px;
+}
+
+.content {
+  text-shadow: 4px 3px 5px #686868;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  margin: 0 auto;
+}
+
+.img-box {
+  margin-right: 5pc;
+  pointer-events: none;
+  user-select: none;
+  width: 6pc;
+  height: 6pc;
+  img {
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+  }
+}

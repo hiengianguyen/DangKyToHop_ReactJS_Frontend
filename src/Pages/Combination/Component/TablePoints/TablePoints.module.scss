@@ -1,0 +1,21 @@
+.wrapper {
+  margin-top: 15px;
+  font-size: 20px;
+  th,
+  td {
+    border: 1px solid #ccc !important;
+    text-align: center;
+  }
+}
+
+.total-point {
+  display: flex;
+  height: 3pc;
+  justify-content: center;
+  align-items: center;
+}
+
+.inp-man {
+  font-size: 20px !important;
+  border: none !important;
+}

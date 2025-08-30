@@ -1,0 +1,114 @@
+import { CombinationChart, CombinationDetail, RegisterCombination } from "../Pages/Combination";
+import Contact from "../Pages/Contact";
+import Home from "../Pages/Home";
+import School from "../Pages/School";
+import User from "../Pages/Profile/Main";
+import HomeLayout from "../Components/layouts/HomeLayout";
+import EditProfile from "../Pages/Profile/EditProfile";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBell,
+  faBookmark,
+  faBuilding,
+  faChartSimple,
+  faContactBook,
+  faFileCircleCheck,
+  faFolder,
+  faHome,
+  faUserPen
+} from "@fortawesome/free-solid-svg-icons";
+import Signin from "../Pages/Auth/Signin";
+import Signup from "../Pages/Auth/Signup";
+import MainNoti from "../Pages/Noti/MainNoti";
+import NotiDetail from "../Pages/Noti/NotiDetail";
+import CombinationList from "../Pages/Combination/CombinationList";
+import CombinationListFavour from "../Pages/Combination/CombinationListFavour";
+
+const publicRoutes = [
+  {
+    path: "/",
+    component: Home,
+    title: "Trang Chủ",
+    icon: <FontAwesomeIcon className="" icon={faHome} />,
+    layout: HomeLayout,
+    roles: ["student", "manager"],
+    inSidebar: false
+  },
+  {
+    path: "/auth/signin",
+    component: Signin,
+    layout: null,
+    roles: ["student", "manager"],
+    inSidebar: false
+  },
+  {
+    path: "/auth/signup",
+    component: Signup,
+    layout: null,
+    roles: ["student", "manager"],
+    inSidebar: false
+  }
+];
+
+const privateRoutes = [
+  {
+    path: "/combination/register",
+    component: RegisterCombination,
+    title: "Đăng Ký Tổ Hợp",
+    icon: <FontAwesomeIcon className="" icon={faUserPen} />,
+    roles: ["student"]
+  },
+  {
+    path: "/combination/submitted/list",
+    component: CombinationList,
+    title: "Danh Dách Đã Nộp",
+    icon: <FontAwesomeIcon className="" icon={faFolder} />,
+    roles: ["manager"]
+  },
+  {
+    path: "/combination/submitted/favour",
+    component: CombinationListFavour,
+    title: "Danh Dách Đã Lưu",
+    icon: <FontAwesomeIcon className="" icon={faBookmark} />,
+    roles: ["manager"]
+  },
+  { path: "/school", component: School, title: "Trường Học", icon: <FontAwesomeIcon className="" icon={faBuilding} />, roles: ["student"] },
+  {
+    path: "/contact",
+    component: Contact,
+    title: "Liên Hệ",
+    icon: <FontAwesomeIcon className="" icon={faContactBook} />,
+    roles: ["student"]
+  },
+  {
+    path: "/combination/chart",
+    component: CombinationChart,
+    title: "Thống Kê",
+    icon: <FontAwesomeIcon className="" icon={faChartSimple} />,
+    roles: ["student", "manager"]
+  },
+  {
+    path: "/combination/detail",
+    component: CombinationDetail,
+    title: "Hồ Sơ Đã Nộp",
+    icon: <FontAwesomeIcon className="" icon={faFileCircleCheck} />,
+    roles: ["student"]
+  },
+  {
+    path: "/notifications",
+    component: MainNoti,
+    title: "Danh sách thông báo",
+    icon: <FontAwesomeIcon className="" icon={faBell} />,
+    roles: ["student", "manager"]
+  },
+  {
+    path: "/notifications/:id",
+    component: NotiDetail,
+    inSidebar: false,
+    roles: ["student", "manager"]
+  },
+  { path: "/profile", component: User, inSidebar: false, roles: ["student", "manager"] },
+  { path: "/profile/edit", component: EditProfile, inSidebar: false, roles: ["student", "manager"] }
+];
+
+export { publicRoutes, privateRoutes };

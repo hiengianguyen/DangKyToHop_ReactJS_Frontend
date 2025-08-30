@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.container-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #29a9ef;
+}

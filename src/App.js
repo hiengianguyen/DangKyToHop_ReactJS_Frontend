@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useEffect, useState } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { publicRoutes, privateRoutes } from "./Router";
+import DefaultLayout from "./Components/layouts/DefaultLayout";
+import { useAuth } from "./Contexts/AuthContext";
 
 function App() {
+  const [mainRouters, setMainrouters] = useState([]);
+  const { auth } = useAuth();
+
+  useEffect(() => {
+    document.title = "Đăng ký tổ hợp";
+  }, []);
+
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      setMainrouters([...publicRoutes, ...privateRoutes]);
+    } else {
+      setMainrouters([...publicRoutes]);
+    }
+  }, [auth]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          {mainRouters &&
+            mainRouters.map((routes, index) => {
+              let Layout = DefaultLayout;
+              if (routes.layout) {
+                Layout = routes.layout;
+              } else if (routes.layout === null) {
+                Layout = Fragment;
+              }
+              const Page = routes.component;
+              return (
+                <Route
+                  key={index}
+                  path={routes.path}
+                  element={
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  }
+                />
+              );
+            })}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.img-box {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 40px;
+  }
+}
+
+.title-sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+
+  .name {
+    font-weight: bold;
+  }
+
+  .des {
+    font-weight: 500;
+  }
+}

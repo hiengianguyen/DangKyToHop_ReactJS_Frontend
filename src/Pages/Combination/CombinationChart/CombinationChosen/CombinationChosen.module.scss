@@ -1,0 +1,54 @@
+.chart-box {
+  display: flex;
+  height: 17pc;
+  flex: 1;
+}
+
+.most-combination {
+  text-align: center;
+  .offical {
+    font-size: 40px;
+    margin-bottom: 5px;
+  }
+
+  .des {
+    font-weight: 400;
+  }
+}
+
+.chart {
+  display: flex;
+}
+
+.quantity-box {
+  flex-direction: column;
+  padding-right: 0;
+  width: 30%;
+}
+
+.most-combination,
+.chart-detail {
+  margin: 5px;
+  padding: 10px;
+  box-shadow:
+    0 13px 5px 0 rgba(0, 0, 0, 0.01),
+    0 7px 4px 0 rgba(0, 0, 0, 0.02),
+    0 3px 3px 0 rgba(0, 0, 0, 0.05),
+    0 1px 2px 0 rgba(0, 0, 0, 0.1),
+    0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 7px;
+}
+
+.chart-detail {
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.title {
+  margin: 20px 0;
+  h3 {
+    font-size: 26px;
+    font-weight: 500;
+  }
+}

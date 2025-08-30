@@ -1,0 +1,81 @@
+.wrapper > div {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.8);
+}
+
+.container-end {
+  background-color: #faf1e2;
+}
+
+.container-end img {
+  width: 31pc;
+  border-radius: 12px;
+}
+
+.container-end .content-box {
+  width: 40pc;
+  margin-right: 10pc;
+}
+
+.container-end img,
+.container-end .content-box {
+  margin-top: 5pc;
+  margin-bottom: 5pc;
+}
+
+.container-start {
+  height: 30pc;
+  padding-top: 40px;
+  background-color: #faf1e2;
+}
+
+.container-start > p {
+  font-size: 20px;
+}
+
+.container-start .content-box {
+  padding: 80px;
+  width: 47pc;
+}
+
+.container-start .img-start img {
+  height: 103%;
+}
+
+.introduce-box {
+  justify-content: center;
+}
+
+.introduce-box p {
+  font-size: 20px;
+}
+
+.container-center img {
+  width: 30pc;
+}
+
+.container-center {
+  padding: 10px 0;
+  background-color: #fff;
+}
+
+.container-center .content-box {
+  padding: 5pc;
+  width: 44pc;
+}
+
+.container-center .content-1,
+.container-center .content-2 {
+  justify-content: center;
+}
+
+.container-center .content-2 {
+  margin-top: -70px;
+}
+
+.container-center .content-1 .content-box {
+  padding-right: 0;
+}
+
+.container-center .content-2 .content-box {
+  padding-left: 0;
+}
