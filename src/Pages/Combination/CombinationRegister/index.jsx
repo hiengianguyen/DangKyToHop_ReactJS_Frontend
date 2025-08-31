@@ -21,8 +21,12 @@ function RegisterCombination() {
 
   useEffect(() => {
     axios.get("http://localhost:4001/combination/submit-combination").then((axiosData) => {
-      if (axiosData.data.isSuccess) {
-        setDataOfPage(axiosData.data);
+      const data = axiosData.data;
+      if (data.isSuccess) {
+        if (data.submitedDetail) {
+          setValueStudent(data.submitedDetail);
+        }
+        setDataOfPage(data);
       } else {
         navigator("/auth/signin");
       }

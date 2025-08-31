@@ -49,8 +49,8 @@ function MainNoti() {
       <div className={cx("card-body", "p-0")}>
         <div className={cx("content")}>
           <div className={cx("text-center")}>
-            <h4 className={cx("mb-2", "text-center")}>Danh sách thông báo</h4>
-            <p style={{ fontSize: "14px", color: "#666" }}>
+            <h4 className={cx("mb-2", "text-center fs-1")}>Danh sách thông báo</h4>
+            <p style={{ fontSize: "16px", color: "#666" }}>
               Đây là những thông báo được gửi đến tất cả học sinh để cập nhật thông tin quan trọng về tuyển sinh và các hoạt động học tập.
             </p>
           </div>
@@ -65,35 +65,36 @@ function MainNoti() {
             {listNoti.length > 0 ? (
               listNoti.map((item, index) => (
                 <div className={cx("noti-box", "rounded-4")} key={index}>
-                  <h5 className={cx("title", "pe-4")}>
+                  <h5 className={cx("title", "pe-4 fs-2")}>
                     <Link to={"/notifications/" + item.id}>{item.title}</Link>
                   </h5>
 
                   <p className={cx("timer", "mb-0")}>Tạo lúc: {item.publishAt}</p>
-
-                  <div className={cx("list-icon")}>
-                    <svg
-                      aria-hidden="true"
-                      focusable="false"
-                      data-prefix="fas"
-                      data-icon="ellipsis"
-                      className="svg-inline--fa fa-ellipsis "
-                      role="img"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 448 512"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
-                      ></path>
-                    </svg>
-                    <ul className={cx("opt-noti", "shadow", "hidden")}>
-                      <Link to="/notification/edit/{{this.id}}">
-                        <li>Chỉnh sửa</li>
-                      </Link>
-                      <li onClick={() => deleteNoti(item.id)}>Xoá</li>
-                    </ul>
-                  </div>
+                  {role === "manager" ? (
+                    <div className={cx("list-icon")}>
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="ellipsis"
+                        className="svg-inline--fa fa-ellipsis "
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                        ></path>
+                      </svg>
+                      <ul className={cx("opt-noti", "shadow", "hidden")}>
+                        <Link to="/notification/edit/{{this.id}}">
+                          <li>Chỉnh sửa</li>
+                        </Link>
+                        <li onClick={() => deleteNoti(item.id)}>Xoá</li>
+                      </ul>
+                    </div>
+                  ) : null}
                 </div>
               ))
             ) : (

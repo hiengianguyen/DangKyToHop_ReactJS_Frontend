@@ -38,7 +38,13 @@ function PathItems({ routers, currRouter, onChangeRoute = () => {}, role = "stud
               onClick={() => handleNavigator(route.path)}
             >
               <i className={cx("icon")}>{route.icon}</i>
-              {pushSidebar.isPush && <p className={cx("text")}>{route.title}</p>}
+              <p
+                className={cx("text", {
+                  show: pushSidebar.isPush
+                })}
+              >
+                {route.title}
+              </p>
             </li>
           ))}
       </ul>

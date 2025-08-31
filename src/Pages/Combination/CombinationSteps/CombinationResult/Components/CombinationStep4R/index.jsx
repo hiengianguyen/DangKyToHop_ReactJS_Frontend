@@ -85,22 +85,22 @@ function CombinationStep4R({ valueStudent = {} }) {
           </Row>
           <Row>
             <Col xs={"auto"}>
-              <InputHadValue label="+ Vận động viên TT TDTT tỉnh/TP (nếu có), môn" value={valueStudent.avchielementGroup} />
+              <InputHadValue label="+ Vận động viên TT TDTT tỉnh/TP, môn" value={valueStudent.avchielementGroup} />
             </Col>
           </Row>
           <Row>
             <Col xs={"auto"}>
-              <InputHadValue label="- Năng khiếu vượt trội (môn/lĩnh vực – nếu có)" value={valueStudent.aptitude} />
+              <InputHadValue label="- Năng khiếu vượt trội" value={valueStudent.aptitude} />
             </Col>
           </Row>
           <Row>
             <Col xs={"auto"}>
-              <InputHadValue label="- Diện mồ côi, hộ nghèo, hộ cận nghèo (nếu có)" value={valueStudent.priorityGroup} />
+              <InputHadValue label="- Diện mồ côi, hộ nghèo, hộ cận nghèo" value={valueStudent.priorityGroup} />
             </Col>
           </Row>
           <Row>
             <Col xs={"auto"}>
-              <InputHadValue label="- Hoàn cảnh khó khăn (nếu có)" value={valueStudent.difficultSituation} />
+              <InputHadValue label="- Hoàn cảnh khó khăn" value={valueStudent.difficultSituation} />
             </Col>
           </Row>
           <Row>
@@ -115,20 +115,19 @@ function CombinationStep4R({ valueStudent = {} }) {
             </Col>
           </Row>
           <Row className="mt-4 fs-1">
-            <Col xs={"auto"}>+ </Col>
             <Col>
-              <InputHadValue label="Bệnh ngoài da" value={valueStudent.sick?.includes("Bệnh ngoài da") ? "Có" : "Không"} />
+              <InputHadValue label="+ Bệnh ngoài da" value={valueStudent.sick?.includes("Bệnh ngoài da") ? "Có" : "Không"} />
             </Col>
             <Col>
-              <InputHadValue label="Bệnh tim mạch" value={valueStudent.sick?.includes("Bệnh tim mạch") ? "Có" : "Không"} />
+              <InputHadValue label="+ Bệnh tim mạch" value={valueStudent.sick?.includes("Bệnh tim mạch") ? "Có" : "Không"} />
             </Col>
             <Col>
-              <InputHadValue label="Bệnh hô hấp" value={valueStudent.sick?.includes("Bệnh hô hấp") ? "Có" : "Không"} />
+              <InputHadValue label="+ Bệnh hô hấp" value={valueStudent.sick?.includes("Bệnh hô hấp") ? "Có" : "Không"} />
             </Col>
           </Row>
           <Row>
             <Col xs={"auto"}>
-              <InputHadValue label="+ Diện khuyết tật (nếu có)" value={valueStudent.disability} />
+              <InputHadValue label="+ Diện khuyết tật" value={valueStudent.disability} />
             </Col>
           </Row>
         </div>
