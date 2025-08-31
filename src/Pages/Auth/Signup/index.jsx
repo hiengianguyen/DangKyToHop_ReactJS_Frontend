@@ -25,13 +25,17 @@ function Signup() {
   const [errorRePass, setErrorRePass] = useState("");
 
   useEffect(() => {
+    document.title = "Đăng ký tổ hợp | Đăng ký";
+  }, []);
+
+  useEffect(() => {
     if (!auth.isAuthenticated) return;
     if (auth.role === "student") {
       navigator("/combination/register");
     } else {
       navigator("/combination/submitted/list");
     }
-  }, [auth]);
+  }, [auth, navigator]);
 
   useEffect(() => {
     setErrorFullName("");

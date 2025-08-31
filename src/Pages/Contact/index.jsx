@@ -1,10 +1,14 @@
 import classNames from "classnames/bind";
 import style from "./Contact.module.scss";
 import BoxRadius from "../../Components/BoxRadius";
+import { useEffect } from "react";
 
 const cx = classNames.bind(style);
 
 function Contact() {
+  useEffect(() => {
+    document.title = "Đăng ký tổ hợp | Liên hệ";
+  }, []);
   return (
     <BoxRadius>
       <div className={cx("wrapper")}>

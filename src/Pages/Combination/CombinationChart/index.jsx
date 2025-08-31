@@ -18,6 +18,10 @@ function CombinationChart() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    document.title = "Đăng ký tổ hợp | Thống kê";
+  }, []);
+
+  useEffect(() => {
     axios.get("http://localhost:4001/combination/analytics").then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setDataChart(axiosData.data);
