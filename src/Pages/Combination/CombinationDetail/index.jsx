@@ -36,7 +36,7 @@ function CombinationDetail() {
   return (
     <BoxRadius>
       {isLoading && <Loading title="Đang tải hồ sơ" />}
-      <Tabs defaultActiveKey="profile" className="mb-3">
+      <Tabs defaultActiveKey="home" className="mb-3">
         <Tab eventKey="home" title="1. Thông tin chung">
           <CombinationStep1R valueStudent={submitedDetail} />
         </Tab>

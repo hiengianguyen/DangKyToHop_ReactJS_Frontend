@@ -10,8 +10,10 @@ import CombinationStep4R from "./Components/CombinationStep4R";
 import { useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../../../Contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function CombinationResult({ valueStudent = {}, setCurrPage = () => {} }) {
+  const navigator = useNavigate();
   const { auth } = useAuth();
   useEffect(() => {
     document.title = "Đăng ký tổ hợp | Xác nhận thông tin";
@@ -19,7 +21,10 @@ function CombinationResult({ valueStudent = {}, setCurrPage = () => {} }) {
 
   const handleSubmit = () => {
     valueStudent.userId = auth.user.userId;
-    axios.post("http://localhost:4001/combination/submited", valueStudent).then((axiosData) => alert(axiosData.data.message));
+    axios
+      .post("http://localhost:4001/combination/submited", valueStudent)
+      .then((axiosData) => alert(axiosData.data.message))
+      .then(() => navigator("/combination/detail"));
   };
 
   return (
@@ -29,7 +34,7 @@ function CombinationResult({ valueStudent = {}, setCurrPage = () => {} }) {
           Gữi đi
         </Button>
       </div>
-      <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+      <Tab.Container id="left-tabs-example" defaultActiveKey="main-info">
         <Row>
           <Col sm={2} style={{ borderRight: "2px solid #ccc" }}>
             <Nav variant="pills" className="flex-column">
