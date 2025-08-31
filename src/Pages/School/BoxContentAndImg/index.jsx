@@ -22,14 +22,14 @@ function BoxContentAndImg({
     if (isLeftImgBg) {
       setSideStyle({
         backgroundImage: `url(${backGround})`,
-        right: 0,
-        left: "unset"
+        right: "unset",
+        left: 0
       });
     } else {
       setSideStyle({
         backgroundImage: `url(${backGround})`,
-        right: "unset",
-        left: 0
+        right: 0,
+        left: "unset"
       });
     }
   }, [isLeftImgBg, backGround]);

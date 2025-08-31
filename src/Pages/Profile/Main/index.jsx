@@ -5,12 +5,14 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import BoxRadius from "../../../Components/BoxRadius";
+import Loading from "../../../Components/Loading";
 
 const cx = classNames.bind(style);
 axios.defaults.withCredentials = true;
 
 function Main() {
   const [user, setUser] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const userNavigator = useNavigate();
 
   useEffect(() => {
@@ -21,6 +23,7 @@ function Main() {
     axios.get("http://localhost:4001/me/profile").then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setUser(axiosData.data.user);
+        setIsLoading(false);
       } else {
         userNavigator("/auth/signin");
       }
@@ -28,6 +31,7 @@ function Main() {
   }, [userNavigator]);
   return (
     <BoxRadius>
+      {isLoading && <Loading title="Đang tải trang cá nhân" />}
       <div className={cx("d-flex", "align-items-between", "justify-content-start")}>
         <h4 className={cx("mb-0")}>Trang cá nhân</h4>
       </div>

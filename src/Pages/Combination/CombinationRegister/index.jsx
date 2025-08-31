@@ -10,6 +10,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CombinationResult from "../CombinationSteps/CombinationResult/index.jsx";
+import Loading from "../../../Components/Loading/index.jsx";
 
 const cx = classNames.bind(style);
 
@@ -18,6 +19,7 @@ function RegisterCombination() {
   const [currPage, setCurrPage] = useState(1);
   const [dataOfPage, setDataOfPage] = useState({});
   const [valueStudent, setValueStudent] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios.get("http://localhost:4001/combination/submit-combination").then((axiosData) => {
@@ -27,6 +29,7 @@ function RegisterCombination() {
           setValueStudent(data.submitedDetail);
         }
         setDataOfPage(data);
+        setIsLoading(false);
       } else {
         navigator("/auth/signin");
       }
@@ -58,6 +61,7 @@ function RegisterCombination() {
 
   return (
     <div className={cx("wrapper")}>
+      {isLoading && <Loading />}
       <BoxRadius>
         <ProgressBar step={currPage} />
       </BoxRadius>

@@ -9,11 +9,13 @@ import MainContentSchool from "./MainContentSchool";
 import TrophiContainer from "./TrophiContainer";
 import SchoolStats from "./SchoolStats";
 import SchoolMap from "./SchoolMap";
+import Loading from "../../Components/Loading";
 
 const cx = classNames.bind(style);
 
 function School() {
   const [imgActivity, setImgActivity] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     document.title = "Đăng ký tổ hợp | Trường học";
@@ -22,10 +24,12 @@ function School() {
   useEffect(() => {
     axios.get("http://localhost:4001/school").then((axiosData) => {
       setImgActivity(axiosData.data);
+      setIsLoading(false);
     });
   }, []);
   return (
     <div className={cx("wrapper")}>
+      {isLoading && <Loading />}
       <div className={cx("content-1")}>
         <BoxContentAndImg
           imgUrl="https://res.cloudinary.com/dwoymvppw/image/upload/v1752892084/phoca_thumb_l_img_0188_ucfe6j.jpg"

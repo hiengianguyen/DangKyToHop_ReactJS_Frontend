@@ -22,7 +22,7 @@ function PathItems({ routers, currRouter, onChangeRoute = () => {}, role = "stud
         return route.inSidebar !== false && route.roles.includes(role);
       })
     );
-  }, [routers]);
+  }, [routers, role]);
 
   return (
     <div className={cx("menu-bar")}>

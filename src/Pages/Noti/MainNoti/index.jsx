@@ -45,7 +45,7 @@ function MainNoti() {
   };
   return (
     <BoxRadius>
-      {loading ? <Loading title="Đang tải thông báo" /> : undefined}
+      {loading && <Loading title="Đang tải thông báo" />}
       <div className={cx("card-body", "p-0")}>
         <div className={cx("content")}>
           <div className={cx("text-center")}>

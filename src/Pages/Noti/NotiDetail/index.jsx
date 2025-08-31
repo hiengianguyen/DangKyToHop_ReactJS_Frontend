@@ -32,7 +32,7 @@ function NotiDetail() {
 
   return (
     <BoxRadius>
-      {loading ? <Loading title="Đang tải thông báo" /> : undefined}
+      {loading && <Loading title="Đang tải thông báo" />}
       <div className={cx("card-body", "p-0")}>
         <div className={cx("content")}>
           <h4 className={cx("mb-2", "text-center")}>Thông báo</h4>

@@ -10,9 +10,11 @@ import { useState } from "react";
 import { useAuth } from "../../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import BoxRadius from "../../../Components/BoxRadius";
+import Loading from "../../../Components/Loading";
 
 function CombinationDetail() {
   const [submitedDetail, setSubmitedDetail] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const navigator = useNavigate();
   const { auth } = useAuth();
   useEffect(() => {
@@ -20,6 +22,7 @@ function CombinationDetail() {
     axios.get("http://localhost:4001/combination/submited-detail/" + auth.user.userId).then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setSubmitedDetail(axiosData.data.submitedCombinationDetail);
+        setIsLoading(false);
       } else {
         navigator("/auth/signin");
       }
@@ -28,6 +31,7 @@ function CombinationDetail() {
 
   return (
     <BoxRadius>
+      {isLoading && <Loading title="Đang tải hồ sơ" />}
       <Tabs defaultActiveKey="profile" className="mb-3">
         <Tab eventKey="home" title="1. Thông tin chung">
           <CombinationStep1R valueStudent={submitedDetail} />
