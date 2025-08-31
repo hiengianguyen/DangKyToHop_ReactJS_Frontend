@@ -6,7 +6,7 @@ import style from "./CombinationTarget.module.scss";
 
 const cx = classNames.bind(style);
 
-function CombinationTarget({ labels = [], chosen = [], empty = [] }) {
+function CombinationTarget({ show = true, labels = [], chosen = [], empty = [] }) {
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
   const options = {
@@ -44,7 +44,7 @@ function CombinationTarget({ labels = [], chosen = [], empty = [] }) {
   };
 
   return (
-    <>
+    <div style={{ display: show ? "block" : "none" }}>
       <div className={cx("title")}>
         <h3>Biểu đồ thống kê số lượng học sinh đăng ký so với chỉ tiêu</h3>
       </div>
@@ -69,7 +69,7 @@ function CombinationTarget({ labels = [], chosen = [], empty = [] }) {
               ]
             }}
           />
-          <div class={cx("content")}>
+          <div className={cx("content")}>
             <p>
               Biểu đồ thống kê số học sinh đăng ký vào từng tổ hợp so với số lượng chỉ tiêu tối đa được phân bổ cho mỗi tổ hợp. Thông tin
               giúp đánh giá mức độ quan tâm và phân bố nguyện vọng của học sinh.
@@ -77,7 +77,7 @@ function CombinationTarget({ labels = [], chosen = [], empty = [] }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -8,44 +8,46 @@ import CombinationChosen from "./CombinationChosen";
 import CombinationTarget from "./CombinationTarget";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../../Components/Loading";
 
 const cx = classNames.bind(style);
 function CombinationChart() {
   const [currPage, setCurrPage] = useState(1);
   const [dataChart, setDataChart] = useState({});
   const navigator = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios.get("http://localhost:4001/combination/analytics").then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setDataChart(axiosData.data);
+        setIsLoading(false);
       } else {
         navigator("/auth/signin");
       }
     });
-  }, []);
-
-  const renderChart = () => {
-    switch (currPage) {
-      case 2:
-        return <CombinationTarget labels={dataChart.combinations} chosen={dataChart.countCombinaton1} empty={dataChart.classesCapacitys} />;
-      default:
-        return (
-          <CombinationChosen
-            labels={dataChart.combinations}
-            dataCombination1={dataChart.countCombinaton1}
-            dataCombination2={dataChart.countCombinaton2}
-            mostChooseOfCombination1={dataChart.mostChooseOfCombination1}
-            mostChooseOfCombination2={dataChart.mostChooseOfCombination2}
-          />
-        );
-    }
-  };
+  }, [navigator]);
 
   return (
     <BoxRadius className={cx("box-radius")}>
+      {isLoading && <Loading />}
       <MenuTypeChart currPage={currPage} onNextPage={setCurrPage} />
-      <div style={{ padding: "25px" }}>{renderChart()}</div>
+      <div style={{ padding: "25px" }}>
+        <CombinationChosen
+          show={currPage === 1}
+          labels={dataChart.combinations}
+          dataCombination1={dataChart.countCombinaton1}
+          dataCombination2={dataChart.countCombinaton2}
+          mostChooseOfCombination1={dataChart.mostChooseOfCombination1}
+          mostChooseOfCombination2={dataChart.mostChooseOfCombination2}
+        />
+        <CombinationTarget
+          show={currPage === 2}
+          labels={dataChart.combinations}
+          chosen={dataChart.countCombinaton1}
+          empty={dataChart.classesCapacitys}
+        />
+      </div>
     </BoxRadius>
   );
 }

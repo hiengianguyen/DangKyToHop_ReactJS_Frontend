@@ -6,6 +6,7 @@ import style from "./CombinationChosen.module.scss";
 
 const cx = classNames.bind(style);
 function CombinationChosen({
+  show = false,
   labels = [],
   dataCombination1 = [],
   dataCombination2 = [],
@@ -36,8 +37,11 @@ function CombinationChosen({
     }
   };
 
+  const options2 = options;
+  options2.plugins.title.text = "Số học sinh chọn tổ hợp cho nguyện vọng 2";
+
   return (
-    <>
+    <div style={{ display: show ? "block" : "none" }}>
       <div className={cx("title")}>
         <h3>Biểu đồ thống kê số lượng học sinh chọn các tổ hợp</h3>
       </div>
@@ -75,7 +79,7 @@ function CombinationChosen({
               }}
             />
             <Bar
-              options={options}
+              options={options2}
               className={cx("chart-detail")}
               data={{
                 labels: labels,
@@ -91,7 +95,7 @@ function CombinationChosen({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

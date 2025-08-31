@@ -42,12 +42,7 @@ function EndBox({ currRouter, onChangeRoute = () => {} }) {
           onClick={() => handleNavigator("/profile")}
           value="profile"
         >
-          <img
-            src={auth?.user?.avatar}
-            className={cx({
-              ["me-0"]: !pushSidebar.isPush
-            })}
-          />
+          <img src={auth?.user?.avatar} className={!pushSidebar.isPush ? "me-0" : null} alt="" />
           <p className={cx("m-0", "text", "text-black", { show: pushSidebar.isPush })}>{auth?.user?.fullName}</p>
         </li>
         <li className={cx("box", "logout", "gap-4", "my-1", "mt-2")} onClick={handleLogout}>
@@ -58,7 +53,12 @@ function EndBox({ currRouter, onChangeRoute = () => {} }) {
       <Dash height="1px" />
       <div className={cx("show-sidebar")}>
         <div title="Thu nhỏ bảng điều hướng" className={cx("p-0")}>
-          <li onClick={() => pushSidebar.onPush((prev) => !prev)} className={cx("box", "redirect", "mb-1", "btn-push-sidebar")}>
+          <li
+            onClick={() => pushSidebar.onPush((prev) => !prev)}
+            className={
+              cx("box", "redirect", "mb-1", "btn-push-sidebar") + (!pushSidebar.isPush ? " ps-0 d-flex justify-content-center" : "")
+            }
+          >
             <p className={cx("text", "m-0", { show: pushSidebar.isPush })}>Thu nhỏ bảng điều hướng</p>
             <FontAwesomeIcon icon={faArrowLeft} className="" />
           </li>
