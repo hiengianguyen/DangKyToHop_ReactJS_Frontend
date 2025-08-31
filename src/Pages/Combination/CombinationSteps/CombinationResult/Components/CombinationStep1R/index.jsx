@@ -15,7 +15,9 @@ function CombinationStep1R({ valueStudent = {} }) {
           <span className={cx("second-line")}>TRƯỜNG THPT DUY TÂN</span>
         </div>
         <div className={cx("matriculation")}>
-          <InputHadValue label="Số TT ở danh sách trúng tuyển" value={valueStudent.numberMatriculation} />
+          <Col xs={"auto"}>
+            <InputHadValue label="Số TT ở danh sách trúng tuyển" value={valueStudent.numberMatriculation} />
+          </Col>
         </div>
 
         <div className={cx("title", "mb-4")}>

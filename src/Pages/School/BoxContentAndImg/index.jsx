@@ -22,14 +22,14 @@ function BoxContentAndImg({
     if (isLeftImgBg) {
       setSideStyle({
         backgroundImage: `url(${backGround})`,
-        left: 0,
-        right: "unset"
+        right: 0,
+        left: "unset"
       });
     } else {
       setSideStyle({
         backgroundImage: `url(${backGround})`,
-        left: "unset",
-        right: 0
+        right: "unset",
+        left: 0
       });
     }
   }, [isLeftImgBg, backGround]);
@@ -38,15 +38,15 @@ function BoxContentAndImg({
       <div className={cx("img-act-box")} style={sideStyle}></div>
       <div
         className={cx("text", {
-          left: isLeftImgBg
+          left: !isLeftImgBg
         })}
         style={{
-          background: `linear-gradient(to ${isLeftImgBg ? "left" : "right"}, ${bgColor} 45%, transparent)`
+          background: `linear-gradient(to ${!isLeftImgBg ? "right" : "left"}, ${bgColor} 45%, transparent)`
         }}
       >
         <div className={cx("text-child")}>{children}</div>
       </div>
-      <div className={cx("img-box")} style={isLeftImgBg ? { right: 0, left: "unset" } : { left: 0 }}>
+      <div className={cx("img-box")} style={isLeftImgBg ? { left: 0, right: "unset" } : { right: 0, left: "unset" }}>
         {isSwiper ? (
           <SwiperImg data={listImg} />
         ) : (

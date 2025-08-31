@@ -3,6 +3,7 @@ import style from "./CombinationStep3R.module.scss";
 import InputHadValue from "../../../../Component/InputHadValue";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import CombinationTable from "../../../../Component/CombinationTable";
 
 const cx = classNames.bind(style);
 
@@ -38,27 +39,13 @@ function CombinationStep3R({ valueStudent = {} }) {
               <InputHadValue label="Họ và tên phụ huynh" value={valueStudent.nameDad || valueStudent.nameMom} />
             </Col>
             <Col>
-              <InputHadValue label="số ĐTDD" value={valueStudent.phone} />
+              <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
             </Col>
           </Row>
           {/* Bảng điểm và tổ hợp có thể show dạng bảng hoặc từng trường nếu muốn */}
-          <div className={cx("info-box")}>
-            <span className={cx("title")}>I. THÔNG TIN CHUNG</span>
-            <ol>
-              <li>
-                Môn học và các hoạt động giáo dục bắt buộc: Toán, Ngữ văn, Tiếng Anh, Lịch sử, GDTC, GDQP-AN, Giáo dục địa phương, Hoạt động
-                trải nghiệm – hướng nghiệp.
-              </li>
-              <li>Môn học lựa chọn và chuyên đề học tập lựa chọn</li>
-              <ul>
-                <li>
-                  Chọn đủ <b>04</b> môn trong số 07 môn học sau: Vật lý, Hóa học, Sinh học (nhóm KHTN), Địa lý, Giáo dục kinh tế và pháp
-                  luật (GDKTPL) (nhóm KHXH), Công nghệ, Tin học.
-                </li>
-                <li>Cụm 03 chuyên đề lựa chọn kèm theo tổ hợp môn học lựa chọn.</li>
-                <li>01 môn thể thao trong số các môn: Bóng đá, Bóng chuyền, Đá cầu.</li>
-              </ul>
-            </ol>
+          <div className={cx("info-box", "mt-4")}>
+            <span className={cx("title")}>I. THÔNG TIN TỔ HỢP</span>
+            <CombinationTable />
             <span className={cx("title")}>II. TỔ HỢP LỰA CHỌN CỤ THỂ</span>
             <Row>
               <Col xs={"auto"}>
