@@ -9,11 +9,17 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../Components/Loading";
 const cx = classNames.bind(style);
 
 function Home() {
   const [imgStudentAchiement, setImgStudentAchiement] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigator = useNavigate();
+
+  useEffect(() => {
+    document.title = "Đăng ký tổ hợp";
+  }, []);
 
   useEffect(() => {
     axios.get("http://localhost:4001").then((axiosData) => {
@@ -22,10 +28,13 @@ function Home() {
       } else if (axiosData.data.redirect) {
         navigator(axiosData.data.redirect);
       }
+      setIsLoading(false);
     });
-  }, []);
+  }, [navigator]);
+
   return (
     <div className={cx("containers", "wrapper")}>
+      {isLoading && <Loading />}
       <div className={cx("container-start")}>
         <p className={cx("text-center", "fw-bold")}>Về trang web Đăng ký tổ hợp</p>
         <div className={cx("d-flex", "introduce-box")}>
@@ -84,7 +93,7 @@ function Home() {
           </p>
           <div
             onClick={() => navigator("/auth/signin")}
-            className={cx("btn", "btn-primary")}
+            className={cx("btn", "btn-primary", "fs-3")}
             style={{ boxShadow: "3px 3px #9e9e9e", color: "#fff" }}
           >
             Bắt đầu <FontAwesomeIcon icon={faChevronRight} className="" />

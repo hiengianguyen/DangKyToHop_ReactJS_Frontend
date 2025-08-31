@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      setMainrouters([...publicRoutes, ...privateRoutes]);
+      setMainrouters([...publicRoutes, ...privateRoutes].filter((item) => item.roles.includes(auth.user.role)));
     } else {
       setMainrouters([...publicRoutes]);
     }

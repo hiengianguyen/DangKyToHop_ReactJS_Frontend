@@ -21,13 +21,8 @@ function Signin() {
   const [errorPass, setErrorPass] = useState("");
 
   useEffect(() => {
-    if (!auth.isAuthenticated) return;
-    if (auth.role === "student") {
-      navigator("/combination/register");
-    } else {
-      navigator("/combination/submitted/list");
-    }
-  }, [auth]);
+    document.title = "Đăng ký tổ hợp | Đăng nhập";
+  }, []);
 
   const handleSubmit = (event) => {
     let ok = true;

@@ -17,8 +17,12 @@ function CombinationDetail() {
   const [isLoading, setIsLoading] = useState(true);
   const navigator = useNavigate();
   const { auth } = useAuth();
+
   useEffect(() => {
-    document.title = "Đăng ký tổ hợp | Xác nhận thông tin";
+    document.title = "Đăng ký tổ hợp | Hồ sơ đã nộp";
+  }, []);
+
+  useEffect(() => {
     axios.get("http://localhost:4001/combination/submited-detail/" + auth.user.userId).then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setSubmitedDetail(axiosData.data.submitedCombinationDetail);
