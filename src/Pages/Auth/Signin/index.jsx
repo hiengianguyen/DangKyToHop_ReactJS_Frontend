@@ -13,7 +13,7 @@ import { useAuth } from "../../../Contexts/AuthContext";
 const cx = classNames.bind(style);
 
 function Signin() {
-  const { auth, login } = useAuth();
+  const { login } = useAuth();
   const navigator = useNavigate();
   const [phone, setPhone] = useState("");
   const [errorPhone, setErrorPhone] = useState("");
