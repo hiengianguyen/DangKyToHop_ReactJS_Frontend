@@ -61,7 +61,7 @@ const privateRoutes = [
   {
     path: "/combination/submitted/list",
     component: CombinationList,
-    title: "Danh Dách Đã Nộp",
+    title: "Danh Dách Đăng Ký",
     icon: <FontAwesomeIcon className="" icon={faFolder} />,
     roles: ["manager"]
   },

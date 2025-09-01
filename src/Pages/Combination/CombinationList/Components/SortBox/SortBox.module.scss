@@ -1,0 +1,91 @@
+.sort-box .sort-title {
+  background-color: #8dfff5;
+  padding: 10px;
+  padding-left: 25px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.sort-box .sort-title:hover {
+  background-color: #b2fff9;
+  cursor: pointer;
+}
+
+.sort-content {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.sort-box .sort-content:hover {
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.sort-box .list-sort {
+  list-style: none;
+}
+
+.sort-box .list-sort > li:not(.active) {
+  padding: 10px;
+  padding-left: 25px;
+  background-color: aliceblue;
+  opacity: 1;
+  transition: all 0.8s ease;
+}
+
+.list-sort .title i {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.list-sort .title i.ms-1 {
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
+.type-sort:hover,
+.sort-box .list-sort > li.title:hover {
+  background-color: #e3e7ea;
+  cursor: pointer;
+}
+
+.sort-box .list-sort li.active,
+.sort-box .list-sort li.active ul {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.sub-li-type:not(.title) ul {
+  list-style: none;
+}
+
+.sort-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.sort-content.active {
+  opacity: 1;
+  max-height: 100%;
+  transition: all 0.5s ease;
+}
+
+.sort-box {
+  margin-top: 16px;
+  width: 188px;
+  text-align: start;
+}
+
+.sort-icon-title {
+  transform: rotate(0);
+  transition: all 0.3s ease;
+}
+
+.sort-icon-title.active {
+  transform: rotate(180deg);
+  transition: all 0.3s ease;
+}
