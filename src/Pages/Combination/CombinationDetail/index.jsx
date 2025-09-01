@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useAuth } from "../../../Contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import BoxRadius from "../../../Components/BoxRadius";
 import Loading from "../../../Components/Loading";
 
@@ -17,6 +17,7 @@ function CombinationDetail() {
   const [isLoading, setIsLoading] = useState(true);
   const navigator = useNavigate();
   const { auth } = useAuth();
+  const { id } = useParams();
 
   useEffect(() => {
     document.title = "Đăng ký tổ hợp | Hồ sơ đã nộp";
@@ -24,7 +25,9 @@ function CombinationDetail() {
 
   useEffect(() => {
     if (!auth?.user?.userId) return;
-    axios.get("http://localhost:4001/combination/submited-detail/" + auth.user.userId).then((axiosData) => {
+    let userId = !auth?.user?.userId;
+    if (id) userId = id;
+    axios.get("http://localhost:4001/combination/submited-detail/" + userId).then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setSubmitedDetail(axiosData.data.submitedCombinationDetail);
         setIsLoading(false);
