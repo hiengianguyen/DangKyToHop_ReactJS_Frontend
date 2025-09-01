@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import style from "./SortBox.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faArrowUpWideShort, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { faChevronDown, faArrowUpWideShort, faCheck, faArrowDownWideShort } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 const cx = classNames.bind(style);
 
@@ -10,11 +10,10 @@ function SortBox({ handleSubmit = () => {} }) {
   const [showListSort, setShowListSort] = useState(false);
   const [sort, setSort] = useState({ name: "Ngày đăng ký", type: "asc" });
 
-  useEffect(() => {
-    if (Object.keys(sort).length === 0) return;
-
-    handleSubmit();
-  }, [sort, handleSubmit]);
+  const handleClickTypeSort = (value) => {
+    setSort(value);
+    handleSubmit(value);
+  };
 
   const emptyFunc = () => {};
 
@@ -38,25 +37,47 @@ function SortBox({ handleSubmit = () => {} }) {
               sort.name === "Họ và tên" && sort.type === "asc"
                 ? emptyFunc
                 : () =>
-                    setSort({
+                    handleClickTypeSort({
                       name: "Họ và tên",
                       type: "asc"
                     })
             }
           >
-            Họ và tên <FontAwesomeIcon icon={faArrowUpWideShort} className={cx("ms-1", "title")} style={{ fontSize: 20 }} />
+            Họ và tên{" "}
+            {sort.name === "Họ và tên" &&
+              (sort.type === "asc" ? (
+                <FontAwesomeIcon icon={faArrowUpWideShort} className={cx("ms-1", "title")} style={{ fontSize: 20 }} />
+              ) : (
+                <FontAwesomeIcon icon={faArrowDownWideShort} className={cx("ms-1", "title")} style={{ fontSize: 20 }} />
+              ))}
           </li>
           <li className={cx("sub-li-type", "type", "py-0", { active: sort.name !== "Họ và tên" })}>
             <ul className={cx("ps-3")}>
               <li
                 className={cx("p-2", "type-sort")}
-                onClick={sort.type === "asc" ? emptyFunc : () => setSort((prev) => ({ ...prev, type: "asc" }))}
+                onClick={
+                  sort.type === "asc"
+                    ? emptyFunc
+                    : () =>
+                        handleClickTypeSort({
+                          name: "Họ và tên",
+                          type: "asc"
+                        })
+                }
               >
                 Tăng dần {sort.name === "Họ và tên" && sort.type === "asc" && <FontAwesomeIcon icon={faCheck} className={cx("ms-1")} />}
               </li>
               <li
                 className={cx("p-2", "type-sort")}
-                onClick={sort.type === "desc" ? emptyFunc : () => setSort((prev) => ({ ...prev, type: "desc" }))}
+                onClick={
+                  sort.type === "desc"
+                    ? emptyFunc
+                    : () =>
+                        handleClickTypeSort({
+                          name: "Họ và tên",
+                          type: "desc"
+                        })
+                }
               >
                 Giảm dần {sort.name === "Họ và tên" && sort.type === "desc" && <FontAwesomeIcon icon={faCheck} className={cx("ms-1")} />}
               </li>
@@ -68,25 +89,47 @@ function SortBox({ handleSubmit = () => {} }) {
               sort.name === "Ngày đăng ký" && sort.type === "asc"
                 ? emptyFunc
                 : () =>
-                    setSort({
+                    handleClickTypeSort({
                       name: "Ngày đăng ký",
                       type: "asc"
                     })
             }
           >
-            Ngày đăng ký <FontAwesomeIcon icon={faArrowUpWideShort} className={cx("ms-1", "title")} style={{ fontSize: 20 }} />
+            Ngày đăng ký{" "}
+            {sort.name === "Ngày đăng ký" &&
+              (sort.type === "asc" ? (
+                <FontAwesomeIcon icon={faArrowUpWideShort} className={cx("ms-1", "title")} style={{ fontSize: 20 }} />
+              ) : (
+                <FontAwesomeIcon icon={faArrowDownWideShort} className={cx("ms-1", "title")} style={{ fontSize: 20 }} />
+              ))}
           </li>
           <li className={cx("sub-li-type", "type", "py-0", { active: sort.name !== "Ngày đăng ký" })}>
             <ul className={cx("ps-3")}>
               <li
                 className={cx("p-2", "type-sort")}
-                onClick={sort.type === "asc" ? emptyFunc : () => setSort((prev) => ({ ...prev, type: "asc" }))}
+                onClick={
+                  sort.type === "asc"
+                    ? emptyFunc
+                    : () =>
+                        handleClickTypeSort({
+                          name: "Ngày đăng ký",
+                          type: "asc"
+                        })
+                }
               >
                 Trước đó {sort.name === "Ngày đăng ký" && sort.type === "asc" && <FontAwesomeIcon icon={faCheck} className={cx("ms-1")} />}
               </li>
               <li
                 className={cx("p-2", "type-sort")}
-                onClick={sort.type === "desc" ? emptyFunc : () => setSort((prev) => ({ ...prev, type: "desc" }))}
+                onClick={
+                  sort.type === "desc"
+                    ? emptyFunc
+                    : () =>
+                        handleClickTypeSort({
+                          name: "Ngày đăng ký",
+                          type: "desc"
+                        })
+                }
               >
                 Gần đây {sort.name === "Ngày đăng ký" && sort.type === "desc" && <FontAwesomeIcon icon={faCheck} className={cx("ms-1")} />}
               </li>
@@ -98,25 +141,47 @@ function SortBox({ handleSubmit = () => {} }) {
               sort.name === "Điểm đầu vào" && sort.type === "asc"
                 ? emptyFunc
                 : () =>
-                    setSort({
+                    handleClickTypeSort({
                       name: "Điểm đầu vào",
                       type: "asc"
                     })
             }
           >
-            Điểm đầu vào <FontAwesomeIcon icon={faArrowUpWideShort} className={cx("ms-1", "title")} style={{ fontSize: 20 }} />
+            Điểm đầu vào{" "}
+            {sort.name === "Điểm đầu vào" &&
+              (sort.type === "asc" ? (
+                <FontAwesomeIcon icon={faArrowUpWideShort} className={cx("ms-1", "title")} style={{ fontSize: 20 }} />
+              ) : (
+                <FontAwesomeIcon icon={faArrowDownWideShort} className={cx("ms-1", "title")} style={{ fontSize: 20 }} />
+              ))}
           </li>
           <li className={cx("sub-li-type", "type", "py-0", { active: sort.name !== "Điểm đầu vào" })}>
             <ul className={cx("ps-3")}>
               <li
                 className={cx("p-2", "type-sort")}
-                onClick={sort.type === "asc" ? emptyFunc : () => setSort((prev) => ({ ...prev, type: "asc" }))}
+                onClick={
+                  sort.type === "asc"
+                    ? emptyFunc
+                    : () =>
+                        handleClickTypeSort({
+                          name: "Điểm đầu vào",
+                          type: "asc"
+                        })
+                }
               >
                 Cao nhất {sort.name === "Điểm đầu vào" && sort.type === "asc" && <FontAwesomeIcon icon={faCheck} className={cx("ms-1")} />}
               </li>
               <li
                 className={cx("p-2", "type-sort")}
-                onClick={sort.type === "desc" ? emptyFunc : () => setSort((prev) => ({ ...prev, type: "desc" }))}
+                onClick={
+                  sort.type === "desc"
+                    ? emptyFunc
+                    : () =>
+                        handleClickTypeSort({
+                          name: "Điểm đầu vào",
+                          type: "desc"
+                        })
+                }
               >
                 Thấp nhất{" "}
                 {sort.name === "Điểm đầu vào" && sort.type === "desc" && <FontAwesomeIcon icon={faCheck} className={cx("ms-1")} />}
@@ -125,7 +190,6 @@ function SortBox({ handleSubmit = () => {} }) {
           </li>
         </ul>
       </div>
-      <input type="text" name="sort" value={JSON.stringify(sort)} onChange={() => {}} className="d-none" />
     </div>
   );
 }

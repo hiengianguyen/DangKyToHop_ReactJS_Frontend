@@ -18,7 +18,7 @@ function SearchName({ handleSubmit = () => {} }) {
           placeholder="Tìm kiếm theo họ và tên..."
         />
       </div>
-      <button type="button" onClick={handleSubmit} className={cx("btn", "btn-primary", "search-name-btn")}>
+      <button type="button" onClick={() => handleSubmit()} className={cx("btn", "btn-primary", "search-name-btn")}>
         Tìm kiếm
       </button>
     </div>

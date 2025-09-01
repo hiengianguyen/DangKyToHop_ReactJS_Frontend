@@ -6,28 +6,55 @@ import Col from "react-bootstrap/esm/Col";
 import { useEffect, useState, useRef } from "react";
 import CardStudent from "./Components/CardStudent";
 import SortBox from "./Components/SortBox";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Loading from "../../../Components/Loading";
 
 function CombinationList() {
   const formRef = useRef();
+  const navigator = useNavigate();
   const [formElement, setFormElement] = useState();
+  const [submittedList, setSubmittedList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingList, setIsLoadingList] = useState(false);
 
   useEffect(() => {
     setFormElement(formRef.current);
   }, []);
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    axios.get("http://localhost:4001/combination/submited-list").then((axiosData) => {
+      const data = axiosData.data;
+      if (data.isSuccess) {
+        setSubmittedList(data.submitedList);
+        setIsLoading(false);
+      } else {
+        navigator("/auth/signin");
+      }
+    });
+  }, [navigator]);
+
+  const handleSubmit = (sort) => {
+    console.log(sort);
+
+    setIsLoadingList(true);
     const formData = new FormData(formElement);
     const data = Object.fromEntries(formData.entries());
-
-    if (Object.keys(data).length === 0) return;
-
-    data.sort = JSON.parse(data.sort);
-
-    console.log(data);
+    if (Object.keys(data).length === 0 && submittedList.length === 0) return;
+    sort && (data.sort = sort);
+    axios
+      .post("http://localhost:4001/combination/submited/sort", data)
+      .then((axiosData) => {
+        if (axiosData.data.isSuccess) {
+          setSubmittedList(axiosData.data.submittedListAfterSort);
+        }
+      })
+      .finally(() => setIsLoadingList(false));
   };
 
   return (
     <BoxRadius>
+      {isLoading && <Loading />}
       <h2>Danh sách đăng ký</h2>
       <form action="" ref={formRef}>
         <SearchName handleSubmit={handleSubmit} />
@@ -147,25 +174,14 @@ function CombinationList() {
         </Row>
 
         <Row>
-          <Row as={Col} className="container mt-4">
-            <Col xs={"auto"}>
-              <CardStudent />
-            </Col>
-            <Col xs={"auto"}>
-              <CardStudent />
-            </Col>
-            <Col xs={"auto"}>
-              <CardStudent />
-            </Col>
-            <Col xs={"auto"}>
-              <CardStudent />
-            </Col>
-            <Col xs={"auto"}>
-              <CardStudent />
-            </Col>
-            <Col xs={"auto"}>
-              <CardStudent />
-            </Col>
+          <Row as={Col} className="container mt-4 position-relative" style={{ minHeight: "30pc" }}>
+            {submittedList &&
+              submittedList.map((item, index) => (
+                <Col xs={"auto"} key={index}>
+                  <CardStudent data={item} />
+                </Col>
+              ))}
+            {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
           </Row>
 
           <Col xs={"auto"}>
