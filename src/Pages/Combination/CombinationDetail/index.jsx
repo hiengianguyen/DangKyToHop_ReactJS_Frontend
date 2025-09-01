@@ -23,6 +23,7 @@ function CombinationDetail() {
   }, []);
 
   useEffect(() => {
+    if (!auth?.user?.userId) return;
     axios.get("http://localhost:4001/combination/submited-detail/" + auth.user.userId).then((axiosData) => {
       if (axiosData.data.isSuccess) {
         setSubmitedDetail(axiosData.data.submitedCombinationDetail);
@@ -31,7 +32,7 @@ function CombinationDetail() {
         navigator("/auth/signin");
       }
     });
-  }, [navigator, auth.user.userId]);
+  }, [navigator, auth?.user?.userId]);
 
   return (
     <BoxRadius>
