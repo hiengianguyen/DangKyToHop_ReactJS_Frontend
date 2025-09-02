@@ -88,6 +88,13 @@ const privateRoutes = [
     roles: ["student", "manager"]
   },
   {
+    path: "/combination/detail",
+    component: CombinationDetail,
+    title: "Hồ Sơ Đã Nộp",
+    icon: <FontAwesomeIcon className="" icon={faFileCircleCheck} />,
+    roles: ["student"]
+  },
+  {
     path: "/combination/detail/:id",
     component: CombinationDetail,
     title: "Hồ Sơ Đã Nộp",

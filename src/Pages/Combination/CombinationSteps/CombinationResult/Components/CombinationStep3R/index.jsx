@@ -4,12 +4,23 @@ import InputHadValue from "../../../../Component/InputHadValue";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CombinationTable from "../../../../Component/CombinationTable";
+import { typeBadge } from "../../../../../../utils";
+import Badge from "react-bootstrap/esm/Badge";
+import TablePoints from "../../../../Component/TablePoints";
 
 const cx = classNames.bind(style);
 
-function CombinationStep3R({ valueStudent = {} }) {
+function CombinationStep3R({ valueStudent = {}, role = "student" }) {
   return (
-    <div className={cx("card-body", "container")}>
+    <div className={cx("card-body", "container shadow")}>
+      {role === "manager" && (
+        <h3>
+          Trạng thái:{" "}
+          <Badge className="p-3 shadow" bg={typeBadge(valueStudent.status).color}>
+            {typeBadge(valueStudent.status).title}
+          </Badge>
+        </h3>
+      )}
       <div className={cx("content")}>
         <div className={cx("header", "second")}>
           <div className={cx("first-slogan")}>
@@ -42,11 +53,13 @@ function CombinationStep3R({ valueStudent = {} }) {
               <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
             </Col>
           </Row>
-          {/* Bảng điểm và tổ hợp có thể show dạng bảng hoặc từng trường nếu muốn */}
           <div className={cx("info-box", "mt-4")}>
-            <span className={cx("title")}>I. THÔNG TIN TỔ HỢP</span>
+            <span className={cx("title", "text-uppercase")}>I. Điểm thi tuyển vào lớp 10 và kết quả học tập, rèn luyện</span>
+            <div className={cx("table-point", "mt-4")}>
+              <TablePoints valueStudent={valueStudent} readOnly={true} />
+            </div>
+            <span className={cx("title", "text-uppercase")}>II. TỔ HỢP LỰA CHỌN CỤ THỂ</span>
             <CombinationTable />
-            <span className={cx("title")}>II. TỔ HỢP LỰA CHỌN CỤ THỂ</span>
             <Row>
               <Col xs={"auto"}>
                 <InputHadValue label="- Nguyện vọng 1" value={valueStudent.combination1} />

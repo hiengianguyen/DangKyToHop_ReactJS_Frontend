@@ -11,7 +11,7 @@ function SearchName({ handleSubmit = () => {} }) {
       <div className={cx("d-flex", "align-items-center", "search-name-div", "border")}>
         <FontAwesomeIcon icon={faMagnifyingGlass} className="mx-2" />
         <input
-          className={cx("ps-0")}
+          className={cx("ps-0 w-100")}
           type="text"
           name="fullName"
           style={{ border: "none", outline: "none" }}

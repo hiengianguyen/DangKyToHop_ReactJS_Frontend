@@ -25,33 +25,35 @@ function CombinationDetail() {
 
   useEffect(() => {
     if (!auth?.user?.userId) return;
-    let userId = !auth?.user?.userId;
+    let userId = auth?.user?.userId;
     if (id) userId = id;
-    axios.get("http://localhost:4001/combination/submited-detail/" + userId).then((axiosData) => {
-      if (axiosData.data.isSuccess) {
-        setSubmitedDetail(axiosData.data.submitedCombinationDetail);
-        setIsLoading(false);
-      } else {
-        navigator("/auth/signin");
-      }
-    });
-  }, [navigator, auth?.user?.userId]);
+    axios
+      .get("http://localhost:4001/combination/submited-detail/" + userId)
+      .then((axiosData) => {
+        if (axiosData.data.isSuccess) {
+          setSubmitedDetail(axiosData.data.submitedCombinationDetail);
+        } else {
+          navigator("/auth/signin");
+        }
+      })
+      .finally(() => setIsLoading(false));
+  }, [navigator, auth?.user?.userId, id]);
 
   return (
     <BoxRadius>
       {isLoading && <Loading title="Đang tải hồ sơ" />}
       <Tabs defaultActiveKey="home" className="mb-3">
         <Tab eventKey="home" title="1. Thông tin chung">
-          <CombinationStep1R valueStudent={submitedDetail} />
+          <CombinationStep1R valueStudent={submitedDetail} role={auth?.user?.role} />
         </Tab>
         <Tab eventKey="profile" title="2. Đơn xin nhập học">
-          <CombinationStep2R valueStudent={submitedDetail} />
+          <CombinationStep2R valueStudent={submitedDetail} role={auth?.user?.role} />
         </Tab>
         <Tab eventKey="longer-tab" title="3. Chọn tổ hợp">
-          <CombinationStep3R valueStudent={submitedDetail} />
+          <CombinationStep3R valueStudent={submitedDetail} role={auth?.user?.role} />
         </Tab>
         <Tab eventKey="contact" title="4. Lý lịch học sinh">
-          <CombinationStep4R valueStudent={submitedDetail} />
+          <CombinationStep4R valueStudent={submitedDetail} role={auth?.user?.role} />
         </Tab>
       </Tabs>
     </BoxRadius>

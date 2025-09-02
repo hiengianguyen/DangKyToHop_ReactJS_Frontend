@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const cx = classNames.bind(style);
 
-function TablePoints({ valueStudent = {} }) {
+function TablePoints({ valueStudent = {}, readOnly = false }) {
   const [mathPoint, setMathPoint] = useState(0);
   const [literaturePoint, setLiteraturePoint] = useState(0);
   const [englishPoint, setEnglishPoint] = useState(0);
@@ -30,43 +30,55 @@ function TablePoints({ valueStudent = {} }) {
         </tr>
         <tr>
           <td>
-            <Form.Control
-              required
-              type="number"
-              onChange={(e) => setMathPoint(Number(e.target.value))}
-              min={0}
-              max={10}
-              step={0.1}
-              name="mathPoint"
-              defaultValue={valueStudent.mathPoint || mathPoint}
-              className={cx("inp-man")}
-            />
+            {readOnly ? (
+              <span className={cx("inp-man")}>{valueStudent.mathPoint}</span>
+            ) : (
+              <Form.Control
+                required
+                type="number"
+                onChange={(e) => setMathPoint(Number(e.target.value))}
+                min={0}
+                max={10}
+                step={0.1}
+                name="mathPoint"
+                defaultValue={valueStudent.mathPoint || mathPoint}
+                className={cx("inp-man")}
+              />
+            )}
           </td>
           <td>
-            <Form.Control
-              required
-              type="number"
-              onChange={(e) => setLiteraturePoint(Number(e.target.value))}
-              min={0}
-              max={10}
-              step={0.1}
-              name="literaturePoint"
-              defaultValue={valueStudent.literaturePoint || literaturePoint}
-              className={cx("inp-man")}
-            />
+            {readOnly ? (
+              <span className={cx("inp-man")}>{valueStudent.literaturePoint}</span>
+            ) : (
+              <Form.Control
+                required
+                type="number"
+                onChange={(e) => setLiteraturePoint(Number(e.target.value))}
+                min={0}
+                max={10}
+                step={0.1}
+                name="literaturePoint"
+                defaultValue={valueStudent.literaturePoint || literaturePoint}
+                className={cx("inp-man")}
+              />
+            )}
           </td>
           <td>
-            <Form.Control
-              required
-              type="number"
-              onChange={(e) => setEnglishPoint(Number(e.target.value))}
-              min={0}
-              max={10}
-              step={0.1}
-              name="englishPoint"
-              defaultValue={valueStudent.englishPoint || englishPoint}
-              className={cx("inp-man")}
-            />
+            {readOnly ? (
+              <span className={cx("inp-man")}>{valueStudent.englishPoint}</span>
+            ) : (
+              <Form.Control
+                required
+                type="number"
+                onChange={(e) => setEnglishPoint(Number(e.target.value))}
+                min={0}
+                max={10}
+                step={0.1}
+                name="englishPoint"
+                defaultValue={valueStudent.englishPoint || englishPoint}
+                className={cx("inp-man")}
+              />
+            )}
           </td>
           <td>
             <span className={cx("total-point")}>
@@ -78,25 +90,33 @@ function TablePoints({ valueStudent = {} }) {
             </span>
           </td>
           <td>
-            <Form.Control
-              required
-              type="number"
-              min={1.75}
-              max={10}
-              step={0.25}
-              name="conductPoint"
-              defaultValue={valueStudent.conductPoint || 1.75}
-              className={cx("inp-man")}
-            />
+            {readOnly ? (
+              <span className={cx("inp-man")}>{valueStudent.conductPoint ?? 1.75}</span>
+            ) : (
+              <Form.Control
+                required
+                type="number"
+                min={1.75}
+                max={10}
+                step={0.25}
+                name="conductPoint"
+                defaultValue={valueStudent.conductPoint || 1.75}
+                className={cx("inp-man")}
+              />
+            )}
           </td>
           <td>
-            <Form.Control
-              required
-              type="number"
-              name="admissionPoint"
-              defaultValue={valueStudent.admissionPoint || 0}
-              className={cx("inp-man")}
-            />
+            {readOnly ? (
+              <span className={cx("inp-man")}>{valueStudent.admissionPoint ?? 0}</span>
+            ) : (
+              <Form.Control
+                required
+                type="number"
+                name="admissionPoint"
+                defaultValue={valueStudent.admissionPoint || 0}
+                className={cx("inp-man")}
+              />
+            )}
           </td>
         </tr>
       </tbody>
