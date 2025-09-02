@@ -3,12 +3,22 @@ import style from "./CombinationStep2R.module.scss";
 import InputHadValue from "../../../../Component/InputHadValue";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Badge from "react-bootstrap/esm/Badge";
+import { typeBadge } from "../../../../../../utils";
 
 const cx = classNames.bind(style);
 
-function CombinationStep2R({ valueStudent = {} }) {
+function CombinationStep2R({ valueStudent = {}, role = "student" }) {
   return (
-    <div className={cx("card-body", "container")} style={{ fontSize: "17px" }}>
+    <div className={cx("card-body", "container shadow")} style={{ fontSize: "17px" }}>
+      {role === "manager" && (
+        <h3>
+          Trạng thái:{" "}
+          <Badge className="p-3 shadow" bg={typeBadge(valueStudent.status).color}>
+            {typeBadge(valueStudent.status).title}
+          </Badge>
+        </h3>
+      )}
       <div className={cx("content")}>
         <div className={cx("header")}>
           <div className={cx("first-slogan")}>

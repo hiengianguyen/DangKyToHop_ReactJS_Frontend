@@ -9,12 +9,15 @@ import SortBox from "./Components/SortBox";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../Components/Loading";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 function CombinationList() {
   const formRef = useRef();
   const navigator = useNavigate();
   const [formElement, setFormElement] = useState();
   const [submittedList, setSubmittedList] = useState([]);
+  const [submittedListMain, setSubmittedListMain] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingList, setIsLoadingList] = useState(false);
 
@@ -23,25 +26,27 @@ function CombinationList() {
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:4001/combination/submited-list").then((axiosData) => {
-      const data = axiosData.data;
-      if (data.isSuccess) {
-        setSubmittedList(data.submitedList);
-        setIsLoading(false);
-      } else {
-        navigator("/auth/signin");
-      }
-    });
+    axios
+      .get("http://localhost:4001/combination/submited-list")
+      .then((axiosData) => {
+        const data = axiosData.data;
+        if (data.isSuccess) {
+          setSubmittedList(data.submitedList);
+          setSubmittedListMain(data.submitedList);
+        } else {
+          navigator("/auth/signin");
+        }
+      })
+      .finally(() => setIsLoading(false));
   }, [navigator]);
 
   const handleSubmit = (sort) => {
-    console.log(sort);
-
     setIsLoadingList(true);
     const formData = new FormData(formElement);
     const data = Object.fromEntries(formData.entries());
     if (Object.keys(data).length === 0 && submittedList.length === 0) return;
     sort && (data.sort = sort);
+    data.submittedList = submittedListMain;
     axios
       .post("http://localhost:4001/combination/submited/sort", data)
       .then((axiosData) => {
@@ -52,10 +57,49 @@ function CombinationList() {
       .finally(() => setIsLoadingList(false));
   };
 
+  const handleExportExcel = () => {
+    setIsLoading(true);
+    axios
+      .post(
+        "http://localhost:4001/file/excel/filter-submited-list",
+        { submittedList: submittedList },
+        {
+          responseType: "arraybuffer"
+        }
+      )
+      .then((res) => {
+        const blob = new Blob([res.data], {
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        });
+
+        const url = window.URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "DanhSachDangKy.xlsx";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        window.URL.revokeObjectURL(url);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
   return (
     <BoxRadius>
       {isLoading && <Loading />}
-      <h2>Danh sách đăng ký</h2>
+      <div className="d-flex justify-content-between" style={{ height: "3pc" }}>
+        <h2>Danh sách đăng ký</h2>
+        <DropdownButton drop="start" size="lg" title="Xuất file Excel">
+          <Dropdown.Item className="fs-2 p-3" href="http://localhost:4001/file/excel/submited-list">
+            Tất cả hồ sơ
+          </Dropdown.Item>
+          <Dropdown.Item className="fs-2 p-3" onClick={handleExportExcel}>
+            Hồ sơ đã lọc
+          </Dropdown.Item>
+        </DropdownButton>
+      </div>
       <form action="" ref={formRef}>
         <SearchName handleSubmit={handleSubmit} />
         <Row>

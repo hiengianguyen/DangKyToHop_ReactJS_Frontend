@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import style from "./CardStudent.module.scss";
-import { formatDayOfBirth } from "../../../../../utils";
+import { formatDayOfBirth, typeBadge } from "../../../../../utils";
 import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(style);
@@ -52,11 +52,11 @@ function CardStudent({ data = {} }) {
           </div>
 
           <span
-            className={cx("badge", "badge-submitted", "position-absolute")}
+            className={cx("badge", "badge-" + data.status, "position-absolute")}
             title="Trạng thái"
             style={{ top: 8, right: 8, position: "absolute" }}
           >
-            Đã nộp
+            {typeBadge(data.status).title}
           </span>
         </div>
       </div>

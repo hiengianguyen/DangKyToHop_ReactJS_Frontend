@@ -124,7 +124,7 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
         </Button>
       </div>
 
-      <div className={cx("card-body", "container")} style={{ fontSize: "17px" }}>
+      <div className={cx("card-body", "container shadow")} style={{ fontSize: "17px" }}>
         <div className={cx("content", "first")}>
           <div className={cx("header", "first")}>
             <span>MỘT SỐ LƯU Ý KHI ĐĂNG KÝ CHỌN TỔ HỢP MÔN HỌC</span>
@@ -199,7 +199,7 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
                   <InputHadValue label="Họ và tên phụ huynh" value={valueStudent.nameDad || valueStudent.nameMom} />
                 </Col>
                 <Col>
-                  <InputHadValue label="số ĐT" value={valueStudent.phoneDad} />
+                  <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
                 </Col>
               </Row>
 

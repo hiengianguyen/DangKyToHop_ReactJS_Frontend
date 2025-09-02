@@ -56,7 +56,7 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
         </Button>
       </div>
 
-      <div className={cx("card-body", "container")} style={{ fontSize: "17px" }}>
+      <div className={cx("card-body", "container shadow")} style={{ fontSize: "17px" }}>
         <div className={cx("content")}>
           <div className={cx("header")}>
             <div className={cx("first-slogan")}>
