@@ -8,6 +8,7 @@ import EditProfile from "../Pages/Profile/EditProfile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBell,
+  faBook,
   faBookmark,
   faBuilding,
   faChartSimple,
@@ -23,6 +24,7 @@ import MainNoti from "../Pages/Noti/MainNoti";
 import NotiDetail from "../Pages/Noti/NotiDetail";
 import CombinationList from "../Pages/Combination/CombinationList";
 import CombinationListFavour from "../Pages/Combination/CombinationListFavour";
+import TablePage from "../Pages/Table";
 
 const publicRoutes = [
   {
@@ -99,6 +101,13 @@ const privateRoutes = [
     component: CombinationDetail,
     title: "Hồ Sơ Đã Nộp",
     inSidebar: false,
+    roles: ["manager"]
+  },
+  {
+    path: "/table",
+    component: TablePage,
+    title: "Tổ hợp",
+    icon: <FontAwesomeIcon className="" icon={faBook} />,
     roles: ["manager"]
   },
   {
