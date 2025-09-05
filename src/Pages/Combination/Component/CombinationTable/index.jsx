@@ -1,12 +1,31 @@
 import classNames from "classnames/bind";
 import style from "./CombinationTable.module.scss";
 import Table from "react-bootstrap/esm/Table";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import Loading from "../../../../Components/Loading";
 
 const cx = classNames.bind(style);
 
 function CombinationTable() {
+  const [combinations, setCombinations] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4001/combination/table")
+      .then((axiosData) => {
+        if (axiosData.data.isSuccess) {
+          setCombinations(axiosData.data.combinations);
+        }
+      })
+      .finally(() => setIsLoading(false));
+  }, []);
+
   return (
     <Table striped className={cx("wrapper")}>
+      {isLoading && <Loading title="Đang tải các tổ hợp" />}
       <thead>
         <tr>
           <th>Tổ hợp</th>
@@ -17,41 +36,16 @@ function CombinationTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Tổ hợp 1</td>
-          <td>1</td>
-          <td>Vật lý, Hóa học, Sinh học, Tin học</td>
-          <td>Toán, Lý, Hóa</td>
-          <td>Bóng đá, Bóng chuyền, Đá cầu.</td>
-        </tr>
-        <tr>
-          <td>Tổ hợp 1</td>
-          <td>1</td>
-          <td>Vật lý, Hóa học, Sinh học, Tin học</td>
-          <td>Toán, Lý, Hóa</td>
-          <td>Bóng đá, Bóng chuyền, Đá cầu.</td>
-        </tr>
-        <tr>
-          <td>Tổ hợp 1</td>
-          <td>1</td>
-          <td>Vật lý, Hóa học, Sinh học, Tin học</td>
-          <td>Toán, Lý, Hóa</td>
-          <td>Bóng đá, Bóng chuyền, Đá cầu.</td>
-        </tr>
-        <tr>
-          <td>Tổ hợp 1</td>
-          <td>1</td>
-          <td>Vật lý, Hóa học, Sinh học, Tin học</td>
-          <td>Toán, Lý, Hóa</td>
-          <td>Bóng đá, Bóng chuyền, Đá cầu.</td>
-        </tr>
-        <tr>
-          <td>Tổ hợp 1</td>
-          <td>1</td>
-          <td>Vật lý, Hóa học, Sinh học, Tin học</td>
-          <td>Toán, Lý, Hóa</td>
-          <td>Bóng đá, Bóng chuyền, Đá cầu.</td>
-        </tr>
+        {combinations &&
+          combinations.map((item, index) => (
+            <tr key={index}>
+              <td>{item.name}</td>
+              <td>{item.classesCount}</td>
+              <td>{item.optionalSubjects}</td>
+              <td>{item.compulsorySubjects}</td>
+              <td>Bóng đá, Bóng chuyền, Đá cầu.</td>
+            </tr>
+          ))}
       </tbody>
     </Table>
   );
