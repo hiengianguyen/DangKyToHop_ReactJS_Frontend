@@ -10,7 +10,7 @@ import ModalEditTable from "./Modal";
 const cx = classNames.bind(style);
 
 function TablePage() {
-  const [combinationModal, setCombinationModal] = useState();
+  const [combinationModalID, setCombinationModalID] = useState("");
   const [combinations, setCombinations] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isShowModal, setIsShowModal] = useState(false);
@@ -27,7 +27,7 @@ function TablePage() {
   }, []);
 
   const handleEditCombination = (id) => {
-    setCombinationModal(() => combinations.find((item) => item.id === id));
+    setCombinationModalID(id);
     setIsShowModal(true);
   };
 
@@ -56,7 +56,10 @@ function TablePage() {
                     <td>{item.compulsorySubjects.join(", ")}</td>
                     <td>{item.classesCount}</td>
                     <td>
-                      <div className="btn btn-secondary fs-3" onClick={() => handleEditCombination(item.id)}>
+                      <div
+                        className="btn btn-secondary fs-3"
+                        onClick={() => handleEditCombination(item.id)}
+                      >
                         Chỉnh sửa
                       </div>
                     </td>
@@ -66,7 +69,18 @@ function TablePage() {
           </Table>
         </div>
       </div>
-      <ModalEditTable isShow={isShowModal} setShow={setIsShowModal} combination={combinationModal} />
+      {combinations &&
+        combinations.map((item, index) => {
+          if (item.id !== combinationModalID) return null;
+          return (
+            <ModalEditTable
+              key={index}
+              isShow={isShowModal}
+              setShow={setIsShowModal}
+              combination={item}
+            />
+          );
+        })}
     </BoxRadius>
   );
 }
