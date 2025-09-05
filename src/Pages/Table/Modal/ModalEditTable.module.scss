@@ -1,0 +1,31 @@
+.wrapper {
+  ol {
+    margin-bottom: 15px;
+  }
+
+  li {
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 7px;
+    width: 100%;
+
+    &:focus {
+      background-color: rgba($color: #4442e7, $alpha: 0.1);
+    }
+  }
+
+  .classCount {
+    + input {
+      flex: 1;
+    }
+  }
+
+  h6 {
+    font-size: 16px;
+  }
+}

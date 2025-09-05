@@ -41,8 +41,8 @@ function CombinationTable() {
             <tr key={index}>
               <td>{item.name}</td>
               <td>{item.classesCount}</td>
-              <td>{item.optionalSubjects}</td>
-              <td>{item.compulsorySubjects}</td>
+              <td>{item.optionalSubjects.join(", ")}</td>
+              <td>{item.compulsorySubjects.join(", ")}</td>
               <td>Bóng đá, Bóng chuyền, Đá cầu.</td>
             </tr>
           ))}
