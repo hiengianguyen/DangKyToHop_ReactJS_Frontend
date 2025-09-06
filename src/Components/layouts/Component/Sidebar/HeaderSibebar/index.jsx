@@ -6,13 +6,7 @@ const cx = classNames.bind(style);
 function HeaderSidebar({ isPushSidebar }) {
   return (
     <div className={cx("wrapper")}>
-      <div
-        className={cx("img-box", {
-          ["d-flex"]: !isPushSidebar,
-          ["justify-content-center"]: !isPushSidebar,
-          ["w-100"]: !isPushSidebar
-        })}
-      >
+      <div className={cx("img-box", !isPushSidebar ? "d-flex justify-content-center w-100" : "")}>
         <img src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752651864/cropped_circle_image_kfiyjk.png" alt="Lo-go Truong" />
       </div>
       {isPushSidebar && (

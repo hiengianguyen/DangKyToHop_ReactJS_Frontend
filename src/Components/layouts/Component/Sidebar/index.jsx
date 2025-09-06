@@ -14,7 +14,7 @@ export const PushSidebarContext = createContext();
 function Sidebar() {
   const { auth } = useAuth();
   const [currRouter, setCurrRouter] = useState(window.location.pathname);
-  const [pushSidebar, setPushSidebar] = useState(true);
+  const [pushSidebar, setPushSidebar] = useState(false);
 
   const wrapperSidebar = useRef();
   const contentSidebar = useRef();
@@ -31,9 +31,7 @@ function Sidebar() {
   return (
     <div className={cx("wrapper")} ref={wrapperSidebar}>
       <div className={cx("content")} ref={contentSidebar}>
-        <PushSidebarContext.Provider
-          value={{ isPush: pushSidebar, onPush: setPushSidebar }}
-        >
+        <PushSidebarContext.Provider value={{ isPush: pushSidebar, onPush: setPushSidebar }}>
           <HeaderSidebar isPushSidebar={pushSidebar} />
           <div className={cx("box-content", { small: !pushSidebar })}>
             <Dash height="1px" />
