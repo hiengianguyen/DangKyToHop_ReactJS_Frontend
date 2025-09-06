@@ -14,6 +14,8 @@ function MainNoti() {
   const [listNoti, setListNoti] = useState([]);
   const [role, setRole] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showListAction, setShowListAction] = useState(false);
+  const [listAction, setListAction] = useState("");
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -33,15 +35,15 @@ function MainNoti() {
   }, [navigator]);
 
   const deleteNoti = (id) => {
-    axios.get("http://localhost:4001/notification/delete/m/" + id).then((axiosData) => {
-      if (axiosData.data.isSuccess) {
+    axios
+      .get("http://localhost:4001/notification/delete/m/" + id)
+      .then((axiosData) => {
+        if (axiosData.data.type === "auth") {
+          navigator("/auth/signin");
+        }
         alert(axiosData.data.message);
-      } else if (axiosData.data.type === "auth") {
-        navigator("/auth/signin");
-      } else {
-        alert(axiosData.data.message);
-      }
-    });
+      })
+      .finally(() => navigator(0));
   };
   return (
     <BoxRadius>
@@ -62,7 +64,7 @@ function MainNoti() {
             </div>
           ) : null}
           <div className={cx("container", "container-noti")}>
-            {listNoti.length > 0 ? (
+            {listNoti ? (
               listNoti.map((item, index) => (
                 <div className={cx("noti-box", "rounded-4")} key={index}>
                   <h5 className={cx("title", "pe-4 fs-2")}>
@@ -71,7 +73,13 @@ function MainNoti() {
 
                   <p className={cx("timer", "mb-0")}>Tạo lúc: {item.publishAt}</p>
                   {role === "manager" ? (
-                    <div className={cx("list-icon")}>
+                    <div
+                      className={cx("list-icon")}
+                      onClick={() => {
+                        setListAction(item.id);
+                        setShowListAction((prev) => !prev);
+                      }}
+                    >
                       <svg
                         aria-hidden="true"
                         focusable="false"
@@ -87,12 +95,18 @@ function MainNoti() {
                           d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
                         ></path>
                       </svg>
-                      <ul className={cx("opt-noti", "shadow", "hidden")}>
-                        <Link to="/notification/edit/{{this.id}}">
-                          <li>Chỉnh sửa</li>
-                        </Link>
-                        <li onClick={() => deleteNoti(item.id)}>Xoá</li>
-                      </ul>
+                      {showListAction && (
+                        <ul
+                          className={cx("opt-noti", "shadow", {
+                            hidden: listAction !== item.id
+                          })}
+                        >
+                          <Link to={"/notifications/edit/" + item.id}>
+                            <li>Chỉnh sửa</li>
+                          </Link>
+                          <li onClick={() => deleteNoti(item.id)}>Xoá</li>
+                        </ul>
+                      )}
                     </div>
                   ) : null}
                 </div>

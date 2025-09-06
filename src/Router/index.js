@@ -25,6 +25,9 @@ import NotiDetail from "../Pages/Noti/NotiDetail";
 import CombinationList from "../Pages/Combination/CombinationList";
 import CombinationListFavour from "../Pages/Combination/CombinationListFavour";
 import TablePage from "../Pages/Table";
+import GeneratorNoti from "../Pages/Noti/GeneratorNoti";
+import NotiEdit from "../Pages/Noti/NotiEdit";
+import NotiInfo from "../Pages/Noti/NotiInfo";
 
 const publicRoutes = [
   {
@@ -118,10 +121,28 @@ const privateRoutes = [
     roles: ["student", "manager"]
   },
   {
+    path: "/notification/generator",
+    component: GeneratorNoti,
+    inSidebar: false,
+    roles: ["manager"]
+  },
+  {
+    path: "/notification/info",
+    component: NotiInfo,
+    inSidebar: false,
+    roles: ["manager"]
+  },
+  {
     path: "/notifications/:id",
     component: NotiDetail,
     inSidebar: false,
     roles: ["student", "manager"]
+  },
+  {
+    path: "/notifications/edit/:id",
+    component: NotiEdit,
+    inSidebar: false,
+    roles: ["manager"]
   },
   { path: "/profile", component: User, inSidebar: false, roles: ["student", "manager"] },
   { path: "/profile/edit", component: EditProfile, inSidebar: false, roles: ["student", "manager"] }

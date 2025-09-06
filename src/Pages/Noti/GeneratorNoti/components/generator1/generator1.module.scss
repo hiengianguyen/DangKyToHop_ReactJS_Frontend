@@ -1,0 +1,28 @@
+.boxSubmit1 {
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.createNotiForm {
+  width: 100%;
+}
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+.notiInput {
+  font-size: 16px !important;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.formMessage {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-top: 4px;
+}
+.flexEnd {
+  display: flex;
+  justify-content: flex-end;
+}

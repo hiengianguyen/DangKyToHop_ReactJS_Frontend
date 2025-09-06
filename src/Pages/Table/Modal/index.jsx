@@ -8,34 +8,16 @@ import Loading from "../../../Components/Loading";
 import { useNavigate } from "react-router-dom";
 const cx = classNames.bind(style);
 
-function ModalEditTable({
-  isShow = false,
-  setShow = () => {},
-  combination = {},
-}) {
+function ModalEditTable({ isShow = false, setShow = () => {}, combination = {} }) {
   const formRef = useRef();
   const handleClose = () => setShow(false);
-  const [optionalSubject1, setOptionalSubject1] = useState(
-    combination.optionalSubjects ? combination?.optionalSubjects[0] : ""
-  );
-  const [optionalSubject2, setOptionalSubject2] = useState(
-    combination.optionalSubjects ? combination?.optionalSubjects[1] : ""
-  );
-  const [optionalSubject3, setOptionalSubject3] = useState(
-    combination.optionalSubjects ? combination?.optionalSubjects[2] : ""
-  );
-  const [optionalSubject4, setOptionalSubject4] = useState(
-    combination.optionalSubjects ? combination?.optionalSubjects[3] : ""
-  );
-  const [compulsorySubject1, setCompulsorySubject1] = useState(
-    combination.compulsorySubjects ? combination?.compulsorySubjects[0] : ""
-  );
-  const [compulsorySubject2, setCompulsorySubject2] = useState(
-    combination.compulsorySubjects ? combination?.compulsorySubjects[1] : ""
-  );
-  const [compulsorySubject3, setCompulsorySubject3] = useState(
-    combination.compulsorySubjects ? combination?.compulsorySubjects[2] : ""
-  );
+  const [optionalSubject1, setOptionalSubject1] = useState(combination.optionalSubjects ? combination?.optionalSubjects[0] : "");
+  const [optionalSubject2, setOptionalSubject2] = useState(combination.optionalSubjects ? combination?.optionalSubjects[1] : "");
+  const [optionalSubject3, setOptionalSubject3] = useState(combination.optionalSubjects ? combination?.optionalSubjects[2] : "");
+  const [optionalSubject4, setOptionalSubject4] = useState(combination.optionalSubjects ? combination?.optionalSubjects[3] : "");
+  const [compulsorySubject1, setCompulsorySubject1] = useState(combination.compulsorySubjects ? combination?.compulsorySubjects[0] : "");
+  const [compulsorySubject2, setCompulsorySubject2] = useState(combination.compulsorySubjects ? combination?.compulsorySubjects[1] : "");
+  const [compulsorySubject3, setCompulsorySubject3] = useState(combination.compulsorySubjects ? combination?.compulsorySubjects[2] : "");
   const [classCount, setClassCount] = useState(combination.classesCount);
   const [formElement, setFormElement] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -70,7 +52,7 @@ function ModalEditTable({
     <Modal show={isShow} onHide={handleClose} className={cx("wrapper")}>
       {isLoading && <Loading title="Đang cập nhật dữ liệu tổ hợp" />}
       <Modal.Header closeButton>
-        <Modal.Title>Chỉnh sửa tổ hợp</Modal.Title>
+        <Modal.Title className="fs-2">Chỉnh sửa tổ hợp</Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-4">
         <form action="" ref={formRef}>
@@ -81,11 +63,7 @@ function ModalEditTable({
               <input
                 type="text"
                 onChange={(e) => setOptionalSubject1(e.target.value)}
-                value={
-                  combination.optionalSubjects
-                    ? optionalSubject1 || combination?.optionalSubjects[0]
-                    : ""
-                }
+                value={combination.optionalSubjects ? optionalSubject1 || combination?.optionalSubjects[0] : ""}
                 name="optionalSubjects"
               />
             </li>
@@ -93,11 +71,7 @@ function ModalEditTable({
               <input
                 type="text"
                 onChange={(e) => setOptionalSubject2(e.target.value)}
-                value={
-                  combination.optionalSubjects
-                    ? optionalSubject2 || combination?.optionalSubjects[1]
-                    : ""
-                }
+                value={combination.optionalSubjects ? optionalSubject2 || combination?.optionalSubjects[1] : ""}
                 name="optionalSubjects"
               />
             </li>
@@ -105,11 +79,7 @@ function ModalEditTable({
               <input
                 type="text"
                 onChange={(e) => setOptionalSubject3(e.target.value)}
-                value={
-                  combination.optionalSubjects
-                    ? optionalSubject3 || combination?.optionalSubjects[2]
-                    : ""
-                }
+                value={combination.optionalSubjects ? optionalSubject3 || combination?.optionalSubjects[2] : ""}
                 name="optionalSubjects"
               />
             </li>
@@ -117,11 +87,7 @@ function ModalEditTable({
               <input
                 type="text"
                 onChange={(e) => setOptionalSubject4(e.target.value)}
-                value={
-                  combination.optionalSubjects
-                    ? optionalSubject4 || combination?.optionalSubjects[3]
-                    : ""
-                }
+                value={combination.optionalSubjects ? optionalSubject4 || combination?.optionalSubjects[3] : ""}
                 name="optionalSubjects"
               />
             </li>
@@ -132,11 +98,7 @@ function ModalEditTable({
               <input
                 type="text"
                 onChange={(e) => setCompulsorySubject1(e.target.value)}
-                value={
-                  combination.compulsorySubjects
-                    ? compulsorySubject1 || combination?.compulsorySubjects[0]
-                    : ""
-                }
+                value={combination.compulsorySubjects ? compulsorySubject1 || combination?.compulsorySubjects[0] : ""}
                 name="compulsorySubjects"
               />
             </li>
@@ -144,11 +106,7 @@ function ModalEditTable({
               <input
                 type="text"
                 onChange={(e) => setCompulsorySubject2(e.target.value)}
-                value={
-                  combination.compulsorySubjects
-                    ? compulsorySubject2 || combination?.compulsorySubjects[1]
-                    : ""
-                }
+                value={combination.compulsorySubjects ? compulsorySubject2 || combination?.compulsorySubjects[1] : ""}
                 name="compulsorySubjects"
               />
             </li>
@@ -156,11 +114,7 @@ function ModalEditTable({
               <input
                 type="text"
                 onChange={(e) => setCompulsorySubject3(e.target.value)}
-                value={
-                  combination.compulsorySubjects
-                    ? compulsorySubject3 || combination?.compulsorySubjects[2]
-                    : ""
-                }
+                value={combination.compulsorySubjects ? compulsorySubject3 || combination?.compulsorySubjects[2] : ""}
                 name="compulsorySubjects"
               />
             </li>
@@ -178,7 +132,7 @@ function ModalEditTable({
           </div>
         </form>
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer className={cx("footer")}>
         <Button variant="secondary" onClick={handleClose}>
           Hủy
         </Button>
