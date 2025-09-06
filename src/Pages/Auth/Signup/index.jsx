@@ -94,7 +94,7 @@ function Signup() {
         .post("http://localhost:4001/auth/signup", {
           fullName: fullName,
           password: password,
-          phone: phone,
+          phone: phone
         })
         .then((axiosData) => {
           if (axiosData.data.isSuccess) {
@@ -113,29 +113,18 @@ function Signup() {
       <Pc>
         <div className={cx("box-login")}>
           <div className={cx("box")}>
-            <p
-              onClick={() => navigator("/")}
-              title="Trang chủ"
-              className={cx("btn-home-page")}
-            >
+            <p onClick={() => navigator("/")} title="Trang chủ" className={cx("btn-home-page")}>
               <FontAwesomeIcon icon={faArrowLeft} className="" /> Trang chủ
             </p>
             <div className={cx("title-box")}>
-              <img
-                src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752651864/cropped_circle_image_kfiyjk.png"
-                alt="Duy Tân"
-              />
+              <img src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752651864/cropped_circle_image_kfiyjk.png" alt="Duy Tân" />
               <div className={cx("content")}>
                 <h2>Chào mừng!</h2>
                 <p>Tạo tài khoản để đăng ký tổ hợp</p>
               </div>
             </div>
             <div id="signup" className={cx("form-container")}>
-              <Form
-                className="d-flex flex-column"
-                style={{ gap: "15px" }}
-                onSubmit={handleSubmit}
-              >
+              <Form className="d-flex flex-column" style={{ gap: "15px" }} onSubmit={handleSubmit}>
                 <Form.Group className="Group">
                   <Form.Label>Họ và tên:</Form.Label>
                   <Form.Control
@@ -147,9 +136,7 @@ function Signup() {
                     type="text"
                     placeholder="Họ và tên"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errorFullName}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{errorFullName}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Số điện thoại:</Form.Label>
@@ -162,9 +149,7 @@ function Signup() {
                     type="text"
                     placeholder="Số điện thoại liên hệ"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errorPhone}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{errorPhone}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Mật khẩu:</Form.Label>
@@ -177,9 +162,7 @@ function Signup() {
                     type="password"
                     placeholder="Mật khẩu"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errorPass}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{errorPass}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Xác nhận mật khẩu:</Form.Label>
@@ -192,23 +175,14 @@ function Signup() {
                     type="password"
                     placeholder="Nhập lại mật khẩu"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errorRePass}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{errorRePass}</Form.Control.Feedback>
                 </Form.Group>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  style={{ width: "100%", fontSize: "16px" }}
-                >
+                <Button variant="primary" type="submit" style={{ width: "100%", fontSize: "16px" }}>
                   ĐĂNG KÝ
                 </Button>
                 <div className={cx("login-comment")}>
                   <p>Bạn đã có tài khoản?</p>
-                  <p
-                    className={cx("btn-home-page")}
-                    onClick={() => navigator("/auth/signin")}
-                  >
+                  <p className={cx("btn-home-page")} onClick={() => navigator("/auth/signin")}>
                     Đăng nhập
                   </p>
                 </div>
@@ -220,29 +194,18 @@ function Signup() {
       <Desktop>
         <div className={cx("box-login", "desktop")}>
           <div className={cx("box")}>
-            <p
-              onClick={() => navigator("/")}
-              title="Trang chủ"
-              className={cx("btn-home-page")}
-            >
+            <p onClick={() => navigator("/")} title="Trang chủ" className={cx("btn-home-page")}>
               <FontAwesomeIcon icon={faArrowLeft} className="" /> Trang chủ
             </p>
             <div className={cx("title-box")}>
-              <img
-                src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752651864/cropped_circle_image_kfiyjk.png"
-                alt="Duy Tân"
-              />
+              <img src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752651864/cropped_circle_image_kfiyjk.png" alt="Duy Tân" />
               <div className={cx("content")}>
                 <h2>Chào mừng!</h2>
                 <p>Tạo tài khoản để đăng ký tổ hợp</p>
               </div>
             </div>
             <div id="signup" className={cx("form-container")}>
-              <Form
-                className="d-flex flex-column"
-                style={{ gap: "15px" }}
-                onSubmit={handleSubmit}
-              >
+              <Form className="d-flex flex-column" style={{ gap: "15px" }} onSubmit={handleSubmit}>
                 <Form.Group className="Group">
                   <Form.Label>Họ và tên:</Form.Label>
                   <Form.Control
@@ -254,9 +217,7 @@ function Signup() {
                     type="text"
                     placeholder="Họ và tên"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errorFullName}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{errorFullName}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Số điện thoại:</Form.Label>
@@ -269,9 +230,7 @@ function Signup() {
                     type="text"
                     placeholder="Số điện thoại liên hệ"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errorPhone}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{errorPhone}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Mật khẩu:</Form.Label>
@@ -284,9 +243,7 @@ function Signup() {
                     type="password"
                     placeholder="Mật khẩu"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errorPass}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{errorPass}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Xác nhận mật khẩu:</Form.Label>
@@ -299,16 +256,9 @@ function Signup() {
                     type="password"
                     placeholder="Nhập lại mật khẩu"
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errorRePass}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{errorRePass}</Form.Control.Feedback>
                 </Form.Group>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  style={{ width: "100%", fontSize: "16px" }}
-                  disabled={isLoading}
-                >
+                <Button variant="primary" type="submit" style={{ width: "100%", fontSize: "16px" }} disabled={isLoading}>
                   {isLoading ? (
                     <Spinner animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
@@ -317,12 +267,9 @@ function Signup() {
                     "ĐĂNG KÝ"
                   )}
                 </Button>
-                <div className={cx("login-comment")}>
+                <div className={cx("login-comment", "d-flex flex-column")}>
                   <p>Bạn đã có tài khoản?</p>
-                  <p
-                    className={cx("btn-home-page")}
-                    onClick={() => navigator("/auth/signin")}
-                  >
+                  <p className={cx("btn-home-page")} onClick={() => navigator("/auth/signin")}>
                     Đăng nhập
                   </p>
                 </div>

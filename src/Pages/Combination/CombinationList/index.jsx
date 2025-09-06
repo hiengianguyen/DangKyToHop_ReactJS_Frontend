@@ -11,6 +11,16 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../../../Components/Loading";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import { useMediaQuery } from "react-responsive";
+
+const Pc = ({ children }) => {
+  const isPc = useMediaQuery({ minWidth: 1400 });
+  return isPc ? children : null;
+};
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992, maxWidth: 1400 });
+  return isDesktop ? children : null;
+};
 
 function CombinationList() {
   const formRef = useRef();
@@ -101,7 +111,10 @@ function CombinationList() {
         </DropdownButton>
       </div>
       <form action="" ref={formRef}>
-        <SearchName handleSubmit={handleSubmit} />
+        <div className="d-flex justify-content-between align-items-center">
+          <SearchName handleSubmit={handleSubmit} />
+          <SortBox handleSubmit={handleSubmit} />
+        </div>
         <Row>
           <Col xs={"auto"}>
             <FilterBox
@@ -217,20 +230,20 @@ function CombinationList() {
           </Col>
         </Row>
 
-        <Row>
-          <Row as={Col} className="container mt-4 position-relative" style={{ minHeight: "30pc" }}>
-            {submittedList &&
-              submittedList.map((item, index) => (
-                <Col xs={"auto"} key={index}>
+        <Row className="mt-4 position-relative" style={{ maxHeight: "600px", overflowY: "scroll" }}>
+          {submittedList &&
+            submittedList.map((item, index) => (
+              <Col xs={"auto"} key={index}>
+                <Pc>
                   <CardStudent data={item} />
-                </Col>
-              ))}
-            {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
-          </Row>
+                </Pc>
 
-          <Col xs={"auto"}>
-            <SortBox handleSubmit={handleSubmit} />
-          </Col>
+                <Desktop>
+                  <CardStudent data={item} resp="desktop" />
+                </Desktop>
+              </Col>
+            ))}
+          {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
         </Row>
       </form>
     </BoxRadius>

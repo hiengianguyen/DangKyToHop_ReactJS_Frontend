@@ -24,30 +24,32 @@ function CombinationTable() {
   }, []);
 
   return (
-    <Table striped className={cx("wrapper")}>
+    <>
       {isLoading && <Loading title="Đang tải các tổ hợp" />}
-      <thead>
-        <tr>
-          <th>Tổ hợp</th>
-          <th>Số lớp dự kiến</th>
-          <th>4 môn lựa chọn</th>
-          <th>3 chuyên đề lựa chọn</th>
-          <th>Môn thể thao</th>
-        </tr>
-      </thead>
-      <tbody>
-        {combinations &&
-          combinations.map((item, index) => (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.classesCount}</td>
-              <td>{item.optionalSubjects.join(", ")}</td>
-              <td>{item.compulsorySubjects.join(", ")}</td>
-              <td>Bóng đá, Bóng chuyền, Đá cầu.</td>
-            </tr>
-          ))}
-      </tbody>
-    </Table>
+      <Table striped className={cx("wrapper")}>
+        <thead>
+          <tr>
+            <th>Tổ hợp</th>
+            <th>Số lớp dự kiến</th>
+            <th>4 môn lựa chọn</th>
+            <th>3 chuyên đề lựa chọn</th>
+            <th>Môn thể thao</th>
+          </tr>
+        </thead>
+        <tbody>
+          {combinations &&
+            combinations.map((item, index) => (
+              <tr key={index}>
+                <td>{item.name}</td>
+                <td>{item.classesCount}</td>
+                <td>{item.optionalSubjects.join(", ")}</td>
+                <td>{item.compulsorySubjects.join(", ")}</td>
+                <td>Bóng đá, Bóng chuyền, Đá cầu.</td>
+              </tr>
+            ))}
+        </tbody>
+      </Table>
+    </>
   );
 }
 

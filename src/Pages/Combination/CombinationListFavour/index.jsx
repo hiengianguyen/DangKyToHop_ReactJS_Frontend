@@ -104,7 +104,10 @@ function CombinationListFavour() {
         </DropdownButton>
       </div>
       <form action="" ref={formRef}>
-        <SearchName handleSubmit={handleSubmit} />
+        <div className="d-flex justify-content-between align-items-center">
+          <SearchName handleSubmit={handleSubmit} />
+          <SortBox handleSubmit={handleSubmit} />
+        </div>
         <Row>
           <Col xs={"auto"}>
             <FilterBox
@@ -220,20 +223,14 @@ function CombinationListFavour() {
           </Col>
         </Row>
 
-        <Row>
-          <Row as={Col} className="container mt-4 position-relative" style={{ minHeight: "30pc" }}>
-            {submittedList &&
-              submittedList.map((item, index) => (
-                <Col xs={"auto"} key={index}>
-                  <CardStudent data={item} />
-                </Col>
-              ))}
-            {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
-          </Row>
-
-          <Col xs={"auto"}>
-            <SortBox handleSubmit={handleSubmit} />
-          </Col>
+        <Row as={Col} className="mt-4 position-relative" style={{ minHeight: "30pc" }}>
+          {submittedList &&
+            submittedList.map((item, index) => (
+              <Col xs={"auto"} key={index}>
+                <CardStudent data={item} />
+              </Col>
+            ))}
+          {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
         </Row>
       </form>
     </BoxRadius>

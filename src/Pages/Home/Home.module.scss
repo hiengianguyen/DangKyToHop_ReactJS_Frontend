@@ -11,9 +11,17 @@
   border-radius: 12px;
 }
 
+.container-end.desktop img {
+  width: 25pc;
+}
+
 .container-end .content-box {
   width: 40pc;
   margin-right: 10pc;
+}
+
+.container-end.desktop .content-box {
+  margin-right: 7pc;
 }
 
 .container-end img,
@@ -42,7 +50,7 @@
 }
 
 .container-start .img-start .desktop {
-  height: 95%;
+  height: 88%;
 }
 
 .introduce-box {
@@ -58,7 +66,8 @@
 }
 
 .container-center.desktop img {
-  width: 25pc;
+  width: 21pc;
+  height: 16pc;
 }
 
 .container-center {

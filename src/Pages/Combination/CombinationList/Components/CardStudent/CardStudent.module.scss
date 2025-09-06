@@ -17,6 +17,14 @@
   }
 }
 
+.wrapper.desktop {
+  width: 19pc !important;
+
+  .details {
+    font-size: 13px;
+  }
+}
+
 .name-status {
   display: flex;
   flex-direction: column;
