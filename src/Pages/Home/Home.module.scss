@@ -37,8 +37,12 @@
   width: 47pc;
 }
 
-.container-start .img-start img {
+.container-start .img-start .pc {
   height: 103%;
+}
+
+.container-start .img-start .desktop {
+  height: 95%;
 }
 
 .introduce-box {
@@ -51,6 +55,10 @@
 
 .container-center img {
   width: 30pc;
+}
+
+.container-center.desktop img {
+  width: 25pc;
 }
 
 .container-center {

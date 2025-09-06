@@ -17,15 +17,31 @@
   font-size: 55px;
   font-weight: 800;
   margin: 0;
+  text-shadow: 1px 1px 3px #000;
   font-family: "Times New Roman", Times, serif;
 }
 
 .box-img p {
   font-size: 20px;
+  text-shadow: 1px 1px 3px #333;
 }
 
 .box-img img {
   width: 10pc;
   height: 10pc;
   margin-right: 30px;
+}
+
+.box-img.desktop img {
+  width: 8pc;
+  height: 8pc;
+  margin-right: 20px;
+}
+
+.box-img.desktop h2 {
+  font-size: 40px;
+}
+
+.box-img.desktop p {
+  font-size: 15px;
 }

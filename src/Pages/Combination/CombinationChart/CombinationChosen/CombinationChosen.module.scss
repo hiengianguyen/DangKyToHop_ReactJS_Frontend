@@ -26,6 +26,10 @@
   width: 30%;
 }
 
+.quantity-box.desktop {
+  width: 16pc;
+}
+
 .most-combination,
 .chart-detail {
   margin: 5px;
@@ -40,9 +44,14 @@
   border-radius: 7px;
 }
 
-.chart-detail {
+.chart-box .chart-detail {
   flex-basis: 0;
   flex-grow: 1;
+}
+
+.chart-box.desktop {
+  overflow-x: scroll;
+  width: 10pc !important;
 }
 
 .title {

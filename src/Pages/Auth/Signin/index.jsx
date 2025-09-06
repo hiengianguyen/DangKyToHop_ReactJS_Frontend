@@ -9,8 +9,19 @@ import { useNavigate } from "react-router-dom";
 import BannerLogin from "../BannerLogin";
 import axios from "axios";
 import { useAuth } from "../../../Contexts/AuthContext";
+import { useMediaQuery } from "react-responsive";
+import Spinner from "react-bootstrap/esm/Spinner";
 
 const cx = classNames.bind(style);
+
+const Pc = ({ children }) => {
+  const isPc = useMediaQuery({ minWidth: 1400 });
+  return isPc ? children : null;
+};
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992, maxWidth: 1400 });
+  return isDesktop ? children : null;
+};
 
 function Signin() {
   const { login } = useAuth();
@@ -19,12 +30,14 @@ function Signin() {
   const [errorPhone, setErrorPhone] = useState("");
   const [password, setPassword] = useState("");
   const [errorPass, setErrorPass] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     document.title = "Đăng ký tổ hợp | Đăng nhập";
   }, []);
 
   const handleSubmit = (event) => {
+    setIsLoading(true);
     let ok = true;
     event.preventDefault();
     if (!/^[0-9]{10}$/.test(phone)) {
@@ -45,7 +58,7 @@ function Signin() {
       axios
         .post("http://localhost:4001/auth/signin", {
           phone: phone,
-          password: password
+          password: password,
         })
         .then((axiosData) => {
           if (axiosData.data.isSuccess) {
@@ -58,69 +71,177 @@ function Signin() {
           } else {
             setErrorPass(axiosData.data.messageError);
           }
-        });
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className={cx("wrapper")}>
-      <div className={cx("box-login")}>
-        <div className={cx("box")}>
-          <p onClick={() => navigator("/")} title="Trang chủ" className={cx("btn-home-page")}>
-            <FontAwesomeIcon icon={faArrowLeft} className="" /> Trang chủ
-          </p>
-          <div className={cx("title-box")}>
-            <img src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752651864/cropped_circle_image_kfiyjk.png" alt="Duy Tân" />
-            <div className={cx("content")}>
-              <h2>Chào mừng!</h2>
-              <p>Tạo tài khoản để đăng ký tổ hợp</p>
+      <Pc>
+        <div className={cx("box-login")}>
+          <div className={cx("box")}>
+            <p
+              onClick={() => navigator("/")}
+              title="Trang chủ"
+              className={cx("btn-home-page")}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} className="" /> Trang chủ
+            </p>
+            <div className={cx("title-box")}>
+              <img
+                src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752651864/cropped_circle_image_kfiyjk.png"
+                alt="Duy Tân"
+              />
+              <div className={cx("content")}>
+                <h2>Chào mừng!</h2>
+                <p>Tạo tài khoản để đăng ký tổ hợp</p>
+              </div>
+            </div>
+            <div id="signup" className={cx("form-container")}>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                  <Form.Label>Số điện thoại:</Form.Label>
+                  <Form.Control
+                    isInvalid={!!errorPhone}
+                    className="login__input"
+                    name="phoneNumber"
+                    defaultValue={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    type="text"
+                    minLength={10}
+                    placeholder="Số điện thoại liên hệ"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errorPhone}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group className="my-4">
+                  <Form.Label>Mật khẩu:</Form.Label>
+                  <Form.Control
+                    isInvalid={!!errorPass}
+                    className="login__input"
+                    name="password"
+                    defaultValue={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    minLength={8}
+                    placeholder="Mật khẩu"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errorPass}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ width: "100%", fontSize: "16px" }}
+                >
+                  ĐĂNG KÝ
+                </Button>
+                <div className={cx("login-comment")}>
+                  <p>Bạn chưa có tài khoản?</p>
+                  <p
+                    className={cx("btn-home-page")}
+                    onClick={() => navigator("/auth/signup")}
+                  >
+                    Đăng ký
+                  </p>
+                </div>
+              </Form>
             </div>
           </div>
-          <div id="signup" className={cx("form-container")}>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group>
-                <Form.Label>Số điện thoại:</Form.Label>
-                <Form.Control
-                  isInvalid={!!errorPhone}
-                  className="login__input"
-                  name="phoneNumber"
-                  defaultValue={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  type="text"
-                  minLength={10}
-                  placeholder="Số điện thoại liên hệ"
-                  required
-                />
-                <Form.Control.Feedback type="invalid">{errorPhone}</Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group className="my-4">
-                <Form.Label>Mật khẩu:</Form.Label>
-                <Form.Control
-                  isInvalid={!!errorPass}
-                  className="login__input"
-                  name="password"
-                  defaultValue={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password"
-                  minLength={8}
-                  placeholder="Mật khẩu"
-                  required
-                />
-                <Form.Control.Feedback type="invalid">{errorPass}</Form.Control.Feedback>
-              </Form.Group>
-              <Button variant="primary" type="submit" style={{ width: "100%", fontSize: "16px" }}>
-                ĐĂNG KÝ
-              </Button>
-              <div className={cx("login-comment")}>
-                <p>Bạn chưa có tài khoản?</p>
-                <p className={cx("btn-home-page")} onClick={() => navigator("/auth/signup")}>
-                  Đăng ký
-                </p>
+        </div>
+      </Pc>
+
+      <Desktop>
+        <div className={cx("box-login", "desktop")}>
+          <div className={cx("box")}>
+            <p
+              onClick={() => navigator("/")}
+              title="Trang chủ"
+              className={cx("btn-home-page")}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} className="" /> Trang chủ
+            </p>
+            <div className={cx("title-box")}>
+              <img
+                src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752651864/cropped_circle_image_kfiyjk.png"
+                alt="Duy Tân"
+              />
+              <div className={cx("content")}>
+                <h2>Chào mừng!</h2>
+                <p>Tạo tài khoản để đăng ký tổ hợp</p>
               </div>
-            </Form>
+            </div>
+            <div id="signup" className={cx("form-container")}>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                  <Form.Label>Số điện thoại:</Form.Label>
+                  <Form.Control
+                    isInvalid={!!errorPhone}
+                    className="login__input"
+                    name="phoneNumber"
+                    defaultValue={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    type="text"
+                    minLength={10}
+                    placeholder="Số điện thoại liên hệ"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errorPhone}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group className="my-4">
+                  <Form.Label>Mật khẩu:</Form.Label>
+                  <Form.Control
+                    isInvalid={!!errorPass}
+                    className="login__input"
+                    name="password"
+                    defaultValue={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    minLength={8}
+                    placeholder="Mật khẩu"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errorPass}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ width: "100%", fontSize: "16px" }}
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  ) : (
+                    "ĐĂNG KÝ"
+                  )}
+                </Button>
+                <div className={cx("login-comment")}>
+                  <p>Bạn chưa có tài khoản?</p>
+                  <p
+                    className={cx("btn-home-page")}
+                    onClick={() => navigator("/auth/signup")}
+                  >
+                    Đăng ký
+                  </p>
+                </div>
+              </Form>
+            </div>
           </div>
         </div>
-      </div>
+      </Desktop>
       <BannerLogin />
     </div>
   );

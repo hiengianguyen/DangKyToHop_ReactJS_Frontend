@@ -16,4 +16,18 @@
   position: fixed;
   top: 0;
   left: 0;
+  background-color: #ffffff;
+  box-shadow: 0 -5px 1rem #afafaf;
+}
+
+.box-content {
+  overflow-y: scroll;
+  padding-right: 10px;
+  padding-bottom: 10pc;
+  height: 100vh;
+}
+
+.box-content.small {
+  padding-right: 0;
+  margin-right: -15px;
 }
