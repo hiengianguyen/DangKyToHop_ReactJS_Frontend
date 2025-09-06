@@ -16,7 +16,10 @@ function CombinationStep3R({ valueStudent = {}, role = "student" }) {
       {role === "manager" && (
         <h3>
           Trạng thái:{" "}
-          <Badge className="p-3 shadow" bg={typeBadge(valueStudent.status).color}>
+          <Badge
+            className="p-3 shadow"
+            bg={typeBadge(valueStudent.status).color}
+          >
             {typeBadge(valueStudent.status).title}
           </Badge>
         </h3>
@@ -29,7 +32,9 @@ function CombinationStep3R({ valueStudent = {}, role = "student" }) {
           </div>
           <div className={cx("second-slogan")}>
             <span>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</span>
-            <span className={cx("second-line")}>Độc lập - Tự do - Hạnh phúc</span>
+            <span className={cx("second-line")}>
+              Độc lập - Tự do - Hạnh phúc
+            </span>
           </div>
         </div>
         <div className={cx("title-doc")}>
@@ -39,40 +44,60 @@ function CombinationStep3R({ valueStudent = {}, role = "student" }) {
         <div className="container">
           <Row>
             <Col xs={8}>
-              <InputHadValue label="Họ và tên học sinh" value={valueStudent.fullName} />
+              <InputHadValue
+                label="Họ và tên học sinh"
+                value={valueStudent.fullName}
+              />
             </Col>
             <Col>
-              <InputHadValue label="STT ở DS trúng tuyển" value={valueStudent.numberMatriculation} />
+              <InputHadValue
+                label="STT ở DS trúng tuyển"
+                value={valueStudent.numberMatriculation}
+              />
             </Col>
           </Row>
           <Row>
             <Col xs={8}>
-              <InputHadValue label="Họ và tên phụ huynh" value={valueStudent.nameDad || valueStudent.nameMom} />
+              <InputHadValue
+                label="Họ và tên phụ huynh"
+                value={valueStudent.nameDad || valueStudent.nameMom}
+              />
             </Col>
             <Col>
               <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
             </Col>
           </Row>
           <div className={cx("info-box", "mt-4")}>
-            <span className={cx("title", "text-uppercase")}>I. Điểm thi tuyển vào lớp 10 và kết quả học tập, rèn luyện</span>
+            <span className={cx("title", "text-uppercase")}>
+              I. Điểm thi tuyển vào lớp 10 và kết quả học tập, rèn luyện
+            </span>
             <div className={cx("table-point", "mt-4")}>
               <TablePoints valueStudent={valueStudent} readOnly={true} />
             </div>
-            <span className={cx("title", "text-uppercase")}>II. TỔ HỢP LỰA CHỌN CỤ THỂ</span>
+            <span className={cx("title", "text-uppercase")}>
+              II. TỔ HỢP LỰA CHỌN CỤ THỂ
+            </span>
             <CombinationTable />
             <Row>
-              <Col xs={"auto"}>
-                <InputHadValue label="- Nguyện vọng 1" value={valueStudent.combination1} />
+              <Col>
+                <InputHadValue
+                  label="- Nguyện vọng 1"
+                  value={valueStudent.combination1}
+                />
+              </Col>
+              <Col>
+                <InputHadValue
+                  label="- Nguyện vọng 2"
+                  value={valueStudent.combination2}
+                />
               </Col>
             </Row>
             <Row>
               <Col xs={"auto"}>
-                <InputHadValue label="- Nguyện vọng 2" value={valueStudent.combination2} />
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={"auto"}>
-                <InputHadValue label="- Môn thể thao" value={valueStudent.sport} />
+                <InputHadValue
+                  label="- Môn thể thao"
+                  value={valueStudent.sport}
+                />
               </Col>
             </Row>
           </div>

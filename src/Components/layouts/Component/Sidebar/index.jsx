@@ -31,17 +31,21 @@ function Sidebar() {
   return (
     <div className={cx("wrapper")} ref={wrapperSidebar}>
       <div className={cx("content")} ref={contentSidebar}>
-        <PushSidebarContext.Provider value={{ isPush: pushSidebar, onPush: setPushSidebar }}>
+        <PushSidebarContext.Provider
+          value={{ isPush: pushSidebar, onPush: setPushSidebar }}
+        >
           <HeaderSidebar isPushSidebar={pushSidebar} />
-          <Dash height="1px" />
-          <PathItems
-            routers={[...publicRoutes, ...privateRoutes]}
-            currRouter={currRouter}
-            onChangeRoute={setCurrRouter}
-            role={auth?.user?.role || "student"}
-          />
-          <Dash height="1px" />
-          <EndBox currRouter={currRouter} onChangeRoute={setCurrRouter} />
+          <div className={cx("box-content", { small: !pushSidebar })}>
+            <Dash height="1px" />
+            <PathItems
+              routers={[...publicRoutes, ...privateRoutes]}
+              currRouter={currRouter}
+              onChangeRoute={setCurrRouter}
+              role={auth?.user?.role || "student"}
+            />
+            <Dash height="1px" />
+            <EndBox currRouter={currRouter} onChangeRoute={setCurrRouter} />
+          </div>
         </PushSidebarContext.Provider>
       </div>
     </div>

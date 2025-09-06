@@ -15,11 +15,11 @@ function SwiperImg({ data = [] }) {
       navigation={true}
       autoplay={{
         delay: 3000, // 3 giây tự chạy
-        disableOnInteraction: false // không dừng khi người dùng kéo
+        disableOnInteraction: false, // không dừng khi người dùng kéo
       }}
       spaceBetween={20}
       slidesPerView={1} // hiển thị 1 biểu đồ mỗi lần
-      style={{ width: "600px", height: "400px" }}
+      style={{ width: "800px", height: "400px", paddingTop: "10px" }}
     >
       {data.map((item) => (
         <SwiperSlide className={cx("img-box")}>
