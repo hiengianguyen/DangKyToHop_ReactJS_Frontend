@@ -11,6 +11,8 @@ import { useAuth } from "../../../Contexts/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import BoxRadius from "../../../Components/BoxRadius";
 import Loading from "../../../Components/Loading";
+import BtnActions from "./BtnActions";
+import Container from "react-bootstrap/esm/Container";
 
 function CombinationDetail() {
   const [submitedDetail, setSubmitedDetail] = useState();
@@ -42,20 +44,23 @@ function CombinationDetail() {
   return (
     <BoxRadius>
       {isLoading && <Loading title="Đang tải hồ sơ" />}
-      <Tabs defaultActiveKey="home" className="mb-3">
-        <Tab eventKey="home" title="1. Thông tin chung">
-          <CombinationStep1R valueStudent={submitedDetail} role={auth?.user?.role} />
-        </Tab>
-        <Tab eventKey="profile" title="2. Đơn xin nhập học">
-          <CombinationStep2R valueStudent={submitedDetail} role={auth?.user?.role} />
-        </Tab>
-        <Tab eventKey="longer-tab" title="3. Chọn tổ hợp">
-          <CombinationStep3R valueStudent={submitedDetail} role={auth?.user?.role} />
-        </Tab>
-        <Tab eventKey="contact" title="4. Lý lịch học sinh">
-          <CombinationStep4R valueStudent={submitedDetail} role={auth?.user?.role} />
-        </Tab>
-      </Tabs>
+      <Container>
+        <Tabs defaultActiveKey="home" className="mb-3">
+          <Tab eventKey="home" title="1. Thông tin chung">
+            <CombinationStep1R valueStudent={submitedDetail} role={auth?.user?.role} />
+          </Tab>
+          <Tab eventKey="profile" title="2. Đơn xin nhập học">
+            <CombinationStep2R valueStudent={submitedDetail} role={auth?.user?.role} />
+          </Tab>
+          <Tab eventKey="longer-tab" title="3. Chọn tổ hợp">
+            <CombinationStep3R valueStudent={submitedDetail} role={auth?.user?.role} />
+          </Tab>
+          <Tab eventKey="contact" title="4. Lý lịch học sinh">
+            <CombinationStep4R valueStudent={submitedDetail} role={auth?.user?.role} />
+          </Tab>
+        </Tabs>
+        {submitedDetail && <BtnActions userId={submitedDetail.userId} disabled={submitedDetail.status === "approved"} />}
+      </Container>
     </BoxRadius>
   );
 }

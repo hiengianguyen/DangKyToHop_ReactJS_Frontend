@@ -1,9 +1,11 @@
 .sort-box .sort-title {
   background-color: #8dfff5;
-  padding: 10px;
-  padding-left: 25px;
+  padding: 10px 25px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .sort-box .sort-title:hover {
@@ -73,7 +75,7 @@
 
 .sort-content.active {
   opacity: 1;
-  max-height: 100%;
+  max-height: 1000px;
   transition: all 0.5s ease;
 }
 

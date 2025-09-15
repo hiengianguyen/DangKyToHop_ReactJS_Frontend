@@ -69,38 +69,60 @@ function CombinationStep2R({ valueStudent = {}, role = "student" }) {
             <InputHadValue label="Xã/Phường" value={valueStudent.secondarySchoolDistrict} />
           </Col>
         </Row>
-        <Col>
-          <InputHadValue label="Năng khiếu vượt trội (môn/lĩnh vực – nếu có)" value={valueStudent.aptitude} />
-        </Col>
-        <Col>
-          <InputHadValue label="Nguyện vọng được vào đội tuyển học sinh giỏi môn (nếu có)" value={valueStudent.aspirationSubject} />
-        </Col>
-        <Row>
-          <Col xs={"auto"}>
-            <InputHadValue label="Thành tích thi HSG năm lớp 9 (nếu có) môn" value={valueStudent.goodSubject} />
-          </Col>
-        </Row>
-        <Row>
+        {valueStudent.aptitude && valueStudent.aptitude.length !== 0 && (
           <Col>
-            <InputHadValue label="đạt giải cấp huyện/TP: giải" value={valueStudent.goodSubjectDistrict} />
+            <InputHadValue label="Năng khiếu vượt trội (môn/lĩnh vực – nếu có)" value={valueStudent.aptitude} />
           </Col>
+        )}
+        {valueStudent.aspirationSubject && valueStudent.aspirationSubject.length !== 0 && (
           <Col>
-            <InputHadValue label="đạt giải cấp tỉnh: giải" value={valueStudent.goodSubjectProvince} />
+            <InputHadValue label="Nguyện vọng được vào đội tuyển học sinh giỏi môn (nếu có)" value={valueStudent.aspirationSubject} />
           </Col>
-        </Row>
-        <Col className="d-flex align-items-end mt-4">
-          <span className={cx("avchielement-label")}>
-            Đạt giải TDTT, VN, UPU, KHKT,… do Sở GDĐT tổ chức (hoặc phối hợp tổ chức)(nếu có):{" "}
-          </span>
-        </Col>
-        <Row>
-          <Col xs={"auto"}>
-            <InputHadValue label="giải" value={valueStudent.avchielementLevel} />
-          </Col>
-          <Col>
-            <InputHadValue label="lĩnh vực" value={valueStudent.avchielementGroup} />
-          </Col>
-        </Row>
+        )}
+        {valueStudent.goodSubject && valueStudent.goodSubject.length !== 0 && (
+          <Row>
+            <Col xs={"auto"}>
+              <InputHadValue label="Thành tích thi HSG năm lớp 9 (nếu có) môn" value={valueStudent.goodSubject} />
+            </Col>
+          </Row>
+        )}
+        {(valueStudent.goodSubjectDistrict && valueStudent.goodSubjectDistrict.length !== 0) ||
+        (valueStudent.goodSubjectProvince && valueStudent.goodSubjectProvince.length !== 0) ? (
+          <Row>
+            {valueStudent.goodSubjectDistrict && valueStudent.goodSubjectDistrict.length !== 0 && (
+              <Col>
+                <InputHadValue label="đạt giải cấp huyện/TP: giải" value={valueStudent.goodSubjectDistrict} />
+              </Col>
+            )}
+            {valueStudent.goodSubjectProvince && valueStudent.goodSubjectProvince.length !== 0 && (
+              <Col>
+                <InputHadValue label="đạt giải cấp tỉnh: giải" value={valueStudent.goodSubjectProvince} />
+              </Col>
+            )}
+          </Row>
+        ) : null}
+        {(valueStudent.avchielementLevel && valueStudent.avchielementLevel.length !== 0) ||
+        (valueStudent.avchielementGroup && valueStudent.avchielementGroup.length !== 0) ? (
+          <>
+            <Col className="d-flex align-items-end mt-4">
+              <span className={cx("avchielement-label")}>
+                Đạt giải TDTT, VN, UPU, KHKT,… do Sở GDĐT tổ chức (hoặc phối hợp tổ chức)(nếu có):{" "}
+              </span>
+            </Col>
+            <Row>
+              {valueStudent.avchielementLevel && valueStudent.avchielementLevel.length !== 0 && (
+                <Col xs={"auto"}>
+                  <InputHadValue label="giải" value={valueStudent.avchielementLevel} />
+                </Col>
+              )}
+              {valueStudent.avchielementGroup && valueStudent.avchielementGroup.length !== 0 && (
+                <Col>
+                  <InputHadValue label="lĩnh vực" value={valueStudent.avchielementGroup} />
+                </Col>
+              )}
+            </Row>
+          </>
+        ) : null}
         <p className={cx("quote")}>
           Em làm đơn này xin được nhập học lớp 10 Trường THPT Duy Tân năm học 2025 -2026 và cam kết thực hiện nghiêm túc nhiệm vụ của học
           sinh, chấp hành tốt nội quy nhà trường.

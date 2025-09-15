@@ -5,15 +5,16 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(style);
 
-function SearchName({ handleSubmit = () => {} }) {
+function SearchName({ handleSubmit = () => {}, col = false, change = false }) {
   return (
-    <div className={cx("filter-box", "d-flex", "my-3")}>
+    <div className={cx("filter-box", "d-flex", "my-3", { active: col })}>
       <div className={cx("d-flex", "align-items-center", "search-name-div", "border")}>
         <FontAwesomeIcon icon={faMagnifyingGlass} className="mx-2" />
         <input
           className={cx("ps-0 w-100")}
           type="text"
           name="fullName"
+          onChange={() => (change ? handleSubmit() : {})}
           style={{ border: "none", outline: "none" }}
           placeholder="Tìm kiếm theo họ và tên..."
         />

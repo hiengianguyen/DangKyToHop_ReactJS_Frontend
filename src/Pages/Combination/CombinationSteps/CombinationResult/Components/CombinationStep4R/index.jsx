@@ -85,34 +85,51 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
               <InputHadValue label="SĐT" value={valueStudent.phoneMom} />
             </Col>
           </Row>
-          <span className={cx("student-type")}>
-            - Là học sinh thuộc diện sau <i>(thuộc diện nào thì đánh dấu vào ô tương ứng)</i>
-          </span>
-          <Row className="fs-1">
-            <Col>
-              <InputHadValue label="Diện học sinh" value={(valueStudent.typeStudent || []).join(", ")} />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={"auto"}>
-              <InputHadValue label="+ Vận động viên TT TDTT tỉnh/TP, môn" value={valueStudent.avchielementGroup} />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={"auto"}>
-              <InputHadValue label="- Năng khiếu vượt trội" value={valueStudent.aptitude} />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={"auto"}>
-              <InputHadValue label="- Diện mồ côi, hộ nghèo, hộ cận nghèo" value={valueStudent.priorityGroup} />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={"auto"}>
-              <InputHadValue label="- Hoàn cảnh khó khăn" value={valueStudent.difficultSituation} />
-            </Col>
-          </Row>
+          {valueStudent.typeStudent && valueStudent.typeStudent.length !== 0 && (
+            <>
+              <span className={cx("student-type")}>- Là học sinh thuộc diện sau:</span>
+              <Row className="fs-1">
+                <Col>
+                  <InputHadValue label="Diện học sinh" value={valueStudent.typeStudent.join(", ")} />
+                </Col>
+              </Row>
+            </>
+          )}
+          {valueStudent.avchielementGroup && valueStudent.avchielementGroup.length !== 0 && (
+            <Row>
+              <Col xs={"auto"}>
+                <InputHadValue label="+ Vận động viên TT TDTT tỉnh/TP, môn" value={valueStudent.avchielementGroup} />
+              </Col>
+            </Row>
+          )}
+          {valueStudent.aptitude && valueStudent.aptitude.length !== 0 && (
+            <Row>
+              <Col xs={"auto"}>
+                <InputHadValue label="- Năng khiếu vượt trội" value={valueStudent.aptitude} />
+              </Col>
+            </Row>
+          )}
+          {valueStudent.priorityGroup && valueStudent.priorityGroup.length !== 0 && (
+            <Row>
+              <Col xs={"auto"}>
+                <InputHadValue label="- Diện mồ côi, hộ nghèo, hộ cận nghèo" value={valueStudent.priorityGroup} />
+              </Col>
+            </Row>
+          )}
+          {valueStudent.difficultSituation && valueStudent.difficultSituation.length !== 0 && (
+            <Row>
+              <Col xs={"auto"}>
+                <InputHadValue label="- Hoàn cảnh khó khăn" value={valueStudent.difficultSituation} />
+              </Col>
+            </Row>
+          )}
+          {valueStudent.disability && valueStudent.disability.length !== 0 && (
+            <Row>
+              <Col xs={"auto"}>
+                <InputHadValue label="+ Diện khuyết tật" value={valueStudent.disability} />
+              </Col>
+            </Row>
+          )}
           <Row>
             <Col>
               <span className={cx("health-status", "mt-2")}>- Tình trạng sức khỏe:</span>
@@ -125,21 +142,29 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
             </Col>
           </Row>
           <Row className="mt-4 fs-1">
-            <Col>
-              <InputHadValue label="+ Bệnh ngoài da" value={valueStudent.sick?.includes("Bệnh ngoài da") ? "Có" : "Không"} />
-            </Col>
-            <Col>
-              <InputHadValue label="+ Bệnh tim mạch" value={valueStudent.sick?.includes("Bệnh tim mạch") ? "Có" : "Không"} />
-            </Col>
-            <Col>
-              <InputHadValue label="+ Bệnh hô hấp" value={valueStudent.sick?.includes("Bệnh hô hấp") ? "Có" : "Không"} />
-            </Col>
+            {valueStudent.sick?.includes("Bệnh ngoài da") && (
+              <Col>
+                <InputHadValue label="+ Bệnh ngoài da" value="Có" />
+              </Col>
+            )}
+            {valueStudent.sick?.includes("Bệnh tim mạch") && (
+              <Col>
+                <InputHadValue label="+ Bệnh tim mạch" value="Có" />
+              </Col>
+            )}
+            {valueStudent.sick?.includes("Bệnh hô hấp") && (
+              <Col>
+                <InputHadValue label="+ Bệnh hô hấp" value="Có" />
+              </Col>
+            )}
           </Row>
-          <Row>
-            <Col xs={"auto"}>
-              <InputHadValue label="+ Diện khuyết tật" value={valueStudent.disability} />
-            </Col>
-          </Row>
+          {valueStudent.disability && valueStudent.disability.length !== 0 && (
+            <Row>
+              <Col xs={"auto"}>
+                <InputHadValue label="+ Diện khuyết tật" value={valueStudent.disability} />
+              </Col>
+            </Row>
+          )}
         </div>
       </div>
     </div>
