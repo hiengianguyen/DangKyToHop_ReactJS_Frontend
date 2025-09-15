@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+}
+
+.title-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2pc 0;
+
+  > p {
+    font-style: italic;
+    color: #333;
+    margin-bottom: 0;
+  }
+}
+
+.content {
+  border-radius: 10px;
+  width: 70%;
+  margin-bottom: 40px;
+
+  .header-list {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    padding-bottom: 0;
+    box-shadow: 0 5px 15px -10px #333;
+  }
+
+  .list {
+    max-height: 850px;
+    padding: 20px;
+    overflow-y: scroll;
+  }
+}
+
+.sort-box {
+  margin: 2pc 0;
+  margin-left: 30px;
+  padding-right: 30px;
+}
+
+.container-list {
+  flex: 1;
+}

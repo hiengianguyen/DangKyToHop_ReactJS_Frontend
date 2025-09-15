@@ -28,6 +28,8 @@ import TablePage from "../Pages/Table";
 import GeneratorNoti from "../Pages/Noti/GeneratorNoti";
 import NotiEdit from "../Pages/Noti/NotiEdit";
 import NotiInfo from "../Pages/Noti/NotiInfo";
+import Students from "../Pages/Admin/Students";
+import Classmate from "../Pages/Admin/Classmate";
 
 const publicRoutes = [
   {
@@ -145,7 +147,21 @@ const privateRoutes = [
     roles: ["manager"]
   },
   { path: "/profile", component: User, inSidebar: false, roles: ["student", "manager"] },
-  { path: "/profile/edit", component: EditProfile, inSidebar: false, roles: ["student", "manager"] }
+  { path: "/profile/edit", component: EditProfile, inSidebar: false, roles: ["student", "manager"] },
+  {
+    path: "/ad/classmate",
+    component: Classmate,
+    inSidebar: false,
+    layout: HomeLayout,
+    roles: ["manager"]
+  },
+  {
+    path: "/ad/students",
+    component: Students,
+    inSidebar: false,
+    layout: HomeLayout,
+    roles: ["manager"]
+  }
 ];
 
 export { publicRoutes, privateRoutes };

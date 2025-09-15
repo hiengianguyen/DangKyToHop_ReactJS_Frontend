@@ -6,3 +6,17 @@
   margin-left: 20px;
   font-size: 16px !important;
 }
+
+.active {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+
+  .search-name-div {
+    width: 100%;
+  }
+
+  .search-name-btn {
+    margin-left: 0;
+  }
+}

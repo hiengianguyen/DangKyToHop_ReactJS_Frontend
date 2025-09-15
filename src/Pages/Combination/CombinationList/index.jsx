@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import CardStudent from "./Components/CardStudent";
 import SortBox from "./Components/SortBox";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../../Components/Loading";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -30,6 +30,7 @@ function CombinationList() {
   const [submittedListMain, setSubmittedListMain] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingList, setIsLoadingList] = useState(false);
+  const [sortList, setSortList] = useState(null);
 
   useEffect(() => {
     setFormElement(formRef.current);
@@ -55,7 +56,10 @@ function CombinationList() {
     const formData = new FormData(formElement);
     const data = Object.fromEntries(formData.entries());
     if (Object.keys(data).length === 0 && submittedList.length === 0) return;
-    sort && (data.sort = sort);
+    if (sort && Object.keys(sort).length) {
+      data.sort = sort;
+      setSortList(sort);
+    }
     data.submittedList = submittedListMain;
     axios
       .post("http://localhost:4001/combination/submited/sort", data)
@@ -112,13 +116,13 @@ function CombinationList() {
       </div>
       <form action="" ref={formRef}>
         <div className="d-flex justify-content-between align-items-center">
-          <SearchName handleSubmit={handleSubmit} />
-          <SortBox handleSubmit={handleSubmit} />
+          <SearchName handleSubmit={() => handleSubmit(sortList)} />
+          <SortBox changeSort={setSortList} handleSubmit={handleSubmit} />
         </div>
         <Row>
           <Col xs={"auto"}>
             <FilterBox
-              handleSubmit={handleSubmit}
+              handleSubmit={() => handleSubmit(sortList)}
               name="gender"
               title="Giới tính"
               options={[
@@ -139,7 +143,7 @@ function CombinationList() {
           </Col>
           <Col>
             <FilterBox
-              handleSubmit={handleSubmit}
+              handleSubmit={() => handleSubmit(sortList)}
               name="combination1"
               title="Nguyện vọng 1"
               options={[
@@ -172,7 +176,7 @@ function CombinationList() {
           </Col>
           <Col>
             <FilterBox
-              handleSubmit={handleSubmit}
+              handleSubmit={() => handleSubmit(sortList)}
               name="combination2"
               title="Nguyện vọng 2"
               options={[
@@ -205,7 +209,7 @@ function CombinationList() {
           </Col>
           <Col>
             <FilterBox
-              handleSubmit={handleSubmit}
+              handleSubmit={() => handleSubmit(sortList)}
               name="status"
               title="Trạng thái"
               options={[
@@ -230,7 +234,16 @@ function CombinationList() {
           </Col>
         </Row>
 
-        <Row className="mt-4 position-relative" style={{ maxHeight: "600px", overflowY: "scroll" }}>
+        <div className="d-flex justify-content-end my-4 gap-4 text-primary text-white ">
+          <Link className="btn btn-primary fs-3" to="/ad/students">
+            Chế độ phân chia lớp
+          </Link>
+          <Link className="btn btn-success fs-3" to="/ad/classmate">
+            Lớp học
+          </Link>
+        </div>
+
+        <Row className="mt-4 position-relative border shadow rounded-2" style={{ maxHeight: "600px", overflowY: "scroll" }}>
           {submittedList &&
             submittedList.map((item, index) => (
               <Col xs={"auto"} key={index}>

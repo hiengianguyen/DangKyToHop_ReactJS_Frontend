@@ -20,14 +20,12 @@ function SortBox({ handleSubmit = () => {} }) {
   return (
     <div className={cx("sort-box")}>
       <div className={cx("sort-title")} onClick={() => setShowListSort((prev) => !prev)}>
-        <p className={cx("m-0")}>
-          Sắp xếp theo{" "}
-          <FontAwesomeIcon
-            icon={faChevronDown}
-            className={cx("fa-solid", "sort-icon-title", { active: showListSort })}
-            style={{ fontSize: 13 }}
-          />
-        </p>
+        <p className={cx("m-0")}>Sắp xếp theo</p>
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          className={cx("fa-solid", "sort-icon-title", { active: showListSort })}
+          style={{ fontSize: 13 }}
+        />
       </div>
       <div className={cx("sort-content", { active: showListSort })}>
         <ul className={cx("list-sort", "p-0", "m-0")}>
