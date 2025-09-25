@@ -1,0 +1,29 @@
+.wrapper {
+  width: 350px;
+  background-color: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10rem;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.class-title {
+  margin-right: 7px;
+  font-weight: 600;
+  color: #333;
+}
+
+.teacher {
+  font-size: 1.5rem;
+  color: #6b7280;
+}
+
+.combination {
+  font-size: 14px;
+  color: #6b7280;
+  text-align: right;
+  min-width: 6rem;
+}

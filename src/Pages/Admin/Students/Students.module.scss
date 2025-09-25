@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  overflow-x: hidden;
 }
 
 .title-box {
@@ -33,14 +34,48 @@
     padding: 20px;
     overflow-y: scroll;
   }
+
+  .list.scroll {
+    overflow-y: unset;
+  }
 }
 
 .sort-box {
   margin: 2pc 0;
   margin-left: 30px;
   padding-right: 30px;
+  transition: all 0.3s;
+
+  &.hidden {
+    display: none;
+    transition: all 0.3s ease;
+  }
 }
 
 .container-list {
   flex: 1;
+  position: relative;
+
+  .turn-sort-bar {
+    font-size: 20px;
+    position: absolute;
+    transform: rotate(0);
+    z-index: 10;
+    top: 8pc;
+    left: 4pc;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-radius: 50%;
+      color: #fff;
+      background-color: aqua;
+      border: 1px solid #333;
+      cursor: pointer;
+    }
+
+    &.hidden {
+      transform: rotate(180deg);
+      transition: all 0.3s ease;
+    }
+  }
 }

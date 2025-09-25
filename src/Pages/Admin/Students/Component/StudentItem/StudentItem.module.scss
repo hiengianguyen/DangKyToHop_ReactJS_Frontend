@@ -1,9 +1,21 @@
 .wrapper {
   display: flex;
+  width: 100%;
+  background-color: #fff;
   align-items: center;
   border-radius: 10px;
   margin-bottom: 10px;
   transition: all 0.3s ease;
+
+  &.dragging {
+    opacity: 0.8;
+    background-color: #bee2f5;
+  }
+
+  > .icon-drag {
+    margin-left: 10px;
+    width: 20px;
+  }
 
   > img {
     margin: 10px 0;
@@ -15,6 +27,29 @@
     background-color: #fff;
   }
 
+  &.scrolling {
+    height: 80px !important;
+    width: 300px !important;
+    background-color: #fff;
+    position: relative;
+    z-index: 99;
+    transition: all 0.3s ease;
+
+    > img {
+      aspect-ratio: 1 / 1;
+    }
+
+    h4 {
+      font-size: 16px;
+    }
+
+    .point {
+      .first {
+        font-size: 24px;
+      }
+    }
+  }
+
   + .wrapper {
     margin-top: 10px;
   }
@@ -22,7 +57,6 @@
   &:hover {
     transform: translateY(-5px);
     background-color: #f0f0f0;
-    cursor: move;
     transition: all 0.3s ease;
   }
 }
