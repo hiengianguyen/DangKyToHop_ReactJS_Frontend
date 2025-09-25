@@ -5,22 +5,27 @@ import { useAuth } from "../../../../Contexts/AuthContext";
 import axios from "axios";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
+import toast from "react-hot-toast";
 const cx = classNames.bind(style);
 
 function BtnActions({ userId = "", disabled = false }) {
   const { auth } = useAuth();
 
   const handleReject = (userId) => {
-    if (disabled) return console.log(123);
-    axios.post("http://localhost:4001/combination/submited-reject/" + userId).then((res) => {
-      alert(res.data.message);
+    if (disabled) return;
+    toast.promise(axios.post("http://localhost:4001/combination/submited-reject/" + userId), {
+      loading: "Đang tiến hành...",
+      success: <b>Thành công!</b>,
+      error: <b>Thất bại.</b>
     });
   };
 
   const handleApprove = (userId) => {
-    if (disabled) return console.log(123);
-    axios.post("http://localhost:4001/combination/submited-approve/" + userId).then((res) => {
-      alert(res.data.message);
+    if (disabled) return;
+    toast.promise(axios.post("http://localhost:4001/combination/submited-approve/" + userId), {
+      loading: "Đang tiến hành...",
+      success: <b>Thành công!</b>,
+      error: <b>Thất bại.</b>
     });
   };
   return (

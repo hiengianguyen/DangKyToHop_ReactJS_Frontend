@@ -4,6 +4,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import GlobalStyle from "./Components/GlobalStyle";
 import { AuthProvider } from "./Contexts/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -11,6 +12,7 @@ root.render(
     <AuthProvider>
       <GlobalStyle>
         <App />
+        <Toaster position="top-right" />
       </GlobalStyle>
     </AuthProvider>
   </React.StrictMode>

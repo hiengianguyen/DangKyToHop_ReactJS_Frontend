@@ -5,6 +5,7 @@ import classNames from "classnames/bind";
 import style from "./generator1.module.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const cx = classNames.bind(style);
 
 function Generator1({ show = true, data = {}, btnText = "Tạo thông báo", isUpdate = false }) {
@@ -33,16 +34,19 @@ function Generator1({ show = true, data = {}, btnText = "Tạo thông báo", isU
     }
     setError("");
     const dataPost = { title, message };
-    axios
-      .post(
-        isUpdate ? "http://localhost:4001/notification/update-noti/" + data.id : "http://localhost:4001/notification/create-noti/",
-        dataPost
+    toast
+      .promise(
+        axios.post(
+          isUpdate ? "http://localhost:4001/notification/update-noti/" + data.id : "http://localhost:4001/notification/create-noti/",
+          dataPost
+        ),
+        {
+          loading: "Đang tiến hành...",
+          success: <b>Thành công!</b>,
+          error: <b>Thất bại.</b>
+        }
       )
-      .then((axiosData) => {
-        alert(axiosData.data.message);
-        return axiosData.data.id;
-      })
-      .then((id) => navigator("/notifications/" + id));
+      .then((axiosData) => navigator("/notifications/" + axiosData.data.id));
   };
 
   return (

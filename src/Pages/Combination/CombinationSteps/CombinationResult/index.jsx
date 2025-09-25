@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function CombinationResult({ valueStudent = {}, setCurrPage = () => {} }) {
   const navigator = useNavigate();
@@ -21,9 +22,12 @@ function CombinationResult({ valueStudent = {}, setCurrPage = () => {} }) {
 
   const handleSubmit = () => {
     valueStudent.userId = auth.user.userId;
-    axios
-      .post("http://localhost:4001/combination/submited", valueStudent)
-      .then((axiosData) => alert(axiosData.data.message))
+    toast
+      .promise(axios.post("http://localhost:4001/combination/submited", valueStudent), {
+        loading: "Đang gữi đi hồ sơ...",
+        success: <b>Gữi thành công!</b>,
+        error: <b>Gữi thất bại.</b>
+      })
       .then(() => navigator("/combination/detail"));
   };
 
