@@ -75,6 +75,18 @@ function Students() {
     const { active, over } = event;
     setScrollStudent(null);
     if (!active || !over || over.id === "list") return setShowClassBar(false);
+
+    axios
+      .post("http://localhost:4001/ad/student/add/class", {
+        studentId: active.id,
+        classId: over.id
+      })
+      .then((res) => {
+        setStudentList((prev) => {
+          return prev.filter((item) => item.id !== active.id);
+        });
+        alert(res.data.message);
+      });
     setShowClassBar(false);
   };
 
@@ -110,9 +122,21 @@ function Students() {
               </div>
               <DroppableList id="list" show={showClassBar}>
                 {studentList &&
-                  studentList.map((item, index) => (
-                    <StudentItem data={item} key={index} index={index} detail={false} onClick={() => setShowClassBar((prev) => !prev)} />
-                  ))}
+                  studentList.map((item, index) => {
+                    if (!item.classId) {
+                      return (
+                        <StudentItem
+                          data={item}
+                          key={index}
+                          index={index}
+                          detail={false}
+                          onClick={() => setShowClassBar((prev) => !prev)}
+                        />
+                      );
+                    } else {
+                      return null;
+                    }
+                  })}
                 {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
               </DroppableList>
               <DragOverlay>{scrollStudent && <DragOverPlayStudent data={scrollStudent} />}</DragOverlay>
