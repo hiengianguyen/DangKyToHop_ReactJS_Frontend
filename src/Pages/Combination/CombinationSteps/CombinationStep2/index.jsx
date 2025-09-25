@@ -8,6 +8,7 @@ import Button from "react-bootstrap/esm/Button";
 import { useEffect, useRef, useState } from "react";
 import CropAvatarStudent from "../../Component/CropAvatarStudent";
 import Form from "react-bootstrap/Form";
+import toast from "react-hot-toast";
 
 const cx = classNames.bind(style);
 
@@ -41,7 +42,7 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
 
   const handleSubmit = () => {
     if (urlAvarTarResult === null || urlAvarTarResult.length === 0) {
-      return alert("Vui lòng chọn ảnh thẻ");
+      return toast.error("Vui lòng chọn ảnh thẻ");
     }
     if (formElememt.checkValidity()) {
       const formData = new FormData(formElememt);

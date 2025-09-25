@@ -265,7 +265,6 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                     value={"Bệnh hô hấp"}
                     type="checkbox"
                     required={false}
-                    onClick={() => alert("clciked")}
                     name="sick"
                   />
                 </Col>

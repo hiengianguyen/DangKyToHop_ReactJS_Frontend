@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Loading from "../../../Components/Loading";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const cx = classNames.bind(style);
 
 function ModalEditTable({ isShow = false, setShow = () => {}, combination = {} }) {
@@ -36,10 +37,11 @@ function ModalEditTable({ isShow = false, setShow = () => {}, combination = {} }
     data.compulsorySubjects = formData.getAll("compulsorySubjects");
     data.optionalSubjects = formData.getAll("optionalSubjects");
 
-    axios
-      .post("http://localhost:4001/combination/update/" + id, data)
-      .then((axiosData) => {
-        alert(axiosData.data.message);
+    toast
+      .promise(axios.post("http://localhost:4001/combination/update/" + id, data), {
+        loading: "Đang tiến hành...",
+        success: <b>Thành công!</b>,
+        error: <b>Thất bại.</b>
       })
       .finally(() => {
         setIsLoading(false);

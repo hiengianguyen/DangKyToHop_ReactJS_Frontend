@@ -14,6 +14,7 @@ import DroppableList from "../../../Components/DroppableList";
 import DragOverPlayStudent from "./Component/StudentItem/DragOverPlayStudent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import toast from "react-hot-toast";
 
 const cx = classNames.bind(style);
 
@@ -75,17 +76,22 @@ function Students() {
     const { active, over } = event;
     setScrollStudent(null);
     if (!active || !over || over.id === "list") return setShowClassBar(false);
-
-    axios
-      .post("http://localhost:4001/ad/student/add/class", {
-        studentId: active.id,
-        classId: over.id
-      })
-      .then((res) => {
+    toast
+      .promise(
+        axios.post("http://localhost:4001/ad/student/add/class", {
+          studentId: active.id,
+          classId: over.id
+        }),
+        {
+          loading: "Đang lưu...",
+          success: <b>Đã lưu thành công</b>,
+          error: <b>Lưu thất bại</b>
+        }
+      )
+      .then(() => {
         setStudentList((prev) => {
           return prev.filter((item) => item.id !== active.id);
         });
-        alert(res.data.message);
       });
     setShowClassBar(false);
   };

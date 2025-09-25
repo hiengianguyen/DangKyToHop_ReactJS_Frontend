@@ -12,6 +12,7 @@ import Form from "react-bootstrap/Form";
 import Loading from "../../../Components/Loading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const cx = classNames.bind(style);
 
 const priorityOptions = [
@@ -67,11 +68,11 @@ function Classmate() {
       combination1: combination1,
       combination2: combination2
     };
-    axios
-      .post("http://localhost:4001/ad/classes/create", data)
-      .then((res) => {
-        const data = res.data;
-        alert(data.message);
+    toast
+      .promise(axios.post("http://localhost:4001/ad/classes/create", data), {
+        loading: "Đang tạo...",
+        success: <b>Tạo thành công!</b>,
+        error: <b>Tạo thất bại.</b>
       })
       .finally(() => {
         setIsLoadingModal(false);

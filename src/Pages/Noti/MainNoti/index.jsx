@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../../../Components/Loading";
+import toast from "react-hot-toast";
 
 const cx = classNames.bind(style);
 
@@ -35,13 +36,16 @@ function MainNoti() {
   }, [navigator]);
 
   const deleteNoti = (id) => {
-    axios
-      .get("http://localhost:4001/notification/delete/m/" + id)
+    toast
+      .promise(axios.get("http://localhost:4001/notification/delete/m/" + id), {
+        loading: "Đang xoá...",
+        success: <b>Xoá thành công!</b>,
+        error: <b>Xoá thất bại.</b>
+      })
       .then((axiosData) => {
         if (axiosData.data.type === "auth") {
           navigator("/auth/signin");
         }
-        alert(axiosData.data.message);
       })
       .finally(() => navigator(0));
   };
