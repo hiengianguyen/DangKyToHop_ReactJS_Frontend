@@ -7,7 +7,7 @@ import { overDraggContext } from "../../../../Components/DroppableClass";
 
 const cx = classNames.bind(style);
 
-function CardClass({ data = {}, isDropped = false }) {
+function CardClass({ data = {}, setUpdateModal = () => {} }) {
   const overContext = useContext(overDraggContext);
   return (
     <Tippy delay={[200, 200]} visible={overContext} placement="top" render={(attrs) => <ClassTippy data={data} tabIndex="-1" {...attrs} />}>
@@ -30,7 +30,7 @@ function CardClass({ data = {}, isDropped = false }) {
             ></path>
           </svg>
           <ul className={cx("opt-noti", "shadow")}>
-            <li>Chỉnh sửa</li>
+            <li onClick={() => setUpdateModal({ bol: true, id: data.id })}>Chỉnh sửa</li>
             <li>Xoá</li>
           </ul>
         </div>

@@ -4,7 +4,7 @@ import Container from "react-bootstrap/esm/Container";
 import StudentItem from "./Component/StudentItem";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../../Components/Loading";
 import FillterBox from "./Component/FillterBox";
 import SortBox from "../../Combination/CombinationList/Components/SortBox";
@@ -13,7 +13,7 @@ import BarDivideClass from "./Component/BarDivideClass";
 import DroppableList from "../../../Components/DroppableList";
 import DragOverPlayStudent from "./Component/StudentItem/DragOverPlayStudent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import toast from "react-hot-toast";
 
 const cx = classNames.bind(style);
@@ -104,7 +104,7 @@ function Students() {
   return (
     <form action="" ref={formRef}>
       <DndContext key={String(showClassBar)} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
-        <div className={cx("wrapper", "mb-4")}>
+        <div className={cx("wrapper")}>
           {isloading && <Loading />}
           <div className={cx("sort-box", { hidden: showClassBar })}>
             <h4>Phần lọc:</h4>
@@ -143,6 +143,22 @@ function Students() {
                       return null;
                     }
                   })}
+                <div className="d-flex align-items-center">
+                  <img
+                    className="w-50"
+                    src="https://res.cloudinary.com/dwd3gdhpf/image/upload/v1758883491/no-result-data-document-file-in-the-filling-cabinet-not-found-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector_r74bmg.jpg"
+                    alt=""
+                    style={{ pointerEvents: "none", userSelect: "none" }}
+                  />
+                  <div className="d-flex text-center flex-column">
+                    <h3>Không có dữ liệu</h3>
+                    <i className="text-secondary">Hiệi tại chưa có học sinh trong hàng đợi</i>
+                    <Link to="/ad/classmate" className="text-primary">
+                      Quản lí lớp học
+                      <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
+                    </Link>
+                  </div>
+                </div>
                 {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
               </DroppableList>
               <DragOverlay>{scrollStudent && <DragOverPlayStudent data={scrollStudent} />}</DragOverlay>

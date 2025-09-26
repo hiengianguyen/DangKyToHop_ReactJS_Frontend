@@ -8,7 +8,7 @@ const cx = classNames.bind(style);
 function AddClassCard({ ...prop }) {
   return (
     <div className={cx("wrapper", "gap-2")} {...prop} title="Thêm lớp">
-      <h2>Thêm lớp</h2>
+      <h2 style={{ fontSize: "20px" }}>Thêm lớp</h2>
       <FontAwesomeIcon icon={faPlus} className="fs-2" />
     </div>
   );
