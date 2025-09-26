@@ -148,7 +148,7 @@ function Students() {
               <DragOverlay>{scrollStudent && <DragOverPlayStudent data={scrollStudent} />}</DragOverlay>
             </div>
           </Container>
-          <BarDivideClass show={showClassBar} />
+          <BarDivideClass show={showClassBar} inProp={showClassBar} />
         </div>
       </DndContext>
     </form>
