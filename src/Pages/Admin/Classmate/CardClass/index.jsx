@@ -4,25 +4,11 @@ import Tippy from "@tippyjs/react/headless";
 import ClassTippy from "./ClassTippy";
 import { useContext } from "react";
 import { overDraggContext } from "../../../../Components/DroppableClass";
-import toast from "react-hot-toast";
-import axios from "axios";
 
 const cx = classNames.bind(style);
 
-function CardClass({ data = {}, setUpdateModal = () => {}, setClasses = () => {} }) {
+function CardClass({ data = {}, setUpdateModal = () => {}, setShowDeleteModal = () => {} }) {
   const overContext = useContext(overDraggContext);
-
-  const handleDeleteClass = (id) => {
-    toast
-      .promise(axios.post("http://localhost:4001/ad/classes/delete", { id: id }), {
-        loading: "Đang xoá lớp...",
-        success: <b>Xoá thành công!</b>,
-        error: <b>Xoá thất bại.</b>
-      })
-      .then(() => {
-        setClasses((prev) => prev.filter((item) => item.id !== id));
-      });
-  };
   return (
     <Tippy delay={[200, 200]} visible={overContext} placement="top" render={(attrs) => <ClassTippy data={data} tabIndex="-1" {...attrs} />}>
       <div className={cx("wrapper")}>
@@ -45,7 +31,7 @@ function CardClass({ data = {}, setUpdateModal = () => {}, setClasses = () => {}
           </svg>
           <ul className={cx("opt-noti", "shadow")}>
             <li onClick={() => setUpdateModal({ bol: true, id: data.id })}>Chỉnh sửa</li>
-            <li onClick={() => handleDeleteClass(data.id)}>Xoá</li>
+            <li onClick={() => setShowDeleteModal({ bol: true, info: { name: data.name, id: data.id } })}>Xoá</li>
           </ul>
         </div>
         <div className={cx("teacher")}>

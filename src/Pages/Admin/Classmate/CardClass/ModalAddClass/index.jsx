@@ -1,7 +1,6 @@
 import classNames from "classnames/bind";
 import style from "./ModalAddClass.module.scss";
 import Form from "react-bootstrap/Form";
-
 import Modal from "react-bootstrap/esm/Modal";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
