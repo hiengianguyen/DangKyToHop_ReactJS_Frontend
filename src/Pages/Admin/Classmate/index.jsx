@@ -56,7 +56,7 @@ function Classmate() {
               </Col>
               {classes.map((item, index) => (
                 <Col xs={"auto"} key={index}>
-                  <CardClass data={item} setUpdateModal={setUpdateModal} />
+                  <CardClass data={item} setUpdateModal={setUpdateModal} setClasses={setClasses} />
                 </Col>
               ))}
             </Row>
