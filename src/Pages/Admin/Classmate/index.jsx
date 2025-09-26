@@ -9,12 +9,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModalAddClass from "./CardClass/ModalAddClass";
+import ModalDeleteClass from "./CardClass/ModalDeleteClass";
 
 const cx = classNames.bind(style);
 
 function Classmate() {
   const [classes, setClasses] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState({ bol: false });
   const [updateModal, setUpdateModal] = useState(false);
 
   const navigator = useNavigate();
@@ -56,7 +58,7 @@ function Classmate() {
               </Col>
               {classes.map((item, index) => (
                 <Col xs={"auto"} key={index}>
-                  <CardClass data={item} setUpdateModal={setUpdateModal} setClasses={setClasses} />
+                  <CardClass data={item} setUpdateModal={setUpdateModal} setShowDeleteModal={setShowDeleteModal} />
                 </Col>
               ))}
             </Row>
@@ -68,6 +70,12 @@ function Classmate() {
           setUpdateModal={setUpdateModal}
           data={updateModal?.id ? classes.find((item) => item.id === updateModal.id) : undefined}
           isUpdate={updateModal?.bol}
+        />
+        <ModalDeleteClass
+          show={showDeleteModal.bol}
+          setShowDeleteModal={setShowDeleteModal}
+          setClasses={setClasses}
+          classInfo={showDeleteModal.info}
         />
       </div>
     </div>
