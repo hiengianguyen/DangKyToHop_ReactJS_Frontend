@@ -47,8 +47,12 @@
   transition: all 0.3s;
 
   &.hidden {
-    display: none;
-    transition: all 0.3s ease;
+    width: 0rem !important;
+    padding: 0rem !important;
+    opacity: 0 !important;
+    pointer-events: none; /* Ngăn tương tác khi bị ẩn */
+    margin: 0;
+    transition: all 0.5s ease;
   }
 }
 
