@@ -51,18 +51,21 @@ function ModalAddClass({ show = false, setShow = () => {}, setUpdateModal = () =
     setError("");
     setIsValidated(true);
     setIsLoadingModal(true);
-    const data = {
+    const dataClass = {
       name: className,
       teacher: teacher,
       combination1: combination1,
       combination2: combination2
     };
     toast
-      .promise(axios.post(isUpdate ? "http://localhost:4001/ad/classes/update" : "http://localhost:4001/ad/classes/create", data), {
-        loading: "Đang tạo...",
-        success: <b>Tạo thành công!</b>,
-        error: <b>Tạo thất bại.</b>
-      })
+      .promise(
+        axios.post(isUpdate ? "http://localhost:4001/ad/classes/update/" + data.id : "http://localhost:4001/ad/classes/create", dataClass),
+        {
+          loading: "Đang tạo...",
+          success: <b>{isUpdate ? "Cập nhật" : "Tạo"} thành công!</b>,
+          error: <b>{isUpdate ? "Cập nhật" : "Tạo"} thất bại.</b>
+        }
+      )
       .finally(() => {
         setIsLoadingModal(false);
         setUpdateModal({
