@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2pc 0;
+  padding: 2pc 0;
 
   > p {
     font-style: italic;
@@ -13,8 +13,4 @@
 
 .list-class {
   min-height: 28pc;
-}
-
-.v-inp {
-  font-size: 20px !important;
 }
