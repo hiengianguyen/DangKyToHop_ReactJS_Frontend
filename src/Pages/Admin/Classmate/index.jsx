@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModalAddClass from "./CardClass/ModalAddClass";
 import ModalDeleteClass from "./CardClass/ModalDeleteClass";
+import ParrtenBg from "../../../Components/ParrtenBg";
 
 const cx = classNames.bind(style);
 
@@ -33,52 +34,41 @@ function Classmate() {
   }, [navigator]);
 
   return (
-    <div className="min-h-screen w-full bg-white relative overflow-hidden">
-      {/* Indigo Corner Deep Background */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `
-        radial-gradient(circle 600px at 0% 200px, #c7d2fe, transparent),
-        radial-gradient(circle 600px at 100% 200px, #c7d2fe, transparent)
-      `
-        }}
-      >
-        <div className={cx("wrapper")}>
-          <div className={cx("title-box")}>
-            <h2>🏫 Quản lý các lớp học</h2>
-            <p>Trang này cho phép theo dõi và quản lý thông tin các lớp:</p>{" "}
-            <p> số lượng học sinh, danh sách thành viên, và các thao tác phân chia – điều chỉnh lớp học.</p>
-          </div>
-
-          <Container className={cx("pb-4", "list-class")}>
-            <Row className="gap-4 justify-content-center">
-              <Col xs={"auto"}>
-                <AddClassCard onClick={() => setShowModal(true)} />
-              </Col>
-              {classes.map((item, index) => (
-                <Col xs={"auto"} key={index}>
-                  <CardClass data={item} setUpdateModal={setUpdateModal} setShowDeleteModal={setShowDeleteModal} />
-                </Col>
-              ))}
-            </Row>
-          </Container>
+    <ParrtenBg>
+      <div className={cx("wrapper")}>
+        <div className={cx("title-box")}>
+          <h2>🏫 Quản lý các lớp học</h2>
+          <p>Trang này cho phép theo dõi và quản lý thông tin các lớp:</p>{" "}
+          <p> số lượng học sinh, danh sách thành viên, và các thao tác phân chia – điều chỉnh lớp học.</p>
         </div>
-        <ModalAddClass
-          show={showModal || updateModal?.bol}
-          setShow={setShowModal}
-          setUpdateModal={setUpdateModal}
-          data={updateModal?.id ? classes.find((item) => item.id === updateModal.id) : undefined}
-          isUpdate={updateModal?.bol}
-        />
-        <ModalDeleteClass
-          show={showDeleteModal.bol}
-          setShowDeleteModal={setShowDeleteModal}
-          setClasses={setClasses}
-          classInfo={showDeleteModal.info}
-        />
+
+        <Container className={cx("pb-4", "list-class")}>
+          <Row className="gap-4 justify-content-center">
+            <Col xs={"auto"}>
+              <AddClassCard onClick={() => setShowModal(true)} />
+            </Col>
+            {classes.map((item, index) => (
+              <Col xs={"auto"} key={index}>
+                <CardClass data={item} setUpdateModal={setUpdateModal} setShowDeleteModal={setShowDeleteModal} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
       </div>
-    </div>
+      <ModalAddClass
+        show={showModal || updateModal?.bol}
+        setShow={setShowModal}
+        setUpdateModal={setUpdateModal}
+        data={updateModal?.id ? classes.find((item) => item.id === updateModal.id) : undefined}
+        isUpdate={updateModal?.bol}
+      />
+      <ModalDeleteClass
+        show={showDeleteModal.bol}
+        setShowDeleteModal={setShowDeleteModal}
+        setClasses={setClasses}
+        classInfo={showDeleteModal.info}
+      />
+    </ParrtenBg>
   );
 }
 

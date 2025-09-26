@@ -1,5 +1,12 @@
 .search-name-div {
   width: 30pc;
+  background-color: #fff;
+  border-radius: 5px;
+
+  > input {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
 }
 
 .search-name-btn {
