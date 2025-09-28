@@ -1,0 +1,26 @@
+.title {
+  padding-top: 30px;
+  margin-bottom: 15px;
+}
+
+.list-student {
+  min-height: 500px;
+  margin-top: 2pc;
+  display: flex;
+  flex-direction: column;
+
+  .count {
+    font-size: 30px;
+    margin-right: 20px;
+  }
+}
+
+.btn-redirect {
+  font-size: 24px;
+  margin-left: 15pc;
+  margin-top: 15pc;
+  padding: 6px;
+  &:hover {
+    opacity: 0.8;
+  }
+}

@@ -15,7 +15,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(style);
 
 function BarDivideClass({ show = false }) {
-  const [classes, setClasses] = useState([]);
+  const [data, setData] = useState({});
   const [isLoadingList, setIsLoadingList] = useState(true);
   const nodeRef = useRef();
 
@@ -28,7 +28,7 @@ function BarDivideClass({ show = false }) {
           navigator(data.redirect);
           return;
         }
-        setClasses(data.classes);
+        setData(data);
       })
       .finally(() => setIsLoadingList(false));
   }, []);
@@ -41,11 +41,11 @@ function BarDivideClass({ show = false }) {
         </div>
         <div className={cx("body", "position-relative")}>
           <Row className="gap-4">
-            {classes.length ? (
-              classes.map((classItem, index) => (
+            {data?.classes?.length ? (
+              data.classes.map((classItem, index) => (
                 <Col xs={"auto"} key={index} style={{ width: "max-content" }}>
                   <DroppableClass id={classItem.id}>
-                    <CardClass data={classItem} isDropped={show} />
+                    <CardClass data={classItem} isDropped={show} studentCount={data.countStudentInClass[classItem.id] || 0} />
                   </DroppableClass>
                 </Col>
               ))

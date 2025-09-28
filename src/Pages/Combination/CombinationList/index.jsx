@@ -117,7 +117,7 @@ function CombinationList() {
       <form action="" ref={formRef}>
         <div className="d-flex justify-content-between align-items-center">
           <SearchName handleSubmit={() => handleSubmit(sortList)} />
-          <SortBox changeSort={setSortList} handleSubmit={handleSubmit} />
+          <SortBox handleSubmit={handleSubmit} />
         </div>
         <Row>
           <Col xs={"auto"}>

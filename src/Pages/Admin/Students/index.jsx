@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../../Components/Loading";
-import FillterBox from "./Component/FillterBox";
 import SortBox from "../../Combination/CombinationList/Components/SortBox";
 import { DndContext, DragOverlay } from "@dnd-kit/core";
 import BarDivideClass from "./Component/BarDivideClass";
@@ -16,13 +15,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import toast from "react-hot-toast";
 import ParrtenBg from "../../../Components/ParrtenBg";
+import FillterBox from "./Component/FillterBox";
 
 const cx = classNames.bind(style);
 
 function Students() {
   const formRef = useRef();
   const containerListRef = useRef();
-  const [studentList, setStudentList] = useState([]);
+  const [data, setData] = useState({});
   const [isloading, setIsLoading] = useState(true);
   const [formElement, setFormElement] = useState();
   const [submittedListMain, setSubmittedListMain] = useState([]);
@@ -45,7 +45,7 @@ function Students() {
         if (data.redirect) {
           navigator(data.redirect);
         } else {
-          setStudentList(data.studentList);
+          setData(data);
           setSubmittedListMain(data.studentList);
         }
       })
@@ -56,7 +56,7 @@ function Students() {
     setIsLoadingList(true);
     const formData = new FormData(formElement);
     const data = Object.fromEntries(formData.entries());
-    if (Object.keys(data).length === 0 && studentList.length === 0) return;
+    if (Object.keys(data).length === 0 && data.studentList.length === 0) return;
     if (sort && Object.keys(sort).length) {
       data.sort = sort;
       setSortList(sort);
@@ -67,7 +67,9 @@ function Students() {
       .post("http://localhost:4001/combination/submited/sort", data)
       .then((axiosData) => {
         if (axiosData.data.isSuccess) {
-          setStudentList(axiosData.data.submittedListAfterSort);
+          setData((prev) => {
+            return { ...prev, studentList: axiosData.data.submittedListAfterSort };
+          });
         }
       })
       .finally(() => setIsLoadingList(false));
@@ -90,15 +92,15 @@ function Students() {
         }
       )
       .then(() => {
-        setStudentList((prev) => {
-          return prev.filter((item) => item.id !== active.id);
+        setData((prev) => {
+          return { ...prev, studentList: prev.studentList.filter((item) => item.id !== active.id) };
         });
       });
     setShowClassBar(false);
   };
 
   const handleDragStart = (event) => {
-    setScrollStudent(() => studentList.find((item) => item.id === event.active.id));
+    setScrollStudent(() => data.studentList.find((item) => item.id === event.active.id));
     setShowClassBar(true);
   };
 
@@ -126,11 +128,11 @@ function Students() {
               <div className={cx("content", "border")}>
                 <div className={cx("header-list") + " d-flex align-items-center pb-4 justify-content-between"}>
                   <span className="d-flex justify-content-start">Kéo thả để phân chia lớp</span>
-                  <SortBox changeSort={setSortList} handleSubmit={handleSubmit} />
+                  <SortBox handleSubmit={handleSubmit} />
                 </div>
                 <DroppableList id="list" show={showClassBar}>
-                  {studentList.length > 0 ? (
-                    studentList.map((item, index) => {
+                  {data?.studentList?.length > 0 ? (
+                    data.studentList.map((item, index) => {
                       if (!item.classId) {
                         return (
                           <StudentItem

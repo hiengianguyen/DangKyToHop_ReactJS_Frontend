@@ -6,7 +6,7 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import AddClassCard from "./AddClassCard";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModalAddClass from "./CardClass/ModalAddClass";
 import ModalDeleteClass from "./CardClass/ModalDeleteClass";
@@ -15,7 +15,7 @@ import ParrtenBg from "../../../Components/ParrtenBg";
 const cx = classNames.bind(style);
 
 function Classmate() {
-  const [classes, setClasses] = useState([]);
+  const [dataClassesPage, setDataClassesPage] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState({ bol: false });
   const [updateModal, setUpdateModal] = useState(false);
@@ -29,7 +29,7 @@ function Classmate() {
         navigator(data.redirect);
         return;
       }
-      setClasses(data.classes);
+      setDataClassesPage(data);
     });
   }, [navigator]);
 
@@ -47,9 +47,16 @@ function Classmate() {
             <Col xs={"auto"}>
               <AddClassCard onClick={() => setShowModal(true)} />
             </Col>
-            {classes.map((item, index) => (
+            {dataClassesPage?.classes?.map((item, index) => (
               <Col xs={"auto"} key={index}>
-                <CardClass data={item} setUpdateModal={setUpdateModal} setShowDeleteModal={setShowDeleteModal} />
+                <Link to={"/ad/class/" + item.id}>
+                  <CardClass
+                    data={item}
+                    setUpdateModal={setUpdateModal}
+                    setShowDeleteModal={setShowDeleteModal}
+                    studentCount={dataClassesPage.countStudentInClass[item.id] || 0}
+                  />
+                </Link>
               </Col>
             ))}
           </Row>
@@ -59,13 +66,13 @@ function Classmate() {
         show={showModal || updateModal?.bol}
         setShow={setShowModal}
         setUpdateModal={setUpdateModal}
-        data={updateModal?.id ? classes.find((item) => item.id === updateModal.id) : undefined}
+        data={updateModal?.id ? dataClassesPage.classes.find((item) => item.id === updateModal.id) : undefined}
         isUpdate={updateModal?.bol}
       />
       <ModalDeleteClass
         show={showDeleteModal.bol}
         setShowDeleteModal={setShowDeleteModal}
-        setClasses={setClasses}
+        setClasses={setDataClassesPage}
         classInfo={showDeleteModal.info}
       />
     </ParrtenBg>
