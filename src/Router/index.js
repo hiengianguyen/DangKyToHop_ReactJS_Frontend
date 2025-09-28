@@ -30,6 +30,7 @@ import NotiEdit from "../Pages/Noti/NotiEdit";
 import NotiInfo from "../Pages/Noti/NotiInfo";
 import Students from "../Pages/Admin/Students";
 import Classmate from "../Pages/Admin/Classmate";
+import ClassDetail from "../Pages/Admin/ClassDetail";
 
 const publicRoutes = [
   {
@@ -158,6 +159,13 @@ const privateRoutes = [
   {
     path: "/ad/students",
     component: Students,
+    inSidebar: false,
+    layout: HomeLayout,
+    roles: ["manager"]
+  },
+  {
+    path: "/ad/class/:id",
+    component: ClassDetail,
     inSidebar: false,
     layout: HomeLayout,
     roles: ["manager"]

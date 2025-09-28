@@ -14,7 +14,9 @@ function ModalDeleteClass({ show = false, setShowDeleteModal = () => {}, setClas
       })
       .then(() => {
         setShowDeleteModal({ bol: false });
-        setClasses((prev) => prev.filter((item) => item.id !== classInfo.id));
+        setClasses((prev) => {
+          return { ...prev, classes: prev.classes.filter((item) => item.id !== classInfo.id) };
+        });
       });
   };
 

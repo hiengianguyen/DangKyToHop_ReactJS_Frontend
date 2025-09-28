@@ -89,29 +89,6 @@ function FillterBox({ handleSubmit = () => {} }) {
           }
         ]}
       />
-      <FilterBox
-        handleSubmit={handleSubmit}
-        name="status"
-        title="Trạng thái"
-        options={[
-          {
-            title: "Tất cả",
-            value: "Tất cả"
-          },
-          {
-            title: "Đã nộp",
-            value: "Đã nộp"
-          },
-          {
-            title: "Đã phê duyệt",
-            value: "Đã phê duyệt"
-          },
-          {
-            title: "Đã huỷ phê duyệt",
-            value: "Đã huỷ phê duyệt"
-          }
-        ]}
-      />
     </div>
   );
 }

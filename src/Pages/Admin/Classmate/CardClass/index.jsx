@@ -7,12 +7,15 @@ import { overDraggContext } from "../../../../Components/DroppableClass";
 
 const cx = classNames.bind(style);
 
-function CardClass({ data = {}, setUpdateModal = () => {}, setShowDeleteModal = () => {} }) {
+function CardClass({ data = {}, setUpdateModal = () => {}, setShowDeleteModal = () => {}, studentCount = 0 }) {
   const overContext = useContext(overDraggContext);
   return (
     <Tippy delay={[200, 200]} visible={overContext} placement="top" render={(attrs) => <ClassTippy data={data} tabIndex="-1" {...attrs} />}>
       <div className={cx("wrapper")}>
-        <h2>{data.name}</h2>
+        <div className="d-flex flex-column align-items-center">
+          <h2>{data.name}</h2>
+          <span>Số học sinh: {studentCount}</span>
+        </div>
         <div className={cx("list-icon")}>
           <svg
             aria-hidden="true"
