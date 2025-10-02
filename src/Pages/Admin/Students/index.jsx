@@ -16,6 +16,7 @@ import { faArrowRight, faCircleChevronLeft } from "@fortawesome/free-solid-svg-i
 import toast from "react-hot-toast";
 import ParrtenBg from "../../../Components/ParrtenBg";
 import FillterBox from "./Component/FillterBox";
+import { motion, AnimatePresence } from "framer-motion";
 
 const cx = classNames.bind(style);
 
@@ -110,10 +111,22 @@ function Students() {
         <DndContext key={String(showClassBar)} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
           <div className={cx("wrapper")}>
             {isloading && <Loading />}
-            <div className={cx("sort-box", { hidden: showClassBar })}>
-              <h4>Phần lọc:</h4>
-              <FillterBox handleSubmit={() => handleSubmit(sortList)} />
-            </div>
+            <AnimatePresence>
+              {!showClassBar && (
+                <motion.div
+                  key="box"
+                  initial={{ transform: "translateX(-100%)", opacity: 0 }}
+                  animate={{ transform: "translateX(0)", opacity: 1 }}
+                  exit={{ transform: "translateX(-100%)", opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className={cx("sort-box")}>
+                    <h4>Phần lọc:</h4>
+                    <FillterBox handleSubmit={() => handleSubmit(sortList)} />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
             <Container className={"d-flex flex-column align-items-center " + cx("container-list")} ref={containerListRef}>
               <FontAwesomeIcon
                 icon={faCircleChevronLeft}
@@ -170,7 +183,19 @@ function Students() {
                 <DragOverlay>{scrollStudent && <DragOverPlayStudent data={scrollStudent} />}</DragOverlay>
               </div>
             </Container>
-            <BarDivideClass show={showClassBar} inProp={showClassBar} />
+            <AnimatePresence>
+              {showClassBar && (
+                <motion.div
+                  key="box"
+                  initial={{ transform: "translateX(100%)" }}
+                  animate={{ transform: "translateX(0)" }}
+                  exit={{ transform: "translateX(100%)" }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <BarDivideClass show={setShowClassBar} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </DndContext>
       </form>
