@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .title-box {
@@ -47,8 +47,9 @@
   transition: all 0.3s;
 
   &.hidden {
-    width: 0rem !important;
-    padding: 0rem !important;
+    height: 0 !important;
+    width: 0 !important;
+    padding: 0 !important;
     opacity: 0 !important;
     pointer-events: none; /* Ngăn tương tác khi bị ẩn */
     margin: 0;
