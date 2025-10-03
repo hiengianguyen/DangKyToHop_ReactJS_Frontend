@@ -1,18 +1,18 @@
 import classNames from "classnames/bind";
-import style from "./HomeLayout.module.scss";
+import style from "./SchoolLayout.module.scss";
 import Footer from "../Component/Footer";
-import HeaderHome from "../HeaderHome";
+import HeaderDefault from "../Component/HeaderDefault";
 
 const cx = classNames.bind(style);
 
-function HomeLayout({ children }) {
+function SchoolLayout({ children }) {
   return (
     <div className={cx("wrapper")}>
-      <HeaderHome />
+      <HeaderDefault />
       <div className={cx("content")}>{children}</div>
       <Footer />
     </div>
   );
 }
 
-export default HomeLayout;
+export default SchoolLayout;

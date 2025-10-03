@@ -3,7 +3,6 @@ import Contact from "../Pages/Contact";
 import Home from "../Pages/Home";
 import School from "../Pages/School";
 import User from "../Pages/Profile/Main";
-import HomeLayout from "../Components/layouts/HomeLayout";
 import EditProfile from "../Pages/Profile/EditProfile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -31,6 +30,8 @@ import NotiInfo from "../Pages/Noti/NotiInfo";
 import Students from "../Pages/Admin/Students";
 import Classmate from "../Pages/Admin/Classmate";
 import ClassDetail from "../Pages/Admin/ClassDetail";
+import SchoolLayout from "../Components/layouts/SchoolLayout";
+import HomeLayout from "../Components/layouts/HomeLayout";
 
 const publicRoutes = [
   {
@@ -80,7 +81,14 @@ const privateRoutes = [
     icon: <FontAwesomeIcon className="" icon={faBookmark} />,
     roles: ["manager"]
   },
-  { path: "/school", component: School, title: "Trường Học", icon: <FontAwesomeIcon className="" icon={faBuilding} />, roles: ["student"] },
+  {
+    path: "/school",
+    component: School,
+    title: "Trường Học",
+    icon: <FontAwesomeIcon className="" icon={faBuilding} />,
+    roles: ["student"],
+    layout: SchoolLayout
+  },
   {
     path: "/contact",
     component: Contact,

@@ -1,3 +1,15 @@
+.school-info {
+  margin: 0px;
+  margin-top: 20px;
+  height: 16pc;
+  position: relative;
+  display: flex;
+  pointer-events: none;
+  user-select: none;
+  width: var(--width-header);
+  border-radius: 12px;
+}
+
 .banner-container,
 .school-banner {
   width: 50%;
@@ -7,17 +19,24 @@
   position: relative;
 }
 
+.school-banner {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
 .school-banner-second {
   width: 100%;
   height: 100%;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .school-info-detail {
   position: absolute;
-  top: 30px;
-  left: 16px;
+  top: 20px;
+  left: 13px;
   height: 100%;
-  width: 100%;
+  width: 97%;
   overflow: hidden;
   overflow-y: auto;
 }
@@ -29,13 +48,4 @@
 .school-info-detail img {
   width: 100%;
   height: 89%;
-}
-
-.school-info {
-  margin: 0px;
-  height: 22pc;
-  position: relative;
-  display: flex;
-  pointer-events: none;
-  user-select: none;
 }

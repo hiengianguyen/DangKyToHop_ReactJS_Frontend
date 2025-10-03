@@ -126,7 +126,7 @@ function Signin() {
                   <Form.Control.Feedback type="invalid">{errorPass}</Form.Control.Feedback>
                 </Form.Group>
                 <Button variant="primary" type="submit" style={{ width: "100%", fontSize: "16px" }}>
-                  ĐĂNG KÝ
+                  ĐĂNG NHẬP
                 </Button>
                 <div className={cx("login-comment")}>
                   <p>Bạn chưa có tài khoản?</p>
