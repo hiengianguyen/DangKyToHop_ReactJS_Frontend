@@ -170,7 +170,7 @@ function Students() {
                       />
                       <div className="d-flex text-center flex-column">
                         <h3>Không có dữ liệu</h3>
-                        <i className="text-secondary">Hiệi tại chưa có học sinh trong hàng đợi</i>
+                        <i className={cx("text-secondary", "message-notitem")}>Hiệi tại chưa có học sinh trong hàng đợi</i>
                         <Link to="/ad/classmate" className="text-primary">
                           Quản lí lớp học
                           <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
