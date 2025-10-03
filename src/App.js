@@ -1,8 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { publicRoutes, privateRoutes } from "./Router";
-import DefaultLayout from "./Components/layouts/DefaultLayout";
 import { useAuth } from "./Contexts/AuthContext";
+import HomeLayout from "./Components/layouts/MainLayout";
 
 function App() {
   const [mainRouters, setMainrouters] = useState([]);
@@ -26,7 +26,7 @@ function App() {
         <Routes>
           {mainRouters &&
             mainRouters.map((routes, index) => {
-              let Layout = DefaultLayout;
+              let Layout = HomeLayout;
               if (routes.layout) {
                 Layout = routes.layout;
               } else if (routes.layout === null) {

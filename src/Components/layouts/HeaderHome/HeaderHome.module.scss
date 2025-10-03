@@ -1,0 +1,34 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1000;
+  display: none;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+
+.nav-img img {
+  height: 40px;
+  margin-left: 20px;
+}
+
+.header .nav-bar-icon {
+  height: 100%;
+  width: 55px;
+}
+
+.header .nav-bar-icon.active {
+  color: #ffffff;
+  background-color: #7b7b7b;
+}
+
+.tittle-sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+}

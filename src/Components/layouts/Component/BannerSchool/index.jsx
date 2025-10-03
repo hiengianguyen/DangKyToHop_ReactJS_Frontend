@@ -5,7 +5,7 @@ const cx = classNames.bind(style);
 
 function BannerSchool() {
   return (
-    <div className={cx("school-info")}>
+    <div className={cx("school-info", "shadow")}>
       <img
         className={cx("school-banner")}
         src="https://res.cloudinary.com/dwoymvppw/image/upload/v1752812401/school_banner_second_new_un0i6r.png"
