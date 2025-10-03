@@ -10,7 +10,7 @@ function CardStudent({ data = {} }) {
       <div className={cx("info")}>
         <h4 className="me-4">{data.fullName}</h4>
         <span className={cx("content")}>
-          {data.gender} • {data.dayOfBirth} • NV1: {data.combination1} • NV2: {data.combination2}
+          {data.gender} | {data.dayOfBirth} | NV1: {data.combination1} | NV2: {data.combination2}
         </span>
       </div>
       <div className={cx("point")}>
