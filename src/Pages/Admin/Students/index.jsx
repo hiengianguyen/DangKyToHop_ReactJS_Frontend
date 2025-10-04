@@ -14,7 +14,6 @@ import DragOverPlayStudent from "./Component/StudentItem/DragOverPlayStudent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import toast from "react-hot-toast";
-import ParrtenBg from "../../../Components/ParrtenBg";
 import FillterBox from "./Component/FillterBox";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -106,100 +105,98 @@ function Students() {
   };
 
   return (
-    <ParrtenBg>
-      <form action="" ref={formRef}>
-        <DndContext key={String(showClassBar)} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
-          <div className={cx("wrapper")}>
-            {isloading && <Loading />}
-            <AnimatePresence>
-              {!showClassBar && (
-                <motion.div
-                  key="box"
-                  initial={{ transform: "translateX(-100%)", opacity: 0 }}
-                  animate={{ transform: "translateX(0)", opacity: 1 }}
-                  exit={{ transform: "translateX(-100%)", opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className={cx("sort-box")}>
-                    <h4>Phần lọc:</h4>
-                    <FillterBox handleSubmit={() => handleSubmit(sortList)} />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <Container className={"d-flex flex-column align-items-center " + cx("container-list")} ref={containerListRef}>
-              <FontAwesomeIcon
-                icon={faCircleChevronLeft}
-                className={cx("turn-sort-bar", { hidden: showClassBar })}
-                onClick={() => setShowClassBar((prev) => !prev)}
-              />
-              <div className={cx("title-box")}>
-                <h2>📋 Danh sách học sinh đã được phê duyệt hồ sơ</h2>
-                <p>Danh sách này hiển thị toàn bộ học sinh đã hoàn tất và được phê duyệt hồ sơ tuyển sinh.</p>{" "}
-                <p>Đây là bước chuẩn bị để tiến hành phân chia vào các lớp học.</p>
-              </div>
-              <div className={cx("content", "border")}>
-                <div className={cx("header-list") + " d-flex align-items-center pb-4 justify-content-between"}>
-                  <span className="d-flex justify-content-start">Kéo thả để phân chia lớp</span>
-                  <SortBox handleSubmit={handleSubmit} />
+    <form action="" ref={formRef}>
+      <DndContext key={String(showClassBar)} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+        <div className={cx("wrapper")}>
+          {isloading && <Loading />}
+          <AnimatePresence>
+            {!showClassBar && (
+              <motion.div
+                key="box"
+                initial={{ transform: "translateX(-100%)", opacity: 0 }}
+                animate={{ transform: "translateX(0)", opacity: 1 }}
+                exit={{ transform: "translateX(-100%)", opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className={cx("sort-box")}>
+                  <h4>Phần lọc:</h4>
+                  <FillterBox handleSubmit={() => handleSubmit(sortList)} />
                 </div>
-                <DroppableList id="list" show={showClassBar}>
-                  {data?.studentList?.length > 0 ? (
-                    data.studentList.map((item, index) => {
-                      if (!item.classId) {
-                        return (
-                          <StudentItem
-                            data={item}
-                            key={index}
-                            index={index}
-                            detail={false}
-                            onClick={() => setShowClassBar((prev) => !prev)}
-                          />
-                        );
-                      } else {
-                        return null;
-                      }
-                    })
-                  ) : (
-                    <div className="d-flex align-items-center">
-                      <img
-                        className="w-50"
-                        src="https://res.cloudinary.com/dwd3gdhpf/image/upload/v1758883491/no-result-data-document-file-in-the-filling-cabinet-not-found-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector_r74bmg.jpg"
-                        alt=""
-                        style={{ pointerEvents: "none", userSelect: "none" }}
-                      />
-                      <div className="d-flex text-center flex-column">
-                        <h3>Không có dữ liệu</h3>
-                        <i className={cx("text-secondary", "message-notitem")}>Hiệi tại chưa có học sinh trong hàng đợi</i>
-                        <Link to="/ad/classmate" className="text-primary">
-                          Quản lí lớp học
-                          <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
-                        </Link>
-                      </div>
-                    </div>
-                  )}
-                  {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
-                </DroppableList>
-                <DragOverlay>{scrollStudent && <DragOverPlayStudent data={scrollStudent} />}</DragOverlay>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <Container className={"d-flex flex-column align-items-center " + cx("container-list")} ref={containerListRef}>
+            <FontAwesomeIcon
+              icon={faCircleChevronLeft}
+              className={cx("turn-sort-bar", { hidden: showClassBar })}
+              onClick={() => setShowClassBar((prev) => !prev)}
+            />
+            <div className={cx("title-box")}>
+              <h2>📋 Danh sách học sinh đã được phê duyệt hồ sơ</h2>
+              <p>Danh sách này hiển thị toàn bộ học sinh đã hoàn tất và được phê duyệt hồ sơ tuyển sinh.</p>{" "}
+              <p>Đây là bước chuẩn bị để tiến hành phân chia vào các lớp học.</p>
+            </div>
+            <div className={cx("content", "border")}>
+              <div className={cx("header-list") + " d-flex align-items-center pb-4 justify-content-between"}>
+                <span className="d-flex justify-content-start">Kéo thả để phân chia lớp</span>
+                <SortBox handleSubmit={handleSubmit} />
               </div>
-            </Container>
-            <AnimatePresence>
-              {showClassBar && (
-                <motion.div
-                  key="box"
-                  initial={{ transform: "translateX(100%)" }}
-                  animate={{ transform: "translateX(0)" }}
-                  exit={{ transform: "translateX(100%)" }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <BarDivideClass show={setShowClassBar} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </DndContext>
-      </form>
-    </ParrtenBg>
+              <DroppableList id="list" show={showClassBar}>
+                {data?.studentList?.length > 0 ? (
+                  data.studentList.map((item, index) => {
+                    if (!item.classId) {
+                      return (
+                        <StudentItem
+                          data={item}
+                          key={index}
+                          index={index}
+                          detail={false}
+                          onClick={() => setShowClassBar((prev) => !prev)}
+                        />
+                      );
+                    } else {
+                      return null;
+                    }
+                  })
+                ) : (
+                  <div className="d-flex align-items-center">
+                    <img
+                      className="w-50"
+                      src="https://res.cloudinary.com/dwd3gdhpf/image/upload/v1758883491/no-result-data-document-file-in-the-filling-cabinet-not-found-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector_r74bmg.jpg"
+                      alt=""
+                      style={{ pointerEvents: "none", userSelect: "none" }}
+                    />
+                    <div className="d-flex text-center flex-column">
+                      <h3>Không có dữ liệu</h3>
+                      <i className={cx("text-secondary", "message-notitem")}>Hiệi tại chưa có học sinh trong hàng đợi</i>
+                      <Link to="/ad/classmate" className="text-primary">
+                        Quản lí lớp học
+                        <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
+                {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
+              </DroppableList>
+              <DragOverlay>{scrollStudent && <DragOverPlayStudent data={scrollStudent} />}</DragOverlay>
+            </div>
+          </Container>
+          <AnimatePresence>
+            {showClassBar && (
+              <motion.div
+                key="box"
+                initial={{ transform: "translateX(100%)" }}
+                animate={{ transform: "translateX(0)" }}
+                exit={{ transform: "translateX(100%)" }}
+                transition={{ duration: 0.5 }}
+              >
+                <BarDivideClass show={setShowClassBar} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </DndContext>
+    </form>
   );
 }
 

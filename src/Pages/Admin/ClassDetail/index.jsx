@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import ParrtenBg from "../../../Components/ParrtenBg";
 import classNames from "classnames/bind";
 import style from "./ClassDetail.module.scss";
 import { useEffect, useRef, useState } from "react";
@@ -50,35 +49,33 @@ function ClassDetail() {
   };
 
   return (
-    <ParrtenBg>
-      <div className={cx("wrapper")}>
-        <Link to={-1} className={cx("btn-redirect")}>
-          <FontAwesomeIcon icon={faArrowLeft} className="" />
-        </Link>
-        <div className="container w-50">
-          <div className={cx("title")}>
-            <h1>Lớp {classDetail.name}</h1>
-            <h2>
-              Giáo viên chủ nhiệm: <i>{classDetail.teacher}</i>
-            </h2>
-          </div>
+    <div className={cx("wrapper")}>
+      <Link to={-1} className={cx("btn-redirect")}>
+        <FontAwesomeIcon icon={faArrowLeft} className="" />
+      </Link>
+      <div className="container w-50">
+        <div className={cx("title")}>
+          <h1>Lớp {classDetail.name}</h1>
+          <h2>
+            Giáo viên chủ nhiệm: <i>{classDetail.teacher}</i>
+          </h2>
+        </div>
 
-          <form ref={formRef}>
-            <FillterBoxDetail handleSubmit={() => handleSubmit(sortList)} handleSubmitHaveSort={handleSubmit} />
-          </form>
+        <form ref={formRef}>
+          <FillterBoxDetail handleSubmit={() => handleSubmit(sortList)} handleSubmitHaveSort={handleSubmit} />
+        </form>
 
-          <div className={cx("list-student")}>
-            {students &&
-              students.map((item, index) => (
-                <div className="d-flex align-items-center" key={index}>
-                  <span className={cx("count")}>{index + 1}</span>
-                  <CardStudent data={item} />
-                </div>
-              ))}
-          </div>
+        <div className={cx("list-student")}>
+          {students &&
+            students.map((item, index) => (
+              <div className="d-flex align-items-center" key={index}>
+                <span className={cx("count")}>{index + 1}</span>
+                <CardStudent data={item} />
+              </div>
+            ))}
         </div>
       </div>
-    </ParrtenBg>
+    </div>
   );
 }
 

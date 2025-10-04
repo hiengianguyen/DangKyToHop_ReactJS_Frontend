@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import style from "./HomeLayout.module.scss";
 import Footer from "../Component/Footer";
-import HeaderHome from "../HeaderHome";
+import HeaderHome from "../Component/HeaderHome";
 
 const cx = classNames.bind(style);
 
