@@ -10,7 +10,7 @@ const cx = classNames.bind(style);
 function FillterBoxDetail({ handleSubmit = () => {}, handleSubmitHaveSort = () => {} }) {
   return (
     <div className={cx("wrapper")}>
-      <SearchName handleSubmit={handleSubmit} change />
+      <SearchName handleSubmit={handleSubmit} />
       <Row>
         <Col xs={"auto"}>
           <FilterBox

@@ -11,7 +11,7 @@ const cx = classNames.bind(style);
 
 function TablePage() {
   const [combinationModalID, setCombinationModalID] = useState("");
-  const [combinations, setCombinations] = useState();
+  const [combinations, setCombinations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -51,15 +51,12 @@ function TablePage() {
               {combinations &&
                 combinations.map((item, index) => (
                   <tr key={index}>
-                    <td>{item.name}</td>
-                    <td>{item.optionalSubjects.join(", ")}</td>
-                    <td>{item.compulsorySubjects.join(", ")}</td>
-                    <td>{item.classesCount}</td>
+                    <td>{item?.name}</td>
+                    <td>{item?.optionalSubjects.join(", ")}</td>
+                    <td>{item?.compulsorySubjects.join(", ")}</td>
+                    <td>{item?.classesCount}</td>
                     <td>
-                      <div
-                        className="btn btn-secondary fs-3"
-                        onClick={() => handleEditCombination(item.id)}
-                      >
+                      <div className="btn btn-secondary fs-3" onClick={() => handleEditCombination(item?.id)}>
                         Chỉnh sửa
                       </div>
                     </td>
@@ -71,13 +68,14 @@ function TablePage() {
       </div>
       {combinations &&
         combinations.map((item, index) => {
-          if (item.id !== combinationModalID) return null;
+          if (item?.id !== combinationModalID) return null;
           return (
             <ModalEditTable
               key={index}
               isShow={isShowModal}
               setShow={setIsShowModal}
               combination={item}
+              setCombinations={setCombinations}
             />
           );
         })}

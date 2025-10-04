@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Loading from "../../../../../Components/Loading";
-import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(style);
 
@@ -19,7 +18,14 @@ const priorityOptions = [
   { title: "Tổ hợp 5", value: "Tổ hợp 5" }
 ];
 
-function ModalAddClass({ show = false, setShow = () => {}, setUpdateModal = () => {}, isUpdate = false, data = {} }) {
+function ModalAddClass({
+  show = false,
+  setShow = () => {},
+  setUpdateModal = () => {},
+  isUpdate = false,
+  data = {},
+  setDataClassesPage = () => {}
+}) {
   const [className, setClassName] = useState("");
   const [teacher, setTeacher] = useState("");
   const [combination1, setCombination1] = useState("");
@@ -27,7 +33,6 @@ function ModalAddClass({ show = false, setShow = () => {}, setUpdateModal = () =
   const [isValidated, setIsValidated] = useState(false);
   const [error, setError] = useState("");
   const [isLoadingModal, setIsLoadingModal] = useState(false);
-  const navigator = useNavigate();
 
   useEffect(() => {
     if (!data.id) return;
@@ -65,13 +70,24 @@ function ModalAddClass({ show = false, setShow = () => {}, setUpdateModal = () =
           error: <b>{isUpdate ? "Cập nhật" : "Tạo"} thất bại.</b>
         }
       )
-      .finally(() => {
+      .then((res) => {
         setIsLoadingModal(false);
         setUpdateModal({
           bol: false
         });
         setShow(false);
-        navigator(0);
+        setDataClassesPage((prev) => {
+          if (isUpdate) {
+            return {
+              ...prev,
+              classes: prev.classes.map((item) => {
+                return item.id === data?.id ? res.data.docAfter : item;
+              })
+            };
+          } else {
+            return { ...prev, classes: [...prev.classes, res.data.docAfter] };
+          }
+        });
       });
   };
   return (

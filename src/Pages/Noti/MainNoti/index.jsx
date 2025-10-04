@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../../../Components/Loading";
 import toast from "react-hot-toast";
+import Modal from "react-bootstrap/esm/Modal";
+import Button from "react-bootstrap/esm/Button";
 
 const cx = classNames.bind(style);
 
@@ -17,6 +19,9 @@ function MainNoti() {
   const [loading, setLoading] = useState(true);
   const [showListAction, setShowListAction] = useState(false);
   const [listAction, setListAction] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [notiDelete, setNotiDelete] = useState("");
+
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -43,11 +48,12 @@ function MainNoti() {
         error: <b>Xoá thất bại.</b>
       })
       .then((axiosData) => {
+        setListNoti((prev) => prev.filter((item) => item.id !== id));
         if (axiosData.data.type === "auth") {
           navigator("/auth/signin");
         }
       })
-      .finally(() => navigator(0));
+      .finally(() => setShowModal(false));
   };
   return (
     <BoxRadius>
@@ -108,7 +114,14 @@ function MainNoti() {
                           <Link to={"/notifications/edit/" + item.id}>
                             <li>Chỉnh sửa</li>
                           </Link>
-                          <li onClick={() => deleteNoti(item.id)}>Xoá</li>
+                          <li
+                            onClick={() => {
+                              setShowModal(true);
+                              setNotiDelete(item.id);
+                            }}
+                          >
+                            Xoá
+                          </li>
                         </ul>
                       )}
                     </div>
@@ -126,6 +139,25 @@ function MainNoti() {
           </div>
         </div>
       </div>
+
+      <Modal show={showModal} onHide={setShowModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Xoá thông báo</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>Bạn có muốn xoá thông báo này.</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" className="fs-3" onClick={() => setShowModal(false)}>
+            Huỷ
+          </Button>
+          <Button variant="danger" className="fs-3" onClick={() => deleteNoti(notiDelete)}>
+            Xoá
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </BoxRadius>
   );
 }
