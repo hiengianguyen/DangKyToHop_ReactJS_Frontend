@@ -63,6 +63,7 @@ function Classmate() {
         setUpdateModal={setUpdateModal}
         data={updateModal?.id ? dataClassesPage.classes.find((item) => item.id === updateModal.id) : undefined}
         isUpdate={updateModal?.bol}
+        setDataClassesPage={setDataClassesPage}
       />
       <ModalDeleteClass
         show={showDeleteModal.bol}

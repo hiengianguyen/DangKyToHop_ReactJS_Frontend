@@ -2,40 +2,46 @@ import Button from "react-bootstrap/esm/Button";
 import Modal from "react-bootstrap/Modal";
 import classNames from "classnames/bind";
 import style from "./ModalEditTable.module.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../../../Components/Loading";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 const cx = classNames.bind(style);
 
-function ModalEditTable({ isShow = false, setShow = () => {}, combination = {} }) {
-  const formRef = useRef();
+function ModalEditTable({ isShow = false, setShow = () => {}, combination = {}, setCombinations = () => {} }) {
   const handleClose = () => setShow(false);
-  const [optionalSubject1, setOptionalSubject1] = useState(combination.optionalSubjects ? combination?.optionalSubjects[0] : "");
-  const [optionalSubject2, setOptionalSubject2] = useState(combination.optionalSubjects ? combination?.optionalSubjects[1] : "");
-  const [optionalSubject3, setOptionalSubject3] = useState(combination.optionalSubjects ? combination?.optionalSubjects[2] : "");
-  const [optionalSubject4, setOptionalSubject4] = useState(combination.optionalSubjects ? combination?.optionalSubjects[3] : "");
-  const [compulsorySubject1, setCompulsorySubject1] = useState(combination.compulsorySubjects ? combination?.compulsorySubjects[0] : "");
-  const [compulsorySubject2, setCompulsorySubject2] = useState(combination.compulsorySubjects ? combination?.compulsorySubjects[1] : "");
-  const [compulsorySubject3, setCompulsorySubject3] = useState(combination.compulsorySubjects ? combination?.compulsorySubjects[2] : "");
-  const [classCount, setClassCount] = useState(combination.classesCount);
-  const [formElement, setFormElement] = useState();
+  const [optionalSubject1, setOptionalSubject1] = useState("");
+  const [optionalSubject2, setOptionalSubject2] = useState("");
+  const [optionalSubject3, setOptionalSubject3] = useState("");
+  const [optionalSubject4, setOptionalSubject4] = useState("");
+  const [compulsorySubject1, setCompulsorySubject1] = useState("");
+  const [compulsorySubject2, setCompulsorySubject2] = useState("");
+  const [compulsorySubject3, setCompulsorySubject3] = useState("");
+  const [classCount, setClassCount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigator = useNavigate();
-
   useEffect(() => {
-    setFormElement(formRef.current);
-  }, []);
+    if (!combination) return;
+
+    setOptionalSubject1(combination.optionalSubjects ? combination.optionalSubjects[0] || "" : "");
+    setOptionalSubject2(combination.optionalSubjects ? combination.optionalSubjects[1] || "" : "");
+    setOptionalSubject3(combination.optionalSubjects ? combination.optionalSubjects[2] || "" : "");
+    setOptionalSubject4(combination.optionalSubjects ? combination.optionalSubjects[3] || "" : "");
+
+    setCompulsorySubject1(combination.compulsorySubjects ? combination.compulsorySubjects[0] || "" : "");
+    setCompulsorySubject2(combination.compulsorySubjects ? combination.compulsorySubjects[1] || "" : "");
+    setCompulsorySubject3(combination.compulsorySubjects ? combination.compulsorySubjects[2] || "" : "");
+
+    setClassCount(combination.classesCount ?? "");
+  }, [combination]);
 
   const handleSubmit = (id) => {
     setIsLoading(true);
-    const formData = new FormData(formElement);
-    const data = Object.fromEntries(formData.entries());
-
-    data.compulsorySubjects = formData.getAll("compulsorySubjects");
-    data.optionalSubjects = formData.getAll("optionalSubjects");
+    const data = {
+      compulsorySubjects: [compulsorySubject1, compulsorySubject2, compulsorySubject3],
+      optionalSubjects: [optionalSubject1, optionalSubject2, optionalSubject3, optionalSubject4],
+      classesCount: classCount
+    };
 
     toast
       .promise(axios.post("http://localhost:4001/combination/update/" + id, data), {
@@ -43,10 +49,16 @@ function ModalEditTable({ isShow = false, setShow = () => {}, combination = {} }
         success: <b>Thành công!</b>,
         error: <b>Thất bại.</b>
       })
+      .then((res) => {
+        console.log(res.data.docAfter);
+
+        setCombinations((prev) => {
+          return prev.map((item) => (item.id === id ? res.data.docAfter : item));
+        });
+      })
       .finally(() => {
         setIsLoading(false);
         setShow(false);
-        navigator(0); // refresh page
       });
   };
 
@@ -57,82 +69,53 @@ function ModalEditTable({ isShow = false, setShow = () => {}, combination = {} }
         <Modal.Title className="fs-2">Chỉnh sửa tổ hợp</Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-4">
-        <form action="" ref={formRef}>
-          <h2 className={cx("modalTitle", "mb-3")}>{combination.name}</h2>
-          <h6 className={cx("cardTitle")}>Môn lựa chọn (04 môn)</h6>
-          <ol>
-            <li>
-              <input
-                type="text"
-                onChange={(e) => setOptionalSubject1(e.target.value)}
-                value={combination.optionalSubjects ? optionalSubject1 || combination?.optionalSubjects[0] : ""}
-                name="optionalSubjects"
-              />
-            </li>
-            <li>
-              <input
-                type="text"
-                onChange={(e) => setOptionalSubject2(e.target.value)}
-                value={combination.optionalSubjects ? optionalSubject2 || combination?.optionalSubjects[1] : ""}
-                name="optionalSubjects"
-              />
-            </li>
-            <li>
-              <input
-                type="text"
-                onChange={(e) => setOptionalSubject3(e.target.value)}
-                value={combination.optionalSubjects ? optionalSubject3 || combination?.optionalSubjects[2] : ""}
-                name="optionalSubjects"
-              />
-            </li>
-            <li>
-              <input
-                type="text"
-                onChange={(e) => setOptionalSubject4(e.target.value)}
-                value={combination.optionalSubjects ? optionalSubject4 || combination?.optionalSubjects[3] : ""}
-                name="optionalSubjects"
-              />
-            </li>
-          </ol>
-          <h6 className={cx("cardTitle")}>Cụm chuyên đề (03 môn)</h6>
-          <ol>
-            <li>
-              <input
-                type="text"
-                onChange={(e) => setCompulsorySubject1(e.target.value)}
-                value={combination.compulsorySubjects ? compulsorySubject1 || combination?.compulsorySubjects[0] : ""}
-                name="compulsorySubjects"
-              />
-            </li>
-            <li>
-              <input
-                type="text"
-                onChange={(e) => setCompulsorySubject2(e.target.value)}
-                value={combination.compulsorySubjects ? compulsorySubject2 || combination?.compulsorySubjects[1] : ""}
-                name="compulsorySubjects"
-              />
-            </li>
-            <li>
-              <input
-                type="text"
-                onChange={(e) => setCompulsorySubject3(e.target.value)}
-                value={combination.compulsorySubjects ? compulsorySubject3 || combination?.compulsorySubjects[2] : ""}
-                name="compulsorySubjects"
-              />
-            </li>
-          </ol>
-          <div className={cx("d-flex align-items-center gap-3")}>
-            <h6 className={cx("cardTitle", "classCount")}>Số lớp:</h6>
+        <h2 className={cx("modalTitle", "mb-3")}>{combination.name}</h2>
+        <h6 className={cx("cardTitle")}>Môn lựa chọn (04 môn)</h6>
+        <ol>
+          <li>
+            <input type="text" onChange={(e) => setOptionalSubject1(e.target.value)} value={optionalSubject1} name="optionalSubjects" />
+          </li>
+          <li>
+            <input type="text" onChange={(e) => setOptionalSubject2(e.target.value)} value={optionalSubject2} name="optionalSubjects" />
+          </li>
+          <li>
+            <input type="text" onChange={(e) => setOptionalSubject3(e.target.value)} value={optionalSubject3} name="optionalSubjects" />
+          </li>
+          <li>
+            <input type="text" onChange={(e) => setOptionalSubject4(e.target.value)} value={optionalSubject4} name="optionalSubjects" />
+          </li>
+        </ol>
+        <h6 className={cx("cardTitle")}>Cụm chuyên đề (03 môn)</h6>
+        <ol>
+          <li>
             <input
-              type="number"
-              value={classCount || combination.classesCount}
-              onChange={(e) => setClassCount(e.target.value)}
-              step="1"
-              min="1"
-              name="classesCount"
+              type="text"
+              onChange={(e) => setCompulsorySubject1(e.target.value)}
+              value={compulsorySubject1}
+              name="compulsorySubjects"
             />
-          </div>
-        </form>
+          </li>
+          <li>
+            <input
+              type="text"
+              onChange={(e) => setCompulsorySubject2(e.target.value)}
+              value={compulsorySubject2}
+              name="compulsorySubjects"
+            />
+          </li>
+          <li>
+            <input
+              type="text"
+              onChange={(e) => setCompulsorySubject3(e.target.value)}
+              value={compulsorySubject3}
+              name="compulsorySubjects"
+            />
+          </li>
+        </ol>
+        <div className={cx("d-flex align-items-center gap-3")}>
+          <h6 className={cx("cardTitle", "classCount")}>Số lớp:</h6>
+          <input type="number" value={classCount} onChange={(e) => setClassCount(e.target.value)} step="1" min="1" name="classesCount" />
+        </div>
       </Modal.Body>
       <Modal.Footer className={cx("footer")}>
         <Button variant="secondary" onClick={handleClose}>
