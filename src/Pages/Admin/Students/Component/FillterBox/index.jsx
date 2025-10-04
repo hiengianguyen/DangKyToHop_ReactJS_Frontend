@@ -7,7 +7,7 @@ const cx = classNames.bind(style);
 function FillterBox({ handleSubmit = () => {} }) {
   return (
     <div className={cx("wrapper")}>
-      <SearchName handleSubmit={handleSubmit} col change />
+      <SearchName handleSubmit={handleSubmit} col />
       <FilterBox
         handleSubmit={handleSubmit}
         name="gender"
@@ -15,16 +15,16 @@ function FillterBox({ handleSubmit = () => {} }) {
         options={[
           {
             title: "Tất cả",
-            value: "Tất cả"
+            value: "Tất cả",
           },
           {
             title: "Nam",
-            value: "Nam"
+            value: "Nam",
           },
           {
             title: "Nữ",
-            value: "Nữ"
-          }
+            value: "Nữ",
+          },
         ]}
       />
       <FilterBox
@@ -34,28 +34,28 @@ function FillterBox({ handleSubmit = () => {} }) {
         options={[
           {
             title: "Tất cả",
-            value: "Tất cả"
+            value: "Tất cả",
           },
           {
             title: "Tổ hợp 1",
-            value: "Tổ hợp 1"
+            value: "Tổ hợp 1",
           },
           {
             title: "Tổ hợp 2",
-            value: "Tổ hợp 2"
+            value: "Tổ hợp 2",
           },
           {
             title: "Tổ hợp 3",
-            value: "Tổ hợp 3"
+            value: "Tổ hợp 3",
           },
           {
             title: "Tổ hợp 4",
-            value: "Tổ hợp 4"
+            value: "Tổ hợp 4",
           },
           {
             title: "Tổ hợp 5",
-            value: "Tổ hợp 5"
-          }
+            value: "Tổ hợp 5",
+          },
         ]}
       />
       <FilterBox
@@ -65,28 +65,28 @@ function FillterBox({ handleSubmit = () => {} }) {
         options={[
           {
             title: "Tất cả",
-            value: "Tất cả"
+            value: "Tất cả",
           },
           {
             title: "Tổ hợp 1",
-            value: "Tổ hợp 1"
+            value: "Tổ hợp 1",
           },
           {
             title: "Tổ hợp 2",
-            value: "Tổ hợp 2"
+            value: "Tổ hợp 2",
           },
           {
             title: "Tổ hợp 3",
-            value: "Tổ hợp 3"
+            value: "Tổ hợp 3",
           },
           {
             title: "Tổ hợp 4",
-            value: "Tổ hợp 4"
+            value: "Tổ hợp 4",
           },
           {
             title: "Tổ hợp 5",
-            value: "Tổ hợp 5"
-          }
+            value: "Tổ hợp 5",
+          },
         ]}
       />
     </div>

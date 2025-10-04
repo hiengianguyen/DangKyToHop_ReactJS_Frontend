@@ -10,7 +10,7 @@ function ManagerLayout({ children }) {
   return (
     <div className={cx("wrapper")}>
       <Sidebar />
-      <div className="d-flex flex-column flex-grow-1">
+      <div className="d-flex flex-column flex-grow-1 overflow-x-hidden">
         <BannerSchool role={"manager"} />
         <div className={cx("content")}>{children}</div>
         <Footer />

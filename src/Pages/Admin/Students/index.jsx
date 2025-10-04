@@ -12,7 +12,10 @@ import BarDivideClass from "./Component/BarDivideClass";
 import DroppableList from "../../../Components/DroppableList";
 import DragOverPlayStudent from "./Component/StudentItem/DragOverPlayStudent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faCircleChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import toast from "react-hot-toast";
 import FillterBox from "./Component/FillterBox";
 import { motion, AnimatePresence } from "framer-motion";
@@ -63,12 +66,16 @@ function Students() {
     }
 
     data.submittedList = submittedListMain;
+    data.statusCheck = false;
     axios
       .post("http://localhost:4001/combination/submited/sort", data)
       .then((axiosData) => {
         if (axiosData.data.isSuccess) {
           setData((prev) => {
-            return { ...prev, studentList: axiosData.data.submittedListAfterSort };
+            return {
+              ...prev,
+              studentList: axiosData.data.submittedListAfterSort,
+            };
           });
         }
       })
@@ -83,30 +90,41 @@ function Students() {
       .promise(
         axios.post("http://localhost:4001/ad/student/add/class", {
           studentId: active.id,
-          classId: over.id
+          classId: over.id,
         }),
         {
           loading: "Đang lưu...",
           success: <b>Đã lưu thành công</b>,
-          error: <b>Lưu thất bại</b>
+          error: <b>Lưu thất bại</b>,
         }
       )
       .then(() => {
         setData((prev) => {
-          return { ...prev, studentList: prev.studentList.filter((item) => item.id !== active.id) };
+          return {
+            ...prev,
+            studentList: prev.studentList.filter(
+              (item) => item.id !== active.id
+            ),
+          };
         });
       });
     setShowClassBar(false);
   };
 
   const handleDragStart = (event) => {
-    setScrollStudent(() => data.studentList.find((item) => item.id === event.active.id));
+    setScrollStudent(() =>
+      data.studentList.find((item) => item.id === event.active.id)
+    );
     setShowClassBar(true);
   };
 
   return (
     <form action="" ref={formRef}>
-      <DndContext key={String(showClassBar)} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+      <DndContext
+        key={String(showClassBar)}
+        onDragEnd={handleDragEnd}
+        onDragStart={handleDragStart}
+      >
         <div className={cx("wrapper")}>
           {isloading && <Loading />}
           <AnimatePresence>
@@ -125,7 +143,12 @@ function Students() {
               </motion.div>
             )}
           </AnimatePresence>
-          <Container className={"d-flex flex-column align-items-center " + cx("container-list")} ref={containerListRef}>
+          <Container
+            className={
+              "d-flex flex-column align-items-center " + cx("container-list")
+            }
+            ref={containerListRef}
+          >
             <FontAwesomeIcon
               icon={faCircleChevronLeft}
               className={cx("turn-sort-bar", { hidden: showClassBar })}
@@ -133,12 +156,24 @@ function Students() {
             />
             <div className={cx("title-box")}>
               <h2>📋 Danh sách học sinh đã được phê duyệt hồ sơ</h2>
-              <p>Danh sách này hiển thị toàn bộ học sinh đã hoàn tất và được phê duyệt hồ sơ tuyển sinh.</p>{" "}
-              <p>Đây là bước chuẩn bị để tiến hành phân chia vào các lớp học.</p>
+              <p>
+                Danh sách này hiển thị toàn bộ học sinh đã hoàn tất và được phê
+                duyệt hồ sơ tuyển sinh.
+              </p>{" "}
+              <p>
+                Đây là bước chuẩn bị để tiến hành phân chia vào các lớp học.
+              </p>
             </div>
             <div className={cx("content", "border")}>
-              <div className={cx("header-list") + " d-flex align-items-center pb-4 justify-content-between"}>
-                <span className="d-flex justify-content-start">Kéo thả để phân chia lớp</span>
+              <div
+                className={
+                  cx("header-list") +
+                  " d-flex align-items-center pb-4 justify-content-between"
+                }
+              >
+                <span className="d-flex justify-content-start">
+                  Kéo thả để phân chia lớp
+                </span>
                 <SortBox handleSubmit={handleSubmit} />
               </div>
               <DroppableList id="list" show={showClassBar}>
@@ -168,7 +203,9 @@ function Students() {
                     />
                     <div className="d-flex text-center flex-column">
                       <h3>Không có dữ liệu</h3>
-                      <i className={cx("text-secondary", "message-notitem")}>Hiệi tại chưa có học sinh trong hàng đợi</i>
+                      <i className={cx("text-secondary", "message-notitem")}>
+                        Hiệi tại chưa có học sinh trong hàng đợi
+                      </i>
                       <Link to="/ad/classmate" className="text-primary">
                         Quản lí lớp học
                         <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
@@ -176,9 +213,18 @@ function Students() {
                     </div>
                   </div>
                 )}
-                {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
+                {isLoadingList && (
+                  <Loading
+                    height="100%"
+                    position="absolute"
+                    color="rgb(244 244 244)"
+                    zIndex="9998"
+                  />
+                )}
               </DroppableList>
-              <DragOverlay>{scrollStudent && <DragOverPlayStudent data={scrollStudent} />}</DragOverlay>
+              <DragOverlay>
+                {scrollStudent && <DragOverPlayStudent data={scrollStudent} />}
+              </DragOverlay>
             </div>
           </Container>
           <AnimatePresence>
