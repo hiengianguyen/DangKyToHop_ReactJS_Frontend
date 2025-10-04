@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { publicRoutes, privateRoutes } from "./Router";
 import { useAuth } from "./Contexts/AuthContext";
 import HomeLayout from "./Components/layouts/MainLayout";
+import ManagerLayout from "./Components/layouts/ManagerLayout";
 
 function App() {
   const [mainRouters, setMainrouters] = useState([]);
@@ -14,7 +15,7 @@ function App() {
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      setMainrouters([...publicRoutes, ...privateRoutes].filter((item) => item.roles.includes(auth.user.role)));
+      setMainrouters([...publicRoutes, ...privateRoutes].filter((item) => item.roles.includes(auth?.user?.role)));
     } else {
       setMainrouters([...publicRoutes]);
     }
@@ -26,7 +27,7 @@ function App() {
         <Routes>
           {mainRouters &&
             mainRouters.map((routes, index) => {
-              let Layout = HomeLayout;
+              let Layout = auth?.user?.role === "manager" ? ManagerLayout : HomeLayout;
               if (routes.layout) {
                 Layout = routes.layout;
               } else if (routes.layout === null) {

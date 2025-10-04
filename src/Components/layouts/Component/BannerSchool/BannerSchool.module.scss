@@ -6,8 +6,14 @@
   display: flex;
   pointer-events: none;
   user-select: none;
-  width: var(--width-header);
   border-radius: 12px;
+  width: var(--width-header);
+
+  &.manager {
+    margin-top: 0;
+    height: 22pc;
+    width: 100%;
+  }
 }
 
 .banner-container,
@@ -39,6 +45,25 @@
   width: 97%;
   overflow: hidden;
   overflow-y: auto;
+}
+
+.manager {
+  .school-info-detail {
+    top: 30px;
+    left: 16px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .school-banner {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .school-banner-second {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
 .school-info-detail p {

@@ -6,11 +6,10 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import AddClassCard from "./AddClassCard";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModalAddClass from "./CardClass/ModalAddClass";
 import ModalDeleteClass from "./CardClass/ModalDeleteClass";
-import ParrtenBg from "../../../Components/ParrtenBg";
 
 const cx = classNames.bind(style);
 
@@ -34,34 +33,30 @@ function Classmate() {
   }, [navigator]);
 
   return (
-    <ParrtenBg>
-      <div className={cx("wrapper")}>
-        <div className={cx("title-box")}>
-          <h2>🏫 Quản lý các lớp học</h2>
-          <p>Trang này cho phép theo dõi và quản lý thông tin các lớp:</p>{" "}
-          <p> số lượng học sinh, danh sách thành viên, và các thao tác phân chia – điều chỉnh lớp học.</p>
-        </div>
-
-        <Container className={cx("pb-4", "list-class")}>
-          <Row className="gap-4 justify-content-center">
-            <Col xs={"auto"}>
-              <AddClassCard onClick={() => setShowModal(true)} />
-            </Col>
-            {dataClassesPage?.classes?.map((item, index) => (
-              <Col xs={"auto"} key={index}>
-                <Link to={"/ad/class/" + item.id}>
-                  <CardClass
-                    data={item}
-                    setUpdateModal={setUpdateModal}
-                    setShowDeleteModal={setShowDeleteModal}
-                    studentCount={dataClassesPage.countStudentInClass[item.id] || 0}
-                  />
-                </Link>
-              </Col>
-            ))}
-          </Row>
-        </Container>
+    <div className={cx("wrapper")}>
+      <div className={cx("title-box")}>
+        <h2>🏫 Quản lý các lớp học</h2>
+        <p>Trang này cho phép theo dõi và quản lý thông tin các lớp:</p>{" "}
+        <p> số lượng học sinh, danh sách thành viên, và các thao tác phân chia – điều chỉnh lớp học.</p>
       </div>
+
+      <Container className={cx("pb-4", "list-class")}>
+        <Row className="gap-4 justify-content-center">
+          <Col xs={"auto"}>
+            <AddClassCard onClick={() => setShowModal(true)} />
+          </Col>
+          {dataClassesPage?.classes?.map((item, index) => (
+            <Col xs={"auto"} key={index}>
+              <CardClass
+                data={item}
+                setUpdateModal={setUpdateModal}
+                setShowDeleteModal={setShowDeleteModal}
+                studentCount={dataClassesPage.countStudentInClass[item.id] || 0}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
       <ModalAddClass
         show={showModal || updateModal?.bol}
         setShow={setShowModal}
@@ -75,7 +70,7 @@ function Classmate() {
         setClasses={setDataClassesPage}
         classInfo={showDeleteModal.info}
       />
-    </ParrtenBg>
+    </div>
   );
 }
 

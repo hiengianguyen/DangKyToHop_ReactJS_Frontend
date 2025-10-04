@@ -4,14 +4,22 @@ import Tippy from "@tippyjs/react/headless";
 import ClassTippy from "./ClassTippy";
 import { useContext } from "react";
 import { overDraggContext } from "../../../../Components/DroppableClass";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(style);
 
 function CardClass({ data = {}, setUpdateModal = () => {}, setShowDeleteModal = () => {}, studentCount = 0 }) {
   const overContext = useContext(overDraggContext);
+
+  const navigator = useNavigate();
+
+  const handleRedirect = () => {
+    navigator("/ad/class/" + data.id);
+  };
+
   return (
     <Tippy delay={[200, 200]} visible={overContext} placement="top" render={(attrs) => <ClassTippy data={data} tabIndex="-1" {...attrs} />}>
-      <div className={cx("wrapper")}>
+      <div className={cx("wrapper")} onClick={handleRedirect}>
         <div className="d-flex flex-column align-items-center">
           <h2>{data.name}</h2>
           <span>Số học sinh: {studentCount}</span>
@@ -33,8 +41,22 @@ function CardClass({ data = {}, setUpdateModal = () => {}, setShowDeleteModal = 
             ></path>
           </svg>
           <ul className={cx("opt-noti", "shadow")}>
-            <li onClick={() => setUpdateModal({ bol: true, id: data.id })}>Chỉnh sửa</li>
-            <li onClick={() => setShowDeleteModal({ bol: true, info: { name: data.name, id: data.id } })}>Xoá</li>
+            <li
+              onClick={(e) => {
+                e.stopPropagation();
+                setUpdateModal({ bol: true, id: data.id });
+              }}
+            >
+              Chỉnh sửa
+            </li>
+            <li
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowDeleteModal({ bol: true, info: { name: data.name, id: data.id } });
+              }}
+            >
+              Xoá
+            </li>
           </ul>
         </div>
         <div className={cx("teacher")}>
