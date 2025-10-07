@@ -1,15 +1,12 @@
 import { useDroppable } from "@dnd-kit/core";
-import classNames from "classnames/bind";
-import style from "../../Pages/Admin/Students/Students.module.scss";
-const cx = classNames.bind(style);
-
-function DroppableList({ id, children, show = false }) {
+import Row from "react-bootstrap/esm/Row";
+function DroppableList({ id, children }) {
   const { setNodeRef, isOver } = useDroppable({ id });
 
   return (
-    <div ref={setNodeRef} className={cx("list", "position-relative")} style={{ background: isOver ? "#f0f8ff" : undefined }}>
+    <Row ref={setNodeRef} className="position-relative px-3 h-100" style={{ background: isOver ? "#f0f8ff" : undefined }}>
       {children}
-    </div>
+    </Row>
   );
 }
 

@@ -42,7 +42,12 @@ function BarDivideClass({ show = false }) {
             data.classes.map((classItem, index) => (
               <Col xs={"auto"} key={index} style={{ width: "max-content" }}>
                 <DroppableClass id={classItem.id}>
-                  <CardClass data={classItem} isDropped={show} studentCount={data.countStudentInClass[classItem.id] || 0} />
+                  <CardClass
+                    data={classItem}
+                    inMainPage={false}
+                    isDropped={show}
+                    studentCount={data.countStudentInClass[classItem.id] || 0}
+                  />
                 </DroppableClass>
               </Col>
             ))
