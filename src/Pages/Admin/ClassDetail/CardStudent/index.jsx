@@ -13,7 +13,7 @@ function CardStudent({ data = {} }) {
           {data.gender} | {data.dayOfBirth} | NV1: {data.combination1} | NV2: {data.combination2}
         </span>
       </div>
-      <div className={cx("point")}>
+      <div className={cx("point", "detail")}>
         <span className={cx("first")} title="Điểm thi tuyển vào lớp 10 (Tổng điểm 3 môn)">
           {Number(data.mathPoint) + Number(data.literaturePoint) + Number(data.englishPoint)}
         </span>

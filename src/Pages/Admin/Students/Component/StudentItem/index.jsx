@@ -9,7 +9,7 @@ const cx = classNames.bind(style);
 function StudentItem({ data = {}, detail = false, ...props }) {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({ id: data.id });
   return (
-    <div className={cx("wrapper", "shadow", { dragging: isDragging })} ref={setNodeRef} {...attributes} {...props} title={data.fullName}>
+    <div className={cx("wrapper", "border", { dragging: isDragging })} ref={setNodeRef} {...attributes} {...props} title={data.fullName}>
       <FontAwesomeIcon icon={faArrowsUpDownLeftRight} className={cx("icon-drag")} {...listeners} title="Kéo thẻ học sinh" />
       <img className="shadow" src={data.avatar} alt={data.fullName} />
       <div className={cx("info")}>

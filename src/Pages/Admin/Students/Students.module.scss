@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
   overflow: hidden;
   background-color: var(--background-main);
 }
@@ -18,30 +19,14 @@
 }
 
 .content {
+  min-height: 30pc;
   border-radius: 10px;
-  width: 70%;
   margin-bottom: 40px;
-
-  .header-list {
-    position: relative;
-    z-index: 2;
-    padding: 20px;
-    padding-bottom: 0;
-    box-shadow: 0 5px 15px -10px #333;
-  }
-
-  .list {
-    max-height: 850px;
-    padding: 20px;
-    overflow-y: scroll;
-  }
-
-  .list.scroll {
-    overflow-y: unset;
-  }
 }
 
 .sort-box {
+  display: flex;
+  justify-content: center;
   margin: 2pc 0;
   margin-left: 30px;
   padding-right: 30px;
@@ -95,4 +80,9 @@
 
 .message-notitem {
   font-size: 15px;
+}
+
+.img-notfound {
+  width: 5pc;
+  height: 5pc;
 }
