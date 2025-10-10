@@ -20,6 +20,10 @@
 .chart {
   width: 50% !important;
   height: 20pc !important;
+
+  &.desktop {
+    width: 65% !important;
+  }
 }
 
 .content {
