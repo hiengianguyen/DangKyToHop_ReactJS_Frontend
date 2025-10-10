@@ -4,15 +4,16 @@ import FilterBox from "../../../../Combination/CombinationList/Components/Filter
 import SearchName from "../../../../Combination/CombinationList/Components/SearchName";
 const cx = classNames.bind(style);
 
-function FillterBox({ handleSubmit = () => {} }) {
+function FillterBox({ handleSubmit = () => {}, defaultValue = {} }) {
   return (
     <div className={cx("wrapper")}>
-      <SearchName handleSubmit={handleSubmit} />
+      <SearchName handleSubmit={handleSubmit} defaultValue={defaultValue.fullName} />
       <div className="d-flex align-items-center gap-4">
         <FilterBox
           handleSubmit={handleSubmit}
           name="gender"
           title="Giới tính"
+          defaultValue={defaultValue.gender}
           options={[
             {
               title: "Tất cả",
@@ -32,6 +33,7 @@ function FillterBox({ handleSubmit = () => {} }) {
           handleSubmit={handleSubmit}
           name="combination1"
           title="Nguyện vọng 1"
+          defaultValue={defaultValue.combination1}
           options={[
             {
               title: "Tất cả",
@@ -63,6 +65,7 @@ function FillterBox({ handleSubmit = () => {} }) {
           handleSubmit={handleSubmit}
           name="combination2"
           title="Nguyện vọng 2"
+          defaultValue={defaultValue.combination2}
           options={[
             {
               title: "Tất cả",

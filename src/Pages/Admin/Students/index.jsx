@@ -29,6 +29,7 @@ function Students() {
   const [sortList, setSortList] = useState(null);
   const [showClassBar, setShowClassBar] = useState(false);
   const [scrollStudent, setScrollStudent] = useState({});
+  const [fillter, setFillter] = useState({});
 
   const navigator = useNavigate();
 
@@ -66,11 +67,13 @@ function Students() {
     axios
       .post("http://localhost:4001/combination/submited/sort", data)
       .then((axiosData) => {
-        if (axiosData.data.isSuccess) {
+        const data = axiosData.data;
+        if (data.isSuccess) {
+          setFillter(data.filter);
           setData((prev) => {
             return {
               ...prev,
-              studentList: axiosData.data.submittedListAfterSort
+              studentList: data.submittedListAfterSort
             };
           });
         }
@@ -122,7 +125,7 @@ function Students() {
           {!showClassBar && (
             <div className={cx("sort-box")}>
               <h4>Phần lọc:</h4>
-              <FillterBox handleSubmit={() => handleSubmit(sortList)} />
+              <FillterBox defaultValue={fillter} handleSubmit={() => handleSubmit(sortList)} />
             </div>
           )}
 

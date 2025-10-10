@@ -8,8 +8,8 @@ import { useState } from "react";
 
 const cx = classNames.bind(style);
 
-function FilterBox({ options = [], title = "", name = "", handleSubmit = () => {} }) {
-  const [valueCheck, setValueCheck] = useState("Tất cả");
+function FilterBox({ options = [], title = "", name = "", handleSubmit = () => {}, defaultValue = "" }) {
+  const [valueCheck, setValueCheck] = useState(defaultValue || "Tất cả");
   return (
     <Card text="dark" className={cx("mb2", "h-100")}>
       <Card.Header>{title}</Card.Header>
