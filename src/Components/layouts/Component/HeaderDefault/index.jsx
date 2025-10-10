@@ -13,6 +13,8 @@ function HeaderDefault() {
   const navigator = useNavigate();
   const [menuRoutes, setMenuRoutes] = useState([]);
 
+  const url = window.location.pathname;
+
   useEffect(() => {
     setMenuRoutes(
       mainRouters.filter((route) => {
@@ -63,7 +65,7 @@ function HeaderDefault() {
         <div className={cx("links")}>
           {menuRoutes &&
             menuRoutes.map((item, index) => (
-              <Link to={item.path} key={index}>
+              <Link to={item.path} className={cx({ active: url === item.path })} key={index}>
                 <span className={cx("item")}>{item.title}</span>
               </Link>
             ))}

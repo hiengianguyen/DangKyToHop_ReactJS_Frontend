@@ -61,7 +61,8 @@
     border-bottom: 2.5px solid transparent;
     padding: 0.6pc 10px;
 
-    &:hover {
+    &:hover,
+    &.active {
       color: #29a9ef;
       border-bottom: 2.5px solid #29a9ef;
     }
