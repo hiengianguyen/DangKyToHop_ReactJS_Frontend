@@ -147,6 +147,9 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   <InputHadValue label="Dân tộc" value={valueStudent.nation} />
                 </Col>
               </Col>
+              <Col>
+                <InputHadValue label="Số điện thoại" fontStyle="none" value="0362356747" />
+              </Col>
             </Row>
             <Row>
               <Col>
@@ -154,9 +157,6 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   label="Địa chỉ thường chú"
                   value={`KP ${valueStudent.village}, Phường ${valueStudent.commune}, ${valueStudent.city}`}
                 />
-              </Col>
-              <Col>
-                <InputHadValue label="Số điện thoại" fontStyle="none" value="0362356747" />
               </Col>
             </Row>
 

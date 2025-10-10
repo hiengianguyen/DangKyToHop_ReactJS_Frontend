@@ -107,25 +107,30 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
               </Row>
 
               <Row>
-                <Col xs={4}>
+                <Col>
                   <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
                 </Col>
-                <Col xs={4}>
+              </Row>
+              <Row>
+                <Col>
                   <InputHadValue label="Nghề nghiệp" value={valueStudent.jobDad} />
                 </Col>
-                <Col xs={4}>
+                <Col xs={"auto"}>
                   <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
                 </Col>
               </Row>
 
               <Row>
-                <Col xs={4}>
+                <Col>
                   <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
                 </Col>
-                <Col xs={4}>
+              </Row>
+
+              <Row>
+                <Col>
                   <InputHadValue label="Nghề nghiệp" value={valueStudent.jobMom} />
                 </Col>
-                <Col xs={4}>
+                <Col xs={"auto"}>
                   <InputHadValue label="SĐT" value={valueStudent.phoneMom} />
                 </Col>
               </Row>

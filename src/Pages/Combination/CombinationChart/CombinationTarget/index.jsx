@@ -1,6 +1,5 @@
-import { Bar } from "react-chartjs-2";
-import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
+import { Bar } from "react-chartjs-2";
 import classNames from "classnames/bind";
 import style from "./CombinationTarget.module.scss";
 import { useMediaQuery } from "react-responsive";
@@ -17,40 +16,40 @@ const Desktop = ({ children }) => {
 const cx = classNames.bind(style);
 
 function CombinationTarget({ show = true, labels = [], chosen = [], empty = [] }) {
-  ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
+  ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
   const options = {
-    responsive: true,
     plugins: {
-      legend: {
-        position: "top"
-      },
       title: {
         display: true,
-        text: "Số học sinh chọn tổ hợp cho NV 1 (so với tổng chỗ)"
-      },
-      datalabels: {
-        anchor: "center",
-        color: "black",
-        formatter: (value, context) => {
-          // chỉ hiển thị số cho dataset "Đã chọn"
-          if (context.dataset.label === "Đã chọn") {
-            return value;
-          }
-          return null;
-        }
+        text: "Chart.js Bar Chart - Stacked"
       }
     },
+    responsive: true,
     scales: {
       x: {
-        stacked: true // xếp chồng theo trục X
+        stacked: true
       },
       y: {
-        stacked: true, // xếp chồng theo trục Y
-        beginAtZero: true,
-        suggestedMax: 80 // cố định trục Y tối đa = capacity
+        stacked: true
       }
     }
+  };
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Đã chọn",
+        data: chosen,
+        backgroundColor: "rgba(54, 162, 235, 0.8)"
+      },
+      {
+        label: "Còn trống",
+        data: empty,
+        backgroundColor: "rgba(200, 200, 200, 0.6)"
+      }
+    ]
   };
 
   return (
@@ -61,46 +60,10 @@ function CombinationTarget({ show = true, labels = [], chosen = [], empty = [] }
       <div className={cx("wrapper")}>
         <div className={cx("chart-box-1")}>
           <Pc>
-            <Bar
-              options={options}
-              className={cx("chart")}
-              data={{
-                labels,
-                datasets: [
-                  {
-                    label: "Đã chọn",
-                    data: chosen,
-                    backgroundColor: "rgba(54, 162, 235, 0.8)"
-                  },
-                  {
-                    label: "Còn trống",
-                    data: empty,
-                    backgroundColor: "rgba(200, 200, 200, 0.6)"
-                  }
-                ]
-              }}
-            />
+            <Bar options={options} className={cx("chart")} data={data} />
           </Pc>
           <Desktop>
-            <Bar
-              options={options}
-              className={cx("chart", "desktop")}
-              data={{
-                labels,
-                datasets: [
-                  {
-                    label: "Đã chọn",
-                    data: chosen,
-                    backgroundColor: "rgba(54, 162, 235, 0.8)"
-                  },
-                  {
-                    label: "Còn trống",
-                    data: empty,
-                    backgroundColor: "rgba(200, 200, 200, 0.6)"
-                  }
-                ]
-              }}
-            />
+            <Bar options={options} className={cx("chart", "desktop")} data={data} />
           </Desktop>
           <div className={cx("content")}>
             <p>

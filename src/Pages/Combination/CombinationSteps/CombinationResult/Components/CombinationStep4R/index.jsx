@@ -49,39 +49,39 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
               <InputHadValue label="Nơi sinh" value={valueStudent.placeOfBirth} />
             </Col>
           </Row>
+          <Col className="d-flex align-items-end mt-4">
+            <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
+          </Col>
           <Row>
-            <Col xs={"auto"} className="d-flex align-items-end">
-              <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
-            </Col>
-            <Col xs={5}>
+            <Col>
               <InputHadValue label="Thôn/KP" value={valueStudent.village} />
             </Col>
-            <Col xs={5}>
+            <Col>
               <InputHadValue label="Xã/Phường" value={valueStudent.commune} />
             </Col>
             <Col>
               <InputHadValue label="Tỉnh/Thành Phố" value={valueStudent.city} />
             </Col>
           </Row>
+          <Col>
+            <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
+          </Col>
           <Row>
-            <Col xs={4}>
-              <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
-            </Col>
-            <Col xs={4}>
+            <Col>
               <InputHadValue label="Nghề nghiệp" value={valueStudent.jobDad} />
             </Col>
-            <Col xs={4}>
+            <Col>
               <InputHadValue label="SĐT" value={valueStudent.phoneDad} />
             </Col>
           </Row>
+          <Col>
+            <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
+          </Col>
           <Row>
-            <Col xs={4}>
-              <InputHadValue label="Họ và tên mẹ" value={valueStudent.nameMom} />
-            </Col>
-            <Col xs={4}>
+            <Col>
               <InputHadValue label="Nghề nghiệp" value={valueStudent.jobMom} />
             </Col>
-            <Col xs={4}>
+            <Col>
               <InputHadValue label="SĐT" value={valueStudent.phoneMom} />
             </Col>
           </Row>
@@ -130,10 +130,10 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
               </Col>
             </Row>
           )}
+          <Col>
+            <span className={cx("health-status", "mt-2", "student-type")}>- Tình trạng sức khỏe:</span>
+          </Col>
           <Row>
-            <Col>
-              <span className={cx("health-status", "mt-2")}>- Tình trạng sức khỏe:</span>
-            </Col>
             <Col>
               <InputHadValue label="+ Chiều cao (cm)" value={valueStudent.height} />
             </Col>

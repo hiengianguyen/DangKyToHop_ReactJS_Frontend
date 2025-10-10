@@ -1,6 +1,3 @@
-import Col from "react-bootstrap/Col";
-import Nav from "react-bootstrap/Nav";
-import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import CombinationStep1R from "./Components/CombinationStep1R";
 import Button from "react-bootstrap/esm/Button";
@@ -12,6 +9,8 @@ import axios from "axios";
 import { useAuth } from "../../../../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Tabs from "react-bootstrap/esm/Tabs";
+import Container from "react-bootstrap/esm/Container";
 
 function CombinationResult({ valueStudent = {}, setCurrPage = () => {} }) {
   const navigator = useNavigate();
@@ -33,75 +32,30 @@ function CombinationResult({ valueStudent = {}, setCurrPage = () => {} }) {
 
   return (
     <>
-      <div className="d-flex justify-content-end">
+      <div className="d-flex justify-content-between mb-4">
+        <Button primary="true" onClick={() => setCurrPage(4)} className="fs-3 px-4">
+          Trở lại
+        </Button>
         <Button primary="true" onClick={handleSubmit} className="fs-3 px-4">
           Gữi đi
         </Button>
       </div>
-      <Tab.Container id="left-tabs-example" defaultActiveKey="main-info">
-        <Row>
-          <Col sm={2} style={{ borderRight: "2px solid #ccc" }}>
-            <Nav variant="pills" className="flex-column">
-              <Nav.Item>
-                <Nav.Link className="py-3" eventKey="main-info">
-                  1. Thông tin chung
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link className="py-3" eventKey="main-info-2">
-                  2. Đơn xin nhập học
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link className="py-3" eventKey="main-info-3">
-                  3. Chọn tổ hợp
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link className="py-3" eventKey="main-info-4">
-                  4. Lý lịch học sinh
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </Col>
-          <Col sm={9}>
-            <Tab.Content>
-              <Tab.Pane eventKey="main-info">
-                <CombinationStep1R valueStudent={valueStudent} />
-                <div className="d-flex justify-content-end">
-                  <Button primary="true" onClick={() => setCurrPage(1)} className="fs-3 px-4 mt-3">
-                    Chỉnh sửa
-                  </Button>
-                </div>
-              </Tab.Pane>
-              <Tab.Pane eventKey="main-info-2">
-                <CombinationStep2R valueStudent={valueStudent} />
-                <div className="d-flex justify-content-end">
-                  <Button primary="true" onClick={() => setCurrPage(2)} className="fs-3 px-4 mt-3">
-                    Chỉnh sửa
-                  </Button>
-                </div>
-              </Tab.Pane>
-              <Tab.Pane eventKey="main-info-3">
-                <CombinationStep3R valueStudent={valueStudent} />
-                <div className="d-flex justify-content-end">
-                  <Button primary="true" onClick={() => setCurrPage(3)} className="fs-3 px-4 mt-3">
-                    Chỉnh sửa
-                  </Button>
-                </div>
-              </Tab.Pane>
-              <Tab.Pane eventKey="main-info-4">
-                <CombinationStep4R valueStudent={valueStudent} />
-                <div className="d-flex justify-content-end">
-                  <Button primary="true" onClick={() => setCurrPage(4)} className="fs-3 px-4 mt-3">
-                    Chỉnh sửa
-                  </Button>
-                </div>
-              </Tab.Pane>
-            </Tab.Content>
-          </Col>
-        </Row>
-      </Tab.Container>
+      <Container>
+        <Tabs defaultActiveKey="home" className="mb-3">
+          <Tab eventKey="home" title="1. Thông tin chung">
+            <CombinationStep1R valueStudent={valueStudent} />
+          </Tab>
+          <Tab eventKey="profile" title="2. Đơn xin nhập học">
+            <CombinationStep2R valueStudent={valueStudent} />
+          </Tab>
+          <Tab eventKey="longer-tab" title="3. Chọn tổ hợp">
+            <CombinationStep3R valueStudent={valueStudent} />
+          </Tab>
+          <Tab eventKey="contact" title="4. Lý lịch học sinh">
+            <CombinationStep4R valueStudent={valueStudent} />
+          </Tab>
+        </Tabs>
+      </Container>
     </>
   );
 }
