@@ -6,7 +6,6 @@ import InputHadValue from "../../Component/InputHadValue";
 import Select from "../../Component/Select";
 import TablePoints from "../../Component/TablePoints";
 import CombinationTable from "../../Component/CombinationTable";
-import UniversityTable from "../../Component/UniversityTable";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
 import { useEffect, useRef, useState } from "react";
@@ -82,47 +81,6 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
         <Button primary="true" onClick={handleSubmit} className={cx("button", "fs-3", "px-4")}>
           Tiếp tục
         </Button>
-      </div>
-
-      <div className={cx("card-body", "container shadow")} style={{ fontSize: "17px" }}>
-        <div className={cx("content", "first")}>
-          <div className={cx("header", "first")}>
-            <span>MỘT SỐ LƯU Ý KHI ĐĂNG KÝ CHỌN TỔ HỢP MÔN HỌC</span>
-          </div>
-
-          <ol className={cx("list-info")}>
-            <li>
-              Căn cứ lựa chọn môn học: phù hợp với năng lực học tập, sở thích, định hướng thi tốt nghiệp, xét tuyển đại học và nghề nghiệp
-              trong tương lai.
-            </li>
-            <li> Môn đã chọn sẽ học cả 3 năm học, xác định là không thay đổi.</li>
-            <li>
-              Đăng ký tối đa 02 nguyện vọng. Nhà trường ưu tiên xếp lớp cho nguyện vọng 1 trước; trường hợp cần thiết sẽ xếp theo nguyện
-              vọng 2 để đảm bảo số lớp và phù hợp với tình hình đội ngũ, cơ sở vật chất, trang thiết bị dạy học hiện có.
-            </li>
-            <li>
-              Nhà trường ưu tiên dạy học môn thể thao được phụ huynh và học sinh lựa chọn, tuy nhiên trong trường hợp cần thiết sẽ tổ chức
-              dạy học môn khác trong số các môn còn lại để đảm bảo biên chế lớp, phù hợp với tình hình đội ngũ, cơ sở vật chất, trang thiết
-              bị dạy học hiện có. Học sinh có năng khiếu ở môn thể thao khác (như võ Karate, võ cổ truyền,… có thể tham gia câu lạc bộ năng
-              khiếu).
-            </li>
-            <li> Nhà trường sẽ tổ chức họp phụ huynh và học sinh để tư vấn, hướng dẫn; do vậy phụ huynh đăng ký sau khi được tư vấn.</li>
-          </ol>
-
-          <div className={cx("title-doc")}>
-            <span>ĐỊNH HƯỚNG THI ĐẠI HỌC VÀ CHỌN NGHỀ</span>
-            <span>(Kết hợp môn học bắt buộc và môn học lựa chọn)</span>
-          </div>
-
-          <UniversityTable />
-
-          <div className="my-4 text-center">
-            <i className="fs-3">
-              <b>Ghi chú:</b> còn rất nhiều tổ hợp xét tuyển ĐH và ngành nghề khác gắn với môn học bắt buộc và môn học lựa chọn, bảng trên
-              chỉ có tính chất tham khảo, định hướng.
-            </i>
-          </div>
-        </div>
       </div>
 
       <Form noValidate validated={validated} ref={formRef} onSubmit={handleSubmit}>

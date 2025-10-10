@@ -1,19 +1,8 @@
-import { Bar } from "react-chartjs-2";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import { Line } from "react-chartjs-2";
 import classNames from "classnames/bind";
 import style from "./CombinationChosen.module.scss";
-import { useMediaQuery } from "react-responsive";
 const cx = classNames.bind(style);
-
-const Pc = ({ children }) => {
-  const isPc = useMediaQuery({ minWidth: 1400 });
-  return isPc ? children : null;
-};
-const Desktop = ({ children }) => {
-  const isDesktop = useMediaQuery({ minWidth: 992, maxWidth: 1400 });
-  return isDesktop ? children : null;
-};
 
 function CombinationChosen({
   show = false,
@@ -23,7 +12,7 @@ function CombinationChosen({
   mostChooseOfCombination1 = {},
   mostChooseOfCombination2 = {}
 }) {
-  ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
+  ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
   const options = {
     responsive: true,
@@ -33,22 +22,34 @@ function CombinationChosen({
       },
       title: {
         display: true,
-        text: "Số học sinh chọn tổ hợp cho nguyện vọng 1"
-      },
-      datalabels: {
-        anchor: "end", // neo nhãn ở đầu cột
-        align: "top", // căn trên
-        color: "black", // màu chữ
-        font: {
-          weight: "bold",
-          size: 15
-        }
+        text: "Số lượng học sinh chọn các tổ hợp"
       }
     }
   };
-
-  const options2 = options;
-  options2.plugins.title.text = "Số học sinh chọn tổ hợp cho nguyện vọng 2";
+  const data = {
+    combination1: {
+      labels,
+      datasets: [
+        {
+          label: "Nguyện vọng 1",
+          data: dataCombination1,
+          borderColor: "rgb(44, 175, 254)",
+          backgroundColor: "rgba(44, 175, 254, 0.5)"
+        }
+      ]
+    },
+    combination2: {
+      labels,
+      datasets: [
+        {
+          label: "Nguyện vọng 2",
+          data: dataCombination2,
+          borderColor: "rgb(0, 226, 114)",
+          backgroundColor: "rgba(0, 226, 114, 0.5)"
+        }
+      ]
+    }
+  };
 
   return (
     <div style={{ display: show ? "block" : "none" }}>
@@ -57,102 +58,26 @@ function CombinationChosen({
       </div>
       <div className={cx("wrapper")}>
         <div className={cx("chart")}>
-          <Pc>
-            <div className={cx("quantity-box")}>
-              <div className={cx("most-combination")}>
-                <h4> Nguyện vọng 1</h4>
-                <p className={cx("offical")} style={{ color: "#2caffe" }}>
-                  {mostChooseOfCombination1.count}
-                </p>
-                <p className={cx("des")}>Học sinh chọn {mostChooseOfCombination1.combination}</p>
-              </div>
-              <div className={cx("most-combination")}>
-                <h4> Nguyện vọng 2</h4>
-                <p className={cx("offical")} style={{ color: "#00e272" }}>
-                  {mostChooseOfCombination2.count}
-                </p>
-                <p className={cx("des")}>Học sinh chọn {mostChooseOfCombination2.combination}</p>
-              </div>
+          <div className={cx("quantity-box", "desktop")}>
+            <div className={cx("most-combination")}>
+              <h4> Nguyện vọng 1</h4>
+              <p className={cx("offical")} style={{ color: "#2caffe" }}>
+                {mostChooseOfCombination1.count}
+              </p>
+              <p className={cx("des")}>Học sinh chọn {mostChooseOfCombination1.combination}</p>
             </div>
-            <div className={cx("chart-box")}>
-              <Bar
-                options={options}
-                className={cx("chart-detail")}
-                data={{
-                  labels: labels,
-                  datasets: [
-                    {
-                      label: "Tổ hợp đã chọn",
-                      data: dataCombination1,
-                      backgroundColor: ["#2caffe"]
-                    }
-                  ]
-                }}
-              />
-              <Bar
-                options={options2}
-                className={cx("chart-detail")}
-                data={{
-                  labels: labels,
-                  datasets: [
-                    {
-                      label: "Tổ hợp đã chọn",
-                      data: dataCombination2,
-                      backgroundColor: ["#00e272"]
-                    }
-                  ]
-                }}
-              />
+            <Line options={options} data={data.combination1} className={cx("chart-detail")} />
+          </div>
+          <div className={cx("quantity-box", "desktop")}>
+            <div className={cx("most-combination")}>
+              <h4> Nguyện vọng 2</h4>
+              <p className={cx("offical")} style={{ color: "#00e272" }}>
+                {mostChooseOfCombination2.count}
+              </p>
+              <p className={cx("des")}>Học sinh chọn {mostChooseOfCombination2.combination}</p>
             </div>
-          </Pc>
-          <Desktop>
-            <div className={cx("quantity-box", "desktop")}>
-              <div className={cx("most-combination")}>
-                <h4> Nguyện vọng 1</h4>
-                <p className={cx("offical")} style={{ color: "#2caffe" }}>
-                  {mostChooseOfCombination1.count}
-                </p>
-                <p className={cx("des")}>Học sinh chọn {mostChooseOfCombination1.combination}</p>
-              </div>
-              <Bar
-                options={options}
-                className={cx("chart-detail")}
-                data={{
-                  labels: labels,
-                  datasets: [
-                    {
-                      label: "Tổ hợp đã chọn",
-                      data: dataCombination1,
-                      backgroundColor: ["#2caffe"]
-                    }
-                  ]
-                }}
-              />
-            </div>
-            <div className={cx("chart-box", "desktop")}>
-              <Bar
-                options={options2}
-                className={cx("chart-detail")}
-                data={{
-                  labels: labels,
-                  datasets: [
-                    {
-                      label: "Tổ hợp đã chọn",
-                      data: dataCombination2,
-                      backgroundColor: ["#00e272"]
-                    }
-                  ]
-                }}
-              />
-              <div className={cx("most-combination")}>
-                <h4> Nguyện vọng 2</h4>
-                <p className={cx("offical")} style={{ color: "#00e272" }}>
-                  {mostChooseOfCombination2.count}
-                </p>
-                <p className={cx("des")}>Học sinh chọn {mostChooseOfCombination2.combination}</p>
-              </div>
-            </div>
-          </Desktop>
+            <Line options={options} data={data.combination2} className={cx("chart-detail")} />
+          </div>
         </div>
       </div>
     </div>
