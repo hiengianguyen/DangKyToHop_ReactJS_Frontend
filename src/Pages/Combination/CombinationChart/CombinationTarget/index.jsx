@@ -3,6 +3,16 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import classNames from "classnames/bind";
 import style from "./CombinationTarget.module.scss";
+import { useMediaQuery } from "react-responsive";
+
+const Pc = ({ children }) => {
+  const isPc = useMediaQuery({ minWidth: 1400 });
+  return isPc ? children : null;
+};
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992, maxWidth: 1400 });
+  return isDesktop ? children : null;
+};
 
 const cx = classNames.bind(style);
 
@@ -50,25 +60,48 @@ function CombinationTarget({ show = true, labels = [], chosen = [], empty = [] }
       </div>
       <div className={cx("wrapper")}>
         <div className={cx("chart-box-1")}>
-          <Bar
-            options={options}
-            className={cx("chart")}
-            data={{
-              labels,
-              datasets: [
-                {
-                  label: "Đã chọn",
-                  data: chosen,
-                  backgroundColor: "rgba(54, 162, 235, 0.8)"
-                },
-                {
-                  label: "Còn trống",
-                  data: empty,
-                  backgroundColor: "rgba(200, 200, 200, 0.6)"
-                }
-              ]
-            }}
-          />
+          <Pc>
+            <Bar
+              options={options}
+              className={cx("chart")}
+              data={{
+                labels,
+                datasets: [
+                  {
+                    label: "Đã chọn",
+                    data: chosen,
+                    backgroundColor: "rgba(54, 162, 235, 0.8)"
+                  },
+                  {
+                    label: "Còn trống",
+                    data: empty,
+                    backgroundColor: "rgba(200, 200, 200, 0.6)"
+                  }
+                ]
+              }}
+            />
+          </Pc>
+          <Desktop>
+            <Bar
+              options={options}
+              className={cx("chart", "desktop")}
+              data={{
+                labels,
+                datasets: [
+                  {
+                    label: "Đã chọn",
+                    data: chosen,
+                    backgroundColor: "rgba(54, 162, 235, 0.8)"
+                  },
+                  {
+                    label: "Còn trống",
+                    data: empty,
+                    backgroundColor: "rgba(200, 200, 200, 0.6)"
+                  }
+                ]
+              }}
+            />
+          </Desktop>
           <div className={cx("content")}>
             <p>
               Biểu đồ thống kê số học sinh đăng ký vào từng tổ hợp so với số lượng chỉ tiêu tối đa được phân bổ cho mỗi tổ hợp. Thông tin
