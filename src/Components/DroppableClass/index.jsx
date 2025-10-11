@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import style from "../../Pages/Admin/Classmate/CardClass/CardClass.module.scss";
+import style from "../../Pages/ClassDivide/Classmate/CardClass/CardClass.module.scss";
 
 import { useDroppable } from "@dnd-kit/core";
 import { createContext } from "react";

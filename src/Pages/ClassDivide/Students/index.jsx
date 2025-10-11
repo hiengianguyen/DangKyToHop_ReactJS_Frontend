@@ -152,8 +152,8 @@ function Students() {
                 data.studentList.map((item, index) => {
                   if (!item.classId) {
                     return (
-                      <Col xs={"auto"}>
-                        <StudentItem data={item} key={index} detail={false} />
+                      <Col xs={"auto"} key={index}>
+                        <StudentItem data={item} detail={false} />
                       </Col>
                     );
                   } else {
