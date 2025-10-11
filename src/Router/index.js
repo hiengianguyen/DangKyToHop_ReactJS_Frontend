@@ -27,9 +27,9 @@ import TablePage from "../Pages/Table";
 import GeneratorNoti from "../Pages/Noti/GeneratorNoti";
 import NotiEdit from "../Pages/Noti/NotiEdit";
 import NotiInfo from "../Pages/Noti/NotiInfo";
-import Students from "../Pages/Admin/Students";
-import Classmate from "../Pages/Admin/Classmate";
-import ClassDetail from "../Pages/Admin/ClassDetail";
+import Students from "../Pages/ClassDivide/Students";
+import Classmate from "../Pages/ClassDivide/Classmate";
+import ClassDetail from "../Pages/ClassDivide/ClassDetail";
 import SchoolLayout from "../Components/layouts/SchoolLayout";
 import HomeLayout from "../Components/layouts/HomeLayout";
 
