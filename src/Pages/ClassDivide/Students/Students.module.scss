@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: var(--background-main);
 }
 
 .title-box {
@@ -21,7 +20,7 @@
 .content {
   min-height: 30pc;
   border-radius: 10px;
-  margin-bottom: 40px;
+  margin: 40px;
 }
 
 .sort-box {
