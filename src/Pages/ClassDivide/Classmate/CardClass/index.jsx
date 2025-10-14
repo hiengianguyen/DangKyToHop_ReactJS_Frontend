@@ -24,7 +24,7 @@ function CardClass({ data = {}, setUpdateModal = () => {}, setShowDeleteModal = 
       placement="top"
       render={(attrs) => <ClassTippy data={data} tabIndex="-1" {...attrs} />}
     >
-      <div className={cx("wrapper")} onClick={handleRedirect}>
+      <div className={cx("wrapper")} onClick={inMainPage ? handleRedirect : () => {}}>
         <div className="d-flex flex-column align-items-center">
           <h2>{data.name}</h2>
           <span>Số học sinh: {studentCount}</span>

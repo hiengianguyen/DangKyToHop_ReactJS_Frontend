@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #205d96;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+
+  &:hover {
+    background-color: #2469a8;
+    cursor: pointer;
+  }
+}
