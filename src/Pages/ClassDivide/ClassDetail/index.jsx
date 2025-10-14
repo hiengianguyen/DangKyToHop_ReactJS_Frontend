@@ -7,6 +7,7 @@ import FillterBoxDetail from "./FillterBoxDetail";
 import CardStudent from "./CardStudent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import ParrtenBg from "../../../Components/ParrtenBg";
 
 const cx = classNames.bind(style);
 
@@ -49,33 +50,35 @@ function ClassDetail() {
   };
 
   return (
-    <div className={cx("wrapper")}>
-      <Link to={-1} className={cx("btn-redirect")}>
-        <FontAwesomeIcon icon={faArrowLeft} className="" />
-      </Link>
-      <div className="container w-50">
-        <div className={cx("title")}>
-          <h1>Lớp {classDetail.name}</h1>
-          <h2>
-            Giáo viên chủ nhiệm: <i>{classDetail.teacher}</i>
-          </h2>
-        </div>
+    <ParrtenBg>
+      <div className={cx("wrapper")}>
+        <Link to={-1} className={cx("btn-redirect")}>
+          <FontAwesomeIcon icon={faArrowLeft} className="" />
+        </Link>
+        <div className="container w-50">
+          <div className={cx("title")}>
+            <h1>Lớp {classDetail.name}</h1>
+            <h2>
+              Giáo viên chủ nhiệm: <i>{classDetail.teacher}</i>
+            </h2>
+          </div>
 
-        <form ref={formRef}>
-          <FillterBoxDetail handleSubmit={() => handleSubmit(sortList)} handleSubmitHaveSort={handleSubmit} />
-        </form>
+          <form ref={formRef}>
+            <FillterBoxDetail handleSubmit={() => handleSubmit(sortList)} handleSubmitHaveSort={handleSubmit} />
+          </form>
 
-        <div className={cx("list-student")}>
-          {students &&
-            students.map((item, index) => (
-              <div className="d-flex align-items-center" key={index}>
-                <span className={cx("count")}>{index + 1}</span>
-                <CardStudent data={item} setStudents={setStudents}/>
-              </div>
-            ))}
+          <div className={cx("list-student")}>
+            {students &&
+              students.map((item, index) => (
+                <div className="d-flex align-items-center" key={index}>
+                  <span className={cx("count")}>{index + 1}</span>
+                  <CardStudent data={item} setStudents={setStudents} />
+                </div>
+              ))}
+          </div>
         </div>
       </div>
-    </div>
+    </ParrtenBg>
   );
 }
 
