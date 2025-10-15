@@ -10,7 +10,7 @@ function TrophiContainer({ listImg = [] }) {
     <div className={cx("trophi-container")}>
       <div className={cx("title", "text-center", "container")}>
         <h4 className={cx("fw-bold", "mt-4")}>Thành tích nổi bật – Niềm tự hào của nhà trường</h4>
-        <p>
+        <p className="fw-normal">
           Năm học vừa qua, trường chúng tôi đã bồi dưỡng và đưa nhiều học sinh tham gia các kỳ thi học sinh giỏi cấp thành phố. Kết quả đạt
           được vô cùng ấn tượng:
         </p>

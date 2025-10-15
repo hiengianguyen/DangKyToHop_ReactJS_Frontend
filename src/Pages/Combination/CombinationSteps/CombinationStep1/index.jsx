@@ -65,7 +65,7 @@ function CombinationStep1({ nations = [], secondarySchools = [], setCurrPage = (
         </Button>
       </div>
 
-      <div className={cx("card-body", "container shadow")} style={{ fontSize: "17px" }}>
+      <div className={cx("card-body", "container")} style={{ fontSize: "17px" }}>
         <div className={cx("content")}>
           <div className={cx("header")}>
             <span className={cx("first-line")}>SỞ GDĐT THÀNH PHỐ ĐÀ NẴNG</span>

@@ -8,7 +8,7 @@ const cx = classNames.bind(style);
 
 function MainLayout({ children }) {
   return (
-    <div className={cx("wrapper")}>
+    <div className={cx("wrapper", "bg-gray-200")}>
       <HeaderDefault />
       <BannerSchool />
       <div className={cx("content")}>{children}</div>

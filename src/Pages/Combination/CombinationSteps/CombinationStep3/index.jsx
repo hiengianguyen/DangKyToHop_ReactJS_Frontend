@@ -74,7 +74,7 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
         <h4>Chọn tổ hợp</h4>
       </div>
 
-      <div className="d-flex justify-content-end">
+      <div className="mt-4 flex justify-between">
         <Button primary="true" onClick={() => setCurrPage(2)} className={cx("button", "fs-3", "px-4", "me-3")}>
           Trở lại
         </Button>
@@ -129,11 +129,11 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
               <div className={cx("info-box")}>
                 <span className={cx("title")}>I. THÔNG TIN CHUNG</span>
 
-                <ol>
+                <ol className="list-decimal">
                   <li>Môn học và các hoạt động giáo dục bắt buộc:</li>
                   <p> Toán, Ngữ văn, Tiếng Anh, Lịch sử, GDTC, GDQP-AN, Giáo dục địa phương, Hoạt động trải nghiệm – hướng nghiệp.</p>
-                  <li>Môn học lựa chọn và chuyên đề học tập lựa chọn</li>
-                  <ul>
+                  <li>Môn học lựa chọn và chuyên đề học tập lựa chọn:</li>
+                  <ul className="list-disc">
                     <li>
                       Chọn đủ <b>04</b> môn trong số 07 môn học sau: Vật lý, Hóa học, Sinh học (nhóm KHTN), Địa lý, Giáo dục kinh tế và pháp
                       luật (viết tắt là GDKTPL) (nhóm KHXH), Công nghệ, Tin học.
@@ -143,7 +143,7 @@ function CombinationStep3({ setCurrPage = () => {}, valueStudent = {}, setValueS
                   </ul>
                 </ol>
 
-                <span className={cx("title")}>II. TỔ HỢP LỰA CHỌN CỤ THỂ</span>
+                <span className={cx("title", "mt-8")}>II. TỔ HỢP LỰA CHỌN CỤ THỂ</span>
                 <CombinationTable />
                 <div className={cx("choose-combination-box")}>
                   <Row>

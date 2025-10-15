@@ -47,7 +47,7 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
         <h4>Lý lịch học sinh</h4>
       </div>
 
-      <div className="d-flex justify-content-end">
+      <div className="mt-4 flex justify-between">
         <Button primary="true" onClick={() => setCurrPage(3)} className={cx("button", "fs-3", "px-4", "me-3")}>
           Trở lại
         </Button>
@@ -56,7 +56,7 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
         </Button>
       </div>
 
-      <div className={cx("card-body", "container shadow")} style={{ fontSize: "17px" }}>
+      <div className={cx("card-body", "container")} style={{ fontSize: "17px" }}>
         <div className={cx("content")}>
           <div className={cx("header")}>
             <div className={cx("first-slogan")}>

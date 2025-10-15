@@ -10,7 +10,7 @@ const cx = classNames.bind(style);
 
 function CombinationStep1R({ valueStudent = {}, role = "student" }) {
   return (
-    <div className={cx("card-body", "container position-relative shadow")} style={{ fontSize: "17px" }}>
+    <div className={cx("card-body", "container position-relative")} style={{ fontSize: "17px" }}>
       {role === "manager" && (
         <h3>
           Trạng thái:{" "}
@@ -56,7 +56,7 @@ function CombinationStep1R({ valueStudent = {}, role = "student" }) {
         </Row>
 
         <Row>
-          <Col xs={"auto"} className="d-flex align-items-end">
+          <Col xs={"auto"} className="d-flex align-items-end mt-8">
             <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
           </Col>
           <Col>
