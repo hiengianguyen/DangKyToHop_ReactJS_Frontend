@@ -10,9 +10,9 @@ function SchoolStats() {
     <div className={cx("box-content-info")}>
       <div className={cx("container")}>
         <div className={cx("title")}>
-          <h4 className={cx("fw-bold")}>Môi trường học tập năng động – Nền tảng vững chắc cho tương lai</h4>
+          <h4 className={cx("fw-bold", "fs-2 text-sky-950")}>Môi trường học tập năng động – Nền tảng vững chắc cho tương lai</h4>
         </div>
-        <div className={cx("info")}>
+        <div className={cx("info", "my-3")}>
           <ul className={cx("ds-data")}>
             <li className={cx("data")}>
               <div className={cx("content")}>

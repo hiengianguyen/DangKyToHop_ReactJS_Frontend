@@ -67,7 +67,7 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
         <h4>Đơn xin nhập học</h4>
       </div>
 
-      <div className="d-flex justify-content-end">
+      <div className="mt-4 flex justify-between">
         <Button primary="true" onClick={() => setCurrPage(1)} className={cx("button", "fs-3", "px-4", "me-3")}>
           Trở lại
         </Button>
@@ -76,7 +76,7 @@ function CombinationStep2({ setCurrPage = () => {}, setValueStudent = () => {}, 
         </Button>
       </div>
 
-      <div className={cx("card-body", "container shadow")} style={{ fontSize: "17px" }}>
+      <div className={cx("card-body", "container")} style={{ fontSize: "17px" }}>
         <div className={cx("content")}>
           <Form noValidate validated={validated} ref={formRef} onSubmit={handleSubmit}>
             <div className={cx("header")}>

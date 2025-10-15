@@ -46,7 +46,7 @@ function Home() {
     <div className={cx("containers", "wrapper")}>
       {isLoading && <Loading />}
       <div className={cx("container-start")}>
-        <p className={cx("text-center", "fw-bold")}>Về trang web Đăng ký tổ hợp</p>
+        <p className="text-center fs-2 text-black fw-bolder">Về trang web Đăng ký tổ hợp</p>
         <div className={cx("d-flex", "introduce-box")}>
           <div className={cx("content-box")}>
             <h2>Giúp học sinh chọn đúng tổ hợp, bước đầu cho hành trình vào lớp 10</h2>
@@ -70,8 +70,8 @@ function Home() {
         <div className={cx("container-center", "shadow")}>
           <div className={cx("content-1", "d-flex")}>
             <div className={cx("content-box")}>
-              <h2>Đăng ký nguyện vọng bằng giấy – bất tiện, dễ sai sót</h2>
-              <p>
+              <h2 className="fs-1 text-gray-800 fw-bolder mb-4">Đăng ký nguyện vọng bằng giấy – bất tiện, dễ sai sót</h2>
+              <p className="text-gray-800 fs-3">
                 Trước đây, học sinh phải điền tay vào phiếu đăng ký nguyện vọng và nộp lại cho giáo viên. Việc này thường gây ra nhiều khó
                 khăn như: ghi sai thông tin, gạch xoá nhiều lần, dễ mất phiếu hoặc sai sót trong quá trình tổng hợp. Giáo viên thì mất nhiều
                 thời gian để nhập dữ liệu thủ công, kiểm tra và lập bảng thống kê.
@@ -86,8 +86,8 @@ function Home() {
               alt=""
             />
             <div className={cx("content-box")}>
-              <h2>Đăng ký nguyện vọng trực tuyến – nhanh chóng, chính xác</h2>
-              <p>
+              <h2 className="fs-1 text-gray-800 fw-bolder mb-4">Đăng ký nguyện vọng trực tuyến – nhanh chóng, chính xác</h2>
+              <p className="text-gray-800 fs-3">
                 Với hệ thống đăng ký trực tuyến, học sinh có thể dễ dàng chọn tổ hợp môn chỉ với vài thao tác đơn giản. Thông tin được lưu
                 trữ tự động, hạn chế tối đa sai sót và dễ dàng chỉnh sửa nếu cần. Giáo viên có thể theo dõi tiến độ đăng ký, thống kê nguyện
                 vọng theo thời gian thực và hỗ trợ học sinh nhanh chóng, hiệu quả hơn.
@@ -101,7 +101,7 @@ function Home() {
         <div className={cx("container-center", "desktop", "shadow")}>
           <div className={cx("content-1", "d-flex")}>
             <div className={cx("content-box")}>
-              <h2>Đăng ký nguyện vọng bằng giấy – bất tiện, dễ sai sót</h2>
+              <h2 className="fs-1 text-gray-800 fw-bolder mb-4">Đăng ký nguyện vọng bằng giấy – bất tiện, dễ sai sót</h2>
               <p>
                 Trước đây, học sinh phải điền tay vào phiếu đăng ký nguyện vọng và nộp lại cho giáo viên. Việc này thường gây ra nhiều khó
                 khăn như: ghi sai thông tin, gạch xoá nhiều lần, dễ mất phiếu hoặc sai sót trong quá trình tổng hợp. Giáo viên thì mất nhiều
@@ -117,8 +117,8 @@ function Home() {
               alt=""
             />
             <div className={cx("content-box")}>
-              <h2>Đăng ký nguyện vọng trực tuyến – nhanh chóng, chính xác</h2>
-              <p>
+              <h2 className="fs-1 text-gray-800 fw-bolder mb-4">Đăng ký nguyện vọng trực tuyến – nhanh chóng, chính xác</h2>
+              <p className="text-gray-800 fs-3">
                 Với hệ thống đăng ký trực tuyến, học sinh có thể dễ dàng chọn tổ hợp môn chỉ với vài thao tác đơn giản. Thông tin được lưu
                 trữ tự động, hạn chế tối đa sai sót và dễ dàng chỉnh sửa nếu cần. Giáo viên có thể theo dõi tiến độ đăng ký, thống kê nguyện
                 vọng theo thời gian thực và hỗ trợ học sinh nhanh chóng, hiệu quả hơn.
@@ -136,13 +136,13 @@ function Home() {
 
       <Pc>
         <div className={cx("container-end", "shadow", "d-flex", "justify-content-center")}>
-          <div className={cx("content-box", "position-relative", "content-end")}>
-            <h4 className={cx("fw-bold")}>Ngôi trường sẵn sàng chào đón bạn</h4>
-            <p>
+          <div className={cx("content-box", "position-relative", "content-center")}>
+            <h4 className="fw-bold mb-4 fs-2 text-sky-950">Ngôi trường sẵn sàng chào đón bạn</h4>
+            <p className="mb-4 fs-3">
               Chúng tôi tin rằng mỗi học sinh là một hạt giống tiềm năng – chỉ cần được gieo trồng đúng nơi, sẽ có cơ hội phát triển mạnh
               mẽ. Hãy để ngôi trường này trở thành nơi bắt đầu cho hành trình trưởng thành và thành công của bạn.
             </p>
-            <p className={cx("support")}>
+            <p className={cx("support", "mb-4 fs-3")}>
               Bấm vào nút bên dưới để bắt đầu đăng ký tổ hợp vào lớp 10 và đồng hành cùng chúng tôi trong năm học tới!
             </p>
             <div
@@ -166,12 +166,12 @@ function Home() {
       <Desktop>
         <div className={cx("container-end", "desktop", "shadow", "d-flex", "justify-content-center")}>
           <div className={cx("content-box", "position-relative", "content-end")}>
-            <h4 className={cx("fw-bold")}>Ngôi trường sẵn sàng chào đón bạn</h4>
-            <p>
+            <h4 className="fw-bold mb-4 fs-2 text-sky-950">Ngôi trường sẵn sàng chào đón bạn</h4>
+            <p className="mb-4 fs-3">
               Chúng tôi tin rằng mỗi học sinh là một hạt giống tiềm năng – chỉ cần được gieo trồng đúng nơi, sẽ có cơ hội phát triển mạnh
               mẽ. Hãy để ngôi trường này trở thành nơi bắt đầu cho hành trình trưởng thành và thành công của bạn.
             </p>
-            <p className={cx("support")}>
+            <p className={cx("support", "mb-4 fs-3")}>
               Bấm vào nút bên dưới để bắt đầu đăng ký tổ hợp vào lớp 10 và đồng hành cùng chúng tôi trong năm học tới!
             </p>
             <div
