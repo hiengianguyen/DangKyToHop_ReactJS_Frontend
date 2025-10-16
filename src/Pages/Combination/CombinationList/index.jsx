@@ -12,6 +12,8 @@ import Loading from "../../../Components/Loading";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useMediaQuery } from "react-responsive";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 const Pc = ({ children }) => {
   const isPc = useMediaQuery({ minWidth: 1400 });
@@ -31,6 +33,7 @@ function CombinationList() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [sortList, setSortList] = useState(null);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setFormElement(formRef.current);
@@ -98,6 +101,14 @@ function CombinationList() {
         window.URL.revokeObjectURL(url);
       })
       .finally(() => setIsLoading(false));
+  };
+
+  const visibleTaskLimit = 12;
+  const taskOfPage = submittedList.slice((page - 1) * visibleTaskLimit, page * visibleTaskLimit);
+  const totalPage = Math.ceil(submittedList.length / visibleTaskLimit);
+
+  const handleChangePage = (e, value) => {
+    setPage(value);
   };
 
   return (
@@ -243,9 +254,9 @@ function CombinationList() {
           </Link>
         </div>
 
-        <Row className="mt-4 position-relative border shadow rounded-2" style={{ maxHeight: "600px", overflowY: "scroll" }}>
-          {submittedList &&
-            submittedList.map((item, index) => (
+        <Row className="mt-4 position-relative py-10">
+          {taskOfPage &&
+            taskOfPage.map((item, index) => (
               <Col xs={"auto"} key={index}>
                 <Pc>
                   <CardStudent data={item} />
@@ -258,6 +269,9 @@ function CombinationList() {
             ))}
           {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
         </Row>
+        <Stack spacing={2}>
+          <Pagination count={totalPage} size="large" color="primary" variant="outlined" shape="rounded" onChange={handleChangePage} />
+        </Stack>
       </form>
     </BoxRadius>
   );

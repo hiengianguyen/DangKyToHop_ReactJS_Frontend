@@ -8,7 +8,7 @@ const cx = classNames.bind(style);
 function CardStudent({ data = {}, resp = "pc" }) {
   const navigator = useNavigate();
   return (
-    <div className={cx("wrapper", resp)}>
+    <div className={cx("wrapper", "shadow", resp)}>
       <div className="d-flex">
         <div className={cx("d-flex flex-column col-md-4")}>
           <img src={data.avatar} alt={data.fullName} className={cx("img-student", "border border-dark-subtle")} />

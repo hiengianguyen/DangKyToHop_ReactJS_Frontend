@@ -119,9 +119,11 @@ function Students() {
         <DndContext key={String(showClassBar)} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
           <div className={cx("wrapper")}>
             <div className={cx("title-box")}>
-              <h2>📋 Danh sách học sinh đã được phê duyệt hồ sơ</h2>
-              <p>Danh sách này hiển thị toàn bộ học sinh đã hoàn tất và được phê duyệt hồ sơ tuyển sinh.</p>{" "}
-              <p>Đây là bước chuẩn bị để tiến hành phân chia vào các lớp học.</p>
+              <h2 className="fs-2 text-center text-gray-800 fw-bolder mb-4">📋 Danh sách học sinh đã được phê duyệt hồ sơ</h2>
+              <p className="fs-3 text-center text-gray-600 fw-medium">
+                Danh sách này hiển thị toàn bộ học sinh đã hoàn tất và được phê duyệt hồ sơ tuyển sinh.
+              </p>
+              <p className="fs-3 text-center text-gray-600 fw-medium">Đây là bước chuẩn bị để tiến hành phân chia vào các lớp học.</p>
             </div>
             {isloading && <Loading />}
             {!showClassBar && (

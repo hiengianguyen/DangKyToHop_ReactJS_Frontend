@@ -75,7 +75,7 @@ function School() {
           <div className={cx("content-4")}>
             <Container>
               <div className={cx("main-content")}>
-                <h4>Hoạt động dành cho học sinh</h4>
+                <h4 className="mb-6">Hoạt động dành cho học sinh</h4>
                 <p>
                   Bên cạnh việc học tập, Trường THPT Duy Tân luôn chú trọng phát triển toàn diện cho học sinh thông qua nhiều hoạt động
                   ngoại khóa phong phú như: hội trại truyền thống, câu lạc bộ học thuật, thể thao, văn nghệ và các chương trình thiện nguyện
@@ -133,14 +133,14 @@ function School() {
           <SchoolMap />
           <div className={cx("box-content-5")}>
             <div className={cx("container")}>
-              <div className={cx("content")}>
-                <h3 className={cx("text-center")}>Cuối cùng</h3>
-                <p>
+              <div className={cx("content", "mb-4")}>
+                <h3 className={cx("text-center", "mb-4 fs-1 fw-bolder")}>Cuối cùng</h3>
+                <p className="fs-2">
                   Với những nỗ lực không ngừng trong việc nâng cao chất lượng giáo dục và phát triển toàn diện cho học sinh, Trường THPT Duy
                   Tân đã trở thành một trong những trường THPT có uy tín.
                 </p>
               </div>
-              <p>Tìm hiểu thêm về trường học tại:</p>
+              <p className="mb-4">Tìm hiểu thêm về trường học tại:</p>
               <div className={cx("list_link", "mb-4")}>
                 <a
                   className={cx("btn-sm")}
@@ -181,7 +181,7 @@ function School() {
                   Duy Tân có tốt không?
                 </a>
               </div>
-              <p>Các thông tin liên quan:</p>
+              <p className="mb-4">Các thông tin liên quan:</p>
               <div className={cx("list_link")}>
                 <a className={cx("btn-sm")} target="_blank" rel="noreferrer" href="http://thptduytan.edu.vn">
                   Website Trường THPT Duy Tân

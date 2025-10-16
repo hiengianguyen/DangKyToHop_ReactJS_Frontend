@@ -136,7 +136,7 @@ function CombinationStep1({ nations = [], secondarySchools = [], setCurrPage = (
               <InputBorder label="Nơi sinh" name="placeOfBirth" defaultValue={valueStudent.placeOfBirth} />
             </Col>
 
-            <Col xs={"auto"} className="d-flex align-items-end mt-4">
+            <Col xs={"auto"} className="d-flex align-items-end mt-8">
               <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
             </Col>
             <Col>
@@ -225,7 +225,7 @@ function CombinationStep1({ nations = [], secondarySchools = [], setCurrPage = (
           </Form>
           <div className={cx("doc-info")}>
             <span>Hồ sơ nhập học gồm</span>
-            <ol className={cx("list-info")}>
+            <ol className={cx("list-info", "list-decimal")}>
               <li>Đơn xin nhập học;</li>
               <li>Phiếu đăng ký tổ hợp môn học và chuyên đề lựa chọn;</li>
               <li>Tờ khai lý lịch học sinh;</li>

@@ -66,12 +66,15 @@
   color: #007bff;
   box-shadow: 3px 3px #9e9e9e;
   background-color: #cfebff;
+  transition: all 0.3s ease;
 
   &:hover {
     color: #0056b3;
     cursor: pointer;
     text-decoration-line: none;
     background-color: #e1ecf4;
+    transform: translateY(-8px);
+    transition: all 0.3s ease;
   }
 }
 
