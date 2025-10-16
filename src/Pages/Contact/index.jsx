@@ -12,71 +12,41 @@ function Contact() {
   return (
     <BoxRadius>
       <div className={cx("wrapper")}>
-        <h4 className={cx("title")}>Thông tin Ban tuyển sinh trường THPT Duy Tân</h4>
+        <h4 className="text-center fw-bolder text-gray-800 fs-2">Thông tin Ban tuyển sinh trường THPT Duy Tân</h4>
+        <p className="my-4 text-justify px-10 fw-medium">
+          Ban tuyển sinh của trường có nhiệm vụ tổ chức, quản lý và giám sát toàn bộ quá trình tuyển sinh. Các thành viên trong ban chịu
+          trách nhiệm tiếp nhận hồ sơ, kiểm tra thông tin, tư vấn cho học sinh – phụ huynh, đồng thời đảm bảo việc xét tuyển và phân lớp
+          diễn ra công bằng, minh bạch, đúng quy định của nhà trường và cơ quan giáo dục.
+        </p>
         <div className={cx("contact-teacher")}>
-          <div className={cx("card", "card-1")}>
-            <div className={cx("img-box")}>
-              <img
-                src="https://res.cloudinary.com/dwoymvppw/image/upload/v1743848084/default_user_avatar_dckymx.avif"
-                alt="giao vien"
-                className={cx("img-fluid")}
-              />
-            </div>
-            <div className={cx("col-info")}>
-              <div className={cx("card-body")}>
-                <div className={cx("card-title")}>
-                  <p className={cx("teacher-label")}>Thầy</p>
-                  <h3 className={cx("card-title", "name")}>Trần Bá Lĩnh</h3>
-                </div>
-                <div className={cx("info-row")}>
-                  <p className={cx("info")}>
-                    Chức vụ: <b>Bí thư đoàn trường</b>
-                  </p>
-                </div>
-                <p>Thông tin liên hệ:</p>
-                <div className={cx("contact-box")}>
-                  <p className={cx("info")}>
-                    Số điện thoại: <b>0933162651</b>
-                  </p>
-                  <p className={cx("info")}>
-                    Email: <b>tranbalinh@gmail.com</b>
-                  </p>
+          <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+            <li>
+              <div class="flex items-center gap-x-6">
+                <img
+                  src="https://res.cloudinary.com/dwoymvppw/image/upload/v1743848084/default_user_avatar_dckymx.avif"
+                  alt=""
+                  class="w-32 rounded-full outline-1 -outline-offset-1 outline-white/10"
+                />
+                <div>
+                  <h3 class="text-base/7 fs-2 mb-2 font-semibold tracking-tight text-blue-900">Phan Thị Tuyết Nhung</h3>
+                  <p class="fs-4 font-semibold text-blue-400">Trưởng ban tuyển sinh</p>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className={cx("card", "card-2")}>
-            <div className={cx("img-box", "center-img")}>
-              <img
-                src="https://res.cloudinary.com/dwoymvppw/image/upload/v1743848084/default_user_avatar_dckymx.avif"
-                alt="giao vien"
-                className={cx("img-fluid")}
-              />
-            </div>
-            <div className={cx("col-info")}>
-              <div className={cx("card-body")}>
-                <div className={cx("card-title")}>
-                  <p className={cx("teacher-label")}>Cô</p>
-                  <h3 className={cx("card-title", "name")}>Nguyễn Hồng Hạnh</h3>
-                </div>
-                <div className={cx("info-row")}>
-                  <p className={cx("info")}>
-                    Chức vụ: <b>Phó Bí thư đoàn trường</b>
-                  </p>
-                </div>
-                <p>Thông tin liên hệ:</p>
-                <div className={cx("contact-box")}>
-                  <p className={cx("info")}>
-                    Số điện thoại: <b>0933162651</b>
-                  </p>
-                  <p className={cx("info")}>
-                    Email: <b>nguyenhonghanh@gmail.com</b>
-                  </p>
+            </li>
+            <li>
+              <div class="flex items-center gap-x-6">
+                <img
+                  src="https://res.cloudinary.com/dwoymvppw/image/upload/v1743848084/default_user_avatar_dckymx.avif"
+                  alt=""
+                  class="w-32 rounded-full outline-1 -outline-offset-1 outline-white/10"
+                />
+                <div>
+                  <h3 class="text-base/7 fs-2 mb-2 font-semibold tracking-tight text-blue-900">Bùi Kim Hà</h3>
+                  <p class="fs-4 font-semibold text-blue-400">Phó ban tuyển sinh</p>
                 </div>
               </div>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
     </BoxRadius>

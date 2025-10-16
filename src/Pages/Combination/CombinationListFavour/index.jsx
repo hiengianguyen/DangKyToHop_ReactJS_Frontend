@@ -12,6 +12,8 @@ import Loading from "../../../Components/Loading";
 import { useAuth } from "../../../Contexts/AuthContext";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import Stack from "@mui/material/Stack";
+import Pagination from "@mui/material/Pagination";
 
 function CombinationListFavour() {
   const formRef = useRef();
@@ -22,6 +24,7 @@ function CombinationListFavour() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingList, setIsLoadingList] = useState(false);
   const { auth } = useAuth();
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setFormElement(formRef.current);
@@ -87,6 +90,14 @@ function CombinationListFavour() {
         window.URL.revokeObjectURL(url);
       })
       .finally(() => setIsLoading(false));
+  };
+
+  const visibleTaskLimit = 12;
+  const submittedOfPage = submittedList.slice((page - 1) * visibleTaskLimit, page * visibleTaskLimit);
+  const totalPage = Math.ceil(submittedList.length / visibleTaskLimit);
+
+  const handleChangePage = (e, value) => {
+    setPage(value);
   };
 
   return (
@@ -223,15 +234,18 @@ function CombinationListFavour() {
           </Col>
         </Row>
 
-        <Row as={Col} className="mt-4 position-relative" style={{ minHeight: "30pc" }}>
-          {submittedList &&
-            submittedList.map((item, index) => (
+        <Row as={Col} className="mt-4 position-relative">
+          {submittedOfPage &&
+            submittedOfPage.map((item, index) => (
               <Col xs={"auto"} key={index}>
                 <CardStudent data={item} />
               </Col>
             ))}
           {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
         </Row>
+        <Stack spacing={2}>
+          <Pagination count={totalPage} size="large" color="primary" variant="outlined" shape="rounded" onChange={handleChangePage} />
+        </Stack>
       </form>
     </BoxRadius>
   );
