@@ -18,7 +18,7 @@ function MainContentSchool() {
   return (
     <div className={cx("content-3")}>
       <Container>
-        <p className={cx("text-content-3", "text-gray-800 fs-3 mb-4")}>
+        <p className={cx("text-content-3", "text-gray-800 fs-2 mb-6")}>
           Trải qua 15 năm phát triển, Trường THPT Duy Tân đã mở rộng quy mô đáng kể. Năm học 2024–2025, trường có 32 lớp với 1.256 học sinh
           và đội ngũ gần 80 cán bộ, giáo viên. Địa bàn tuyển sinh của trường bao gồm các xã/phường như phường Quảng Phú, phường Tam Kỳ,
           phường Hương Trà, phường Bàn Thạch và mở rộng đến xã Thăng Trường và xã Tam Xuân.

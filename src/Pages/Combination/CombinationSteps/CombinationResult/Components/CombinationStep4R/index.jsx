@@ -86,14 +86,12 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
             </Col>
           </Row>
           {valueStudent.typeStudent && valueStudent.typeStudent.length !== 0 && (
-            <>
+            <div className="mt-10">
               <span className={cx("student-type")}>- Là học sinh thuộc diện sau:</span>
-              <Row className="fs-1">
-                <Col>
-                  <InputHadValue label="Diện học sinh" value={valueStudent.typeStudent.join(", ")} />
-                </Col>
-              </Row>
-            </>
+              <ol className="list-decimal ps-10 ms-10 fs-2">
+                {valueStudent.typeStudent && valueStudent.typeStudent.map((item, index) => <li key={index}>{item}</li>)}
+              </ol>
+            </div>
           )}
           {valueStudent.avchielementGroup && valueStudent.avchielementGroup.length !== 0 && (
             <Row>
@@ -133,6 +131,14 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
           <Col>
             <span className={cx("health-status", "mt-2", "student-type")}>- Tình trạng sức khỏe:</span>
           </Col>
+          {valueStudent.sick && valueStudent.sick.length !== 0 && (
+            <>
+              <span>Mắc bệnh:</span>
+              <ul className="list-disc ps-10 ms-10 fs-2">
+                {valueStudent.sick && valueStudent.sick.map((item, index) => <li key={index}>{item}</li>)}
+              </ul>
+            </>
+          )}
           <Row>
             <Col>
               <InputHadValue label="+ Chiều cao (cm)" value={valueStudent.height} />
@@ -140,23 +146,6 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
             <Col>
               <InputHadValue label="+ Cân nặng (kg)" value={valueStudent.weight} />
             </Col>
-          </Row>
-          <Row className="mt-4 fs-1">
-            {valueStudent.sick?.includes("Bệnh ngoài da") && (
-              <Col>
-                <InputHadValue label="+ Bệnh ngoài da" value="Có" />
-              </Col>
-            )}
-            {valueStudent.sick?.includes("Bệnh tim mạch") && (
-              <Col>
-                <InputHadValue label="+ Bệnh tim mạch" value="Có" />
-              </Col>
-            )}
-            {valueStudent.sick?.includes("Bệnh hô hấp") && (
-              <Col>
-                <InputHadValue label="+ Bệnh hô hấp" value="Có" />
-              </Col>
-            )}
           </Row>
           {valueStudent.disability && valueStudent.disability.length !== 0 && (
             <Row>

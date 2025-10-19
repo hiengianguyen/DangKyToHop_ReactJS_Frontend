@@ -13,6 +13,8 @@ const cx = classNames.bind(style);
 function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, valueStudent = {} }) {
   const [validated, setValidated] = useState(false);
   const [formElement, setFormElement] = useState();
+  const [typeStudent, setTypeStudent] = useState(valueStudent.typeStudent);
+  const [sicks, setSicks] = useState(valueStudent.sick);
   const formRef = useRef();
 
   useEffect(() => {
@@ -33,12 +35,23 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    data.sick = formData.getAll("sick");
-    data.typeStudent = formData.getAll("typeStudent");
+    data.sick = sicks;
+    data.typeStudent = typeStudent;
 
     setValueStudent((prev) => ({ ...prev, ...data }));
     setValidated(true);
     setCurrPage(5);
+  };
+
+  const handleAddTypeStudent = (value, func) => {
+    func((prev) => {
+      const dataPrev = prev;
+      if (dataPrev.includes(value)) {
+        return dataPrev.filter((item) => item !== value);
+      } else {
+        return [...dataPrev, value];
+      }
+    });
   };
 
   return (
@@ -148,16 +161,18 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                     type="checkbox"
                     required={false}
                     name="typeStudent"
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setTypeStudent)}
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     label="Con thương binh, bệnh binh từ 81% trở lên"
                     value={"Con thương binh, bệnh binh từ 81% trở lên"}
-                    checked={valueStudent?.typeStudent?.includes("Con thương binh, bệnh binh từ 81% trở lên")}
+                    checked={typeStudent.includes("Con thương binh, bệnh binh từ 81% trở lên")}
                     type="checkbox"
                     required={false}
                     name="typeStudent"
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setTypeStudent)}
                   />
                 </Col>
               </Row>
@@ -166,20 +181,22 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   <Form.Check
                     label="Con dân tộc thiểu số"
                     value={"Con dân tộc thiểu số"}
-                    checked={valueStudent?.typeStudent?.includes("Con dân tộc thiểu số")}
+                    checked={typeStudent.includes("Con dân tộc thiểu số")}
                     type="checkbox"
                     required={false}
                     name="typeStudent"
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setTypeStudent)}
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     label="Con thương binh, bệnh binh dưới 81%"
                     value={"Con thương binh, bệnh binh dưới 81%"}
-                    checked={valueStudent?.typeStudent?.includes("Con thương binh, bệnh binh dưới 81%")}
+                    checked={typeStudent.includes("Con thương binh, bệnh binh dưới 81%")}
                     type="checkbox"
                     required={false}
                     name="typeStudent"
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setTypeStudent)}
                   />
                 </Col>
               </Row>
@@ -188,10 +205,11 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                   <Form.Check
                     label="Con Anh hùng LLVT"
                     value={"Con Anh hùng LLVT"}
-                    checked={valueStudent?.typeStudent?.includes("Con Anh hùng LLVT")}
+                    checked={typeStudent.includes("Con Anh hùng LLVT")}
                     type="checkbox"
                     required={false}
                     name="typeStudent"
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setTypeStudent)}
                   />
                 </Col>
               </Row>
@@ -246,31 +264,34 @@ function CombinationStep4({ setCurrPage = () => {}, setValueStudent = () => {}, 
                 <Col>
                   <Form.Check
                     label="Bệnh ngoài da"
-                    checked={valueStudent?.sick?.includes("Bệnh ngoài da")}
+                    checked={sicks.includes("Bệnh ngoài da")}
                     value={"Bệnh ngoài da"}
                     type="checkbox"
                     required={false}
                     name="sick"
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setSicks)}
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     label="Bệnh tim mạch"
-                    checked={valueStudent?.sick?.includes("Bệnh tim mạch")}
+                    checked={sicks.includes("Bệnh tim mạch")}
                     value={"Bệnh tim mạch"}
                     type="checkbox"
                     required={false}
                     name="sick"
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setSicks)}
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     label="Bệnh hô hấp"
-                    checked={valueStudent?.sick?.includes("Bệnh hô hấp")}
+                    checked={sicks.includes("Bệnh hô hấp")}
                     value={"Bệnh hô hấp"}
                     type="checkbox"
                     required={false}
                     name="sick"
+                    onChange={(e) => handleAddTypeStudent(e.target.value, setSicks)}
                   />
                 </Col>
               </Row>

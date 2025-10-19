@@ -49,7 +49,7 @@ function School() {
               backGround="https://res.cloudinary.com/dwoymvppw/image/upload/v1752893673/73141113_730983574035387_2818179285607514112_n.jpg_plvcef.jpg"
               imgWidth="35pc"
             >
-              <h3>Thông tin trường học</h3>
+              <h3 className="mb-6">Thông tin trường học</h3>
               <p className={cx("text-img")}>
                 Trường Trung học phổ thông (THPT) Duy Tân là một cơ sở giáo dục công lập tọa lạc tại Phường Quảng Phú, TP. Đà Nẵng. Được
                 thành lập vào năm 2010 theo Quyết định số 1119/QĐ-UBND của UBND tỉnh Quảng Nam (cũ), trường nhằm tạo điều kiện thuận lợi cho
@@ -61,7 +61,7 @@ function School() {
 
           <div className={cx("content-2")}>
             <Container>
-              <p>
+              <p className="fs-2 text-gray-800">
                 Trong những năm đầu hoạt động, trường chưa có cơ sở riêng và phải mượn cơ sở cũ của Trường THCS Lý Thường Kiệt tại thôn Phú
                 Thạnh, xã Tam Phú (cũ) để tổ chức dạy học. Đến tháng 8 năm 2016, trường mới chuyển về cơ sở mới tại thôn Ngọc Mỹ, xã Tam Phú
                 (cũ).
@@ -91,7 +91,7 @@ function School() {
               backGround="https://res.cloudinary.com/dwoymvppw/image/upload/v1749179561/BE_GIANG_DT_22_lhjusl.jpg"
               listImg={imgActivity.imgStudentDancings}
             >
-              <h3>Nghệ thuật</h3>
+              <h3 className="mb-6">Nghệ thuật</h3>
               <p className={cx("text-img")}>
                 Hoạt động văn nghệ là điểm nhấn nổi bật trong đời sống học đường tại Trường THPT Duy Tân. Hàng năm, nhà trường tổ chức nhiều
                 chương trình biểu diễn như Hội diễn chào mừng năm học mới, Văn nghệ tri ân thầy cô 20/11, và Tết xuân yêu thương. Các tiết
@@ -105,7 +105,7 @@ function School() {
               isLeftImgBg
               listImg={imgActivity.imgStudentCampings}
             >
-              <h3>Hội trại truyền thống</h3>
+              <h3 className="mb-6">Hội trại truyền thống</h3>
               <p className={cx("text-img")}>
                 Tuy không diễn ra thường niên, nhưng mỗi kỳ hội trại tại Trường THPT Duy Tân luôn để lại dấu ấn sâu đậm trong lòng học sinh.
                 Được tổ chức vào những dịp đặc biệt như kỷ niệm thành lập trường, Ngày Thành lập Đoàn 26/3 hoặc các sự kiện trọng đại, hội
@@ -119,7 +119,7 @@ function School() {
               backGround="https://res.cloudinary.com/dwoymvppw/image/upload/v1752897977/483103651_1113421323922724_4627461808748182634_n.jpg_pk9kyg.jpg"
               listImg={imgActivity.imgStudentActivitys}
             >
-              <h3>Những hoạt động khác</h3>
+              <h3 className="mb-6">Những hoạt động khác</h3>
               <p className={cx("text-img")}>
                 Ngoài văn nghệ và hội trại, Trường THPT Duy Tân còn tổ chức nhiều hoạt động ngoại khóa đa dạng nhằm phát triển kỹ năng mềm
                 và nuôi dưỡng tinh thần trách nhiệm trong học sinh. Các chương trình tiêu biểu có thể kể đến như: các câu lạc bộ học thuật –
@@ -208,7 +208,7 @@ function School() {
               backGround="https://res.cloudinary.com/dwoymvppw/image/upload/v1752893673/73141113_730983574035387_2818179285607514112_n.jpg_plvcef.jpg"
               imgWidth="35pc"
             >
-              <h3>Thông tin trường học</h3>
+              <h3 className="mb-6">Thông tin trường học</h3>
               <p className={cx("text-img")}>
                 Trường Trung học phổ thông (THPT) Duy Tân là một cơ sở giáo dục công lập tọa lạc tại Phường Quảng Phú, TP. Đà Nẵng. Được
                 thành lập vào năm 2010 theo Quyết định số 1119/QĐ-UBND của UBND tỉnh Quảng Nam (cũ), trường nhằm tạo điều kiện thuận lợi cho
@@ -250,7 +250,7 @@ function School() {
               backGround="https://res.cloudinary.com/dwoymvppw/image/upload/v1749179561/BE_GIANG_DT_22_lhjusl.jpg"
               listImg={imgActivity.imgStudentDancings}
             >
-              <h3>Nghệ thuật</h3>
+              <h3 className="mb-6">Nghệ thuật</h3>
               <p className={cx("text-img")}>
                 Hoạt động văn nghệ là điểm nhấn nổi bật trong đời sống học đường tại Trường THPT Duy Tân. Hàng năm, nhà trường tổ chức nhiều
                 chương trình biểu diễn như Hội diễn chào mừng năm học mới, Văn nghệ tri ân thầy cô 20/11, và Tết xuân yêu thương. Các tiết
@@ -264,7 +264,7 @@ function School() {
               isLeftImgBg
               listImg={imgActivity.imgStudentCampings}
             >
-              <h3>Hội trại truyền thống</h3>
+              <h3 className="mb-6">Hội trại truyền thống</h3>
               <p className={cx("text-img")}>
                 Tuy không diễn ra thường niên, nhưng mỗi kỳ hội trại tại Trường THPT Duy Tân luôn để lại dấu ấn sâu đậm trong lòng học sinh.
                 Được tổ chức vào những dịp đặc biệt như kỷ niệm thành lập trường, Ngày Thành lập Đoàn 26/3 hoặc các sự kiện trọng đại, hội
@@ -278,7 +278,7 @@ function School() {
               backGround="https://res.cloudinary.com/dwoymvppw/image/upload/v1752897977/483103651_1113421323922724_4627461808748182634_n.jpg_pk9kyg.jpg"
               listImg={imgActivity.imgStudentActivitys}
             >
-              <h3>Những hoạt động khác</h3>
+              <h3 className="mb-6">Những hoạt động khác</h3>
               <p className={cx("text-img")}>
                 Ngoài văn nghệ và hội trại, Trường THPT Duy Tân còn tổ chức nhiều hoạt động ngoại khóa đa dạng nhằm phát triển kỹ năng mềm
                 và nuôi dưỡng tinh thần trách nhiệm trong học sinh. Các chương trình tiêu biểu có thể kể đến như: các câu lạc bộ học thuật –

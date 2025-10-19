@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import style from "./MainLayout.module.scss";
-import Footer from "../Component/Footer";
+import FooterAdmin from "../Component/FooterAdmin";
 import HeaderDefault from "../Component/HeaderDefault";
 import BannerSchool from "../Component/BannerSchool";
 
@@ -12,7 +12,7 @@ function MainLayout({ children }) {
       <HeaderDefault />
       <BannerSchool />
       <div className={cx("content")}>{children}</div>
-      <Footer />
+      <FooterAdmin />
     </div>
   );
 }
