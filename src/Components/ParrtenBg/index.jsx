@@ -1,6 +1,6 @@
 function ParrtenBg({ children }) {
   return (
-    <div className="min-h-screen w-full bg-white relative overflow-hidden">
+    <div className="min-h-screen w-full bg-white relative">
       <div
         className="absolute inset-0 z-0"
         style={{

@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import style from "./SchoolLayout.module.scss";
-import Footer from "../Component/Footer";
+import FooterAdmin from "../Component/FooterAdmin";
 import HeaderDefault from "../Component/HeaderDefault";
 
 const cx = classNames.bind(style);
@@ -10,7 +10,7 @@ function SchoolLayout({ children }) {
     <div className={cx("wrapper")}>
       <HeaderDefault />
       <div className={cx("content")}>{children}</div>
-      <Footer />
+      <FooterAdmin />
     </div>
   );
 }
