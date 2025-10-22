@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import style from "./Contact.module.scss";
 import BoxRadius from "../../Components/BoxRadius";
 import { useEffect } from "react";
+import BtnSrcollTop from "../../Components/BtnScrollTop";
 
 const cx = classNames.bind(style);
 
@@ -46,9 +47,36 @@ function Contact() {
                 </div>
               </div>
             </li>
+            <li>
+              <div class="flex items-center gap-x-6">
+                <img
+                  src="https://res.cloudinary.com/dwoymvppw/image/upload/v1743848084/default_user_avatar_dckymx.avif"
+                  alt=""
+                  class="w-32 rounded-full outline-1 -outline-offset-1 outline-white/10"
+                />
+                <div>
+                  <h3 class="text-base/7 fs-2 mb-2 font-semibold tracking-tight text-blue-900">Nguyễn Thanh Tùng</h3>
+                  <p class="fs-4 font-semibold text-blue-400">Phó ban tuyển sinh</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center gap-x-6">
+                <img
+                  src="https://res.cloudinary.com/dwoymvppw/image/upload/v1743848084/default_user_avatar_dckymx.avif"
+                  alt=""
+                  class="w-32 rounded-full outline-1 -outline-offset-1 outline-white/10"
+                />
+                <div>
+                  <h3 class="text-base/7 fs-2 mb-2 font-semibold tracking-tight text-blue-900">Trần Thị Kim Chi</h3>
+                  <p class="fs-4 font-semibold text-blue-400">Phó ban tuyển sinh</p>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
+      <BtnSrcollTop />
     </BoxRadius>
   );
 }

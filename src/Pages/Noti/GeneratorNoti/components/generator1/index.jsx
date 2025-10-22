@@ -46,7 +46,7 @@ function Generator1({ show = true, data = {}, btnText = "Tạo thông báo", isU
           error: <b>Thất bại.</b>
         }
       )
-      .then((axiosData) => navigator("/notifications/" + axiosData.data.id));
+      .then(() => navigator("/notifications"));
   };
 
   return (

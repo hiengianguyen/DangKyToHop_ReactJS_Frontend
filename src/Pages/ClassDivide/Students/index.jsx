@@ -19,6 +19,7 @@ import Col from "react-bootstrap/esm/Col";
 import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
 import NonDataImg from "./Component/NonDataImg";
+import BtnSrcollTop from "../../../Components/BtnScrollTop";
 
 const cx = classNames.bind(style);
 
@@ -158,7 +159,7 @@ function Students() {
             </div>
             <DroppableList id="list" show={showClassBar}>
               {taskOfPage?.length > 0 ? (
-                taskOfPage.map((item, index) => {
+                [...taskOfPage, ...taskOfPage].map((item, index) => {
                   if (!item.classId) {
                     return (
                       <Col xs={"auto"} key={index}>
@@ -186,6 +187,7 @@ function Students() {
           </Stack>
         </div>
       </DndContext>
+      <BtnSrcollTop />
     </form>
   );
 }

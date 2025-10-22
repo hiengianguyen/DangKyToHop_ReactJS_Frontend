@@ -11,6 +11,7 @@ import SchoolStats from "./SchoolStats";
 import SchoolMap from "./SchoolMap";
 import Loading from "../../Components/Loading";
 import { useMediaQuery } from "react-responsive";
+import BtnSrcollTop from "../../Components/BtnScrollTop";
 
 const cx = classNames.bind(style);
 
@@ -356,6 +357,7 @@ function School() {
           </div>
         </div>
       </Desktop>
+      <BtnSrcollTop />
     </>
   );
 }
