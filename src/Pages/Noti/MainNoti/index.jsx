@@ -80,7 +80,6 @@ function MainNoti() {
                   <h5 className={cx("title", "pe-4 fs-2")}>
                     <Link to={"/notifications/" + item.id}>{item.title}</Link>
                   </h5>
-
                   <p className={cx("timer", "mb-0")}>Tạo lúc: {item.publishAt}</p>
                   {role === "manager" ? (
                     <div

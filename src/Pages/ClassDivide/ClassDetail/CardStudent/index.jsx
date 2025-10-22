@@ -2,10 +2,12 @@ import classNames from "classnames/bind";
 import style from "../../Students/Component/StudentItem/StudentItem.module.scss";
 import ModalRejectStudent from "../ModalRejectStudent";
 import { useState } from "react";
+import ModalChangeClass from "../ModalChangeClass";
 
 const cx = classNames.bind(style);
 
 function CardStudent({ data = {}, setStudents = () => {} }) {
+  const [showChangeClass, setShowChangeClass] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -43,12 +45,13 @@ function CardStudent({ data = {}, setStudents = () => {} }) {
             ></path>
           </svg>
           <ul className={cx("opt-noti", "shadow")}>
-            <li>Chuyển lớp</li>
+            <li onClick={() => setShowChangeClass(true)}>Chuyển lớp</li>
             <li onClick={() => setShowModal(true)}>Huỷ phê duyệt</li>
           </ul>
         </div>
       </div>
-      {showModal && <ModalRejectStudent show={showModal} setShowModal={setShowModal} setStudents={setStudents} data={data} />}
+      {showModal && <ModalRejectStudent setShowModal={setShowModal} setStudents={setStudents} data={data} />}
+      {showChangeClass && <ModalChangeClass onHide={setShowChangeClass} />}
     </>
   );
 }

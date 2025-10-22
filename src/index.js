@@ -14,7 +14,7 @@ root.render(
     <AuthProvider>
       <GlobalStyle>
         <App />
-        <BtnSrcollTop />
+
         <Toaster position="top-right" />
       </GlobalStyle>
     </AuthProvider>

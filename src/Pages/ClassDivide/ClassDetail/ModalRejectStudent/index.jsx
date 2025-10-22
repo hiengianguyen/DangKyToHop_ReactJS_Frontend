@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/esm/Modal";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-function ModalRejectStudent({ show = false, setStudents = () => {}, setShowModal = () => {}, data = {} }) {
+function ModalRejectStudent({ setStudents = () => {}, setShowModal = () => {}, data = {} }) {
   const handleRejectSubmitted = (id) => {
     toast
       .promise(axios.post("http://localhost:4001/combination/submited-reject/" + id), {
@@ -16,7 +16,7 @@ function ModalRejectStudent({ show = false, setStudents = () => {}, setShowModal
   };
 
   return (
-    <Modal show={show} centered onHide={setShowModal}>
+    <Modal show centered onHide={setShowModal}>
       <Modal.Header>
         <Modal.Title className="fs-1">Huỷ phê duyệt</Modal.Title>
       </Modal.Header>
@@ -85,23 +85,27 @@ function ModalRejectStudent({ show = false, setStudents = () => {}, setShowModal
             </div>
             <span>- Mắc bệnh: </span>
             <ol className="list-decimal ps-4 ms-10">
-              {data.sick.length > 0
-                ? data?.sick?.map((item, index) => (
-                    <li className="fw-bold" key={index}>
-                      {item}
-                    </li>
-                  ))
-                : "Không có"}
+              {data.sick.length > 0 ? (
+                data?.sick?.map((item, index) => (
+                  <li className="fw-bold" key={index}>
+                    {item}
+                  </li>
+                ))
+              ) : (
+                <span className="fw-bold">Không có</span>
+              )}
             </ol>
             <span>- Học sinh thuộc diện: </span>
             <ol className="list-decimal ps-4 ms-10">
-              {data.typeStudent.length > 0
-                ? data?.typeStudent?.map((item, index) => (
-                    <li className="fw-bold" key={index}>
-                      {item}
-                    </li>
-                  ))
-                : "Không có"}
+              {data.typeStudent.length > 0 ? (
+                data?.typeStudent?.map((item, index) => (
+                  <li className="fw-bold" key={index}>
+                    {item}
+                  </li>
+                ))
+              ) : (
+                <span className="fw-bold">Không có</span>
+              )}
             </ol>
           </div>
         </div>

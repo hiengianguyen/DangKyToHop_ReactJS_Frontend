@@ -53,7 +53,7 @@
 .over {
   .wrapper {
     background-color: rgba($color: #f7f7f7, $alpha: 0.6);
-    outline: #29a9ef solid 2px;
+    outline: var(--primary) solid 2px;
   }
 }
 

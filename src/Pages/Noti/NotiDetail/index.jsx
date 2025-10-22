@@ -37,10 +37,10 @@ function NotiDetail() {
         <div className={cx("content")}>
           <h4 className={cx("mb-2", "text-center")}>Thông báo</h4>
           <div className={cx("container", "mt-4")}>
-            <h3 className={cx("text-center")}>{notiDetail.title}</h3>
+            <h3 className={cx("text-center", "fs-1 fw-bolder mb-4")}>{notiDetail.title}</h3>
             {notiDetail.type === "text" ? (
               <>
-                <p style={{ textAlign: "justify" }}>{notiDetail.message}</p>
+                <p className="text-justify fs-2 fw-medium">{notiDetail.message}</p>
                 <div className={cx("timer", "d-flex", "justify-content-end")}>
                   <p>Thông báo lúc: {notiDetail.publishAt}</p>
                 </div>{" "}

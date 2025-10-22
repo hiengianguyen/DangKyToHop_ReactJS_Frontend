@@ -49,9 +49,7 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
               <InputHadValue label="Nơi sinh" value={valueStudent.placeOfBirth} />
             </Col>
           </Row>
-          <Col className="d-flex align-items-end mt-4">
-            <span className={cx("place-label")}>Hộ khẩu thường trú:</span>
-          </Col>
+          <p className={cx("place-label", "mt-10")}>Hộ khẩu thường trú:</p>
           <Row>
             <Col>
               <InputHadValue label="Thôn/KP" value={valueStudent.village} />
@@ -63,6 +61,7 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
               <InputHadValue label="Tỉnh/Thành Phố" value={valueStudent.city} />
             </Col>
           </Row>
+          <p className={cx("place-label", "mt-10")}>Thông tin cha mẹ:</p>
           <Col>
             <InputHadValue label="Họ và tên cha" value={valueStudent.nameDad} />
           </Col>
@@ -89,7 +88,12 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
             <div className="mt-10">
               <span className={cx("student-type")}>- Là học sinh thuộc diện sau:</span>
               <ol className="list-decimal ps-10 ms-10 fs-2">
-                {valueStudent.typeStudent && valueStudent.typeStudent.map((item, index) => <li key={index}>{item}</li>)}
+                {valueStudent.typeStudent &&
+                  valueStudent.typeStudent.map((item, index) => (
+                    <li className="fs-2" key={index}>
+                      {item}
+                    </li>
+                  ))}
               </ol>
             </div>
           )}
@@ -128,25 +132,34 @@ function CombinationStep4R({ valueStudent = {}, role = "student" }) {
               </Col>
             </Row>
           )}
-          <Col>
-            <span className={cx("health-status", "mt-2", "student-type")}>- Tình trạng sức khỏe:</span>
-          </Col>
-          {valueStudent.sick && valueStudent.sick.length !== 0 && (
-            <>
-              <span>Mắc bệnh:</span>
-              <ul className="list-disc ps-10 ms-10 fs-2">
-                {valueStudent.sick && valueStudent.sick.map((item, index) => <li key={index}>{item}</li>)}
-              </ul>
-            </>
-          )}
-          <Row>
-            <Col>
-              <InputHadValue label="+ Chiều cao (cm)" value={valueStudent.height} />
-            </Col>
-            <Col>
-              <InputHadValue label="+ Cân nặng (kg)" value={valueStudent.weight} />
-            </Col>
-          </Row>
+          <div className="flex">
+            <div className="flex flex-col w-1/2">
+              <Col>
+                <span className={cx("health-status", "mt-2", "student-type")}>- Tình trạng sức khỏe:</span>
+              </Col>
+              {valueStudent.sick && valueStudent.sick.length !== 0 && (
+                <>
+                  <span className="fs-1">Mắc bệnh:</span>
+                  <ul className="list-disc ps-10 ms-10 fs-2">
+                    {valueStudent.sick &&
+                      valueStudent.sick.map((item, index) => (
+                        <li className="fs-2" key={index}>
+                          {item}
+                        </li>
+                      ))}
+                  </ul>
+                </>
+              )}
+            </div>
+            <Row>
+              <Col>
+                <InputHadValue label="+ Chiều cao (cm)" value={valueStudent.height} />
+              </Col>
+              <Col>
+                <InputHadValue label="+ Cân nặng (kg)" value={valueStudent.weight} />
+              </Col>
+            </Row>
+          </div>
           {valueStudent.disability && valueStudent.disability.length !== 0 && (
             <Row>
               <Col xs={"auto"}>

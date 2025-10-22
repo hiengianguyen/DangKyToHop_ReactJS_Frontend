@@ -11,16 +11,16 @@
 
 .loading h2 {
   font-size: 30px;
-  color: #29a9ef;
+  color: var(--primary);
 }
 
 .loading .spinner-border {
   width: 4rem;
   height: 4rem;
-  color: #29a9ef;
+  color: var(--primary);
 }
 
 .loading .tittle-loading {
   font-family: "Lexend", sans-serif;
-  color: #29a9ef;
+  color: var(--primary);
 }
