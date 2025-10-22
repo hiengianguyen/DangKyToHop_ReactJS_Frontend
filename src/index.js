@@ -5,7 +5,6 @@ import reportWebVitals from "./reportWebVitals";
 import GlobalStyle from "./Components/GlobalStyle";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { Toaster } from "react-hot-toast";
-import BtnSrcollTop from "./Components/BtnScrollTop";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -14,7 +13,6 @@ root.render(
     <AuthProvider>
       <GlobalStyle>
         <App />
-
         <Toaster position="top-right" />
       </GlobalStyle>
     </AuthProvider>

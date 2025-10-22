@@ -20,7 +20,7 @@ function Contact() {
           diễn ra công bằng, minh bạch, đúng quy định của nhà trường và cơ quan giáo dục.
         </p>
         <div className={cx("contact-teacher")}>
-          <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+          <ul class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
             <li>
               <div class="flex items-center gap-x-6">
                 <img

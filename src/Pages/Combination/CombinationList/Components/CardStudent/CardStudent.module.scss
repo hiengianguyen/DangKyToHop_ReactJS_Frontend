@@ -97,3 +97,15 @@
   padding: 8px !important;
   width: 8pc !important;
 }
+
+.bookmark {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #ccc;
+  cursor: pointer;
+
+  &.saved {
+    color: var(--primary);
+  }
+}

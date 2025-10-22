@@ -2,14 +2,35 @@ import classNames from "classnames/bind";
 import style from "./CardStudent.module.scss";
 import { formatDayOfBirth, typeBadge } from "../../../../../utils";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const cx = classNames.bind(style);
 
 function CardStudent({ data = {}, resp = "pc" }) {
+  const [saved, setSaved] = useState(data.favourite);
   const navigator = useNavigate();
+
+  const handleSaveDoc = (docId) => {
+    setSaved((prev) => !prev);
+    saved
+      ? toast.promise(axios.post("http://localhost:4001/combination/unsave", { docId: docId }), {
+          loading: "Đang gỡ lưu hồ sơ...",
+          success: <b>Gỡ lưu thành công!</b>,
+          error: <b>Gỡ lưu thất bại.</b>
+        })
+      : toast.promise(axios.post("http://localhost:4001/combination/save", { docId: docId }), {
+          loading: "Đang lưu hồ sơ...",
+          success: <b>Lưu thành công!</b>,
+          error: <b>Lưu thất bại.</b>
+        });
+  };
   return (
     <div className={cx("wrapper", "shadow", resp)}>
-      <div className="d-flex">
+      <div className="d-flex position-relative">
         <div className={cx("d-flex flex-column col-md-4")}>
           <img src={data.avatar} alt={data.fullName} className={cx("img-student", "border border-dark-subtle")} />
         </div>
@@ -42,11 +63,7 @@ function CardStudent({ data = {}, resp = "pc" }) {
                 {data.registeredAt}
               </span>
             </div>
-            <button
-              type="button"
-              className={cx("btn btn-primary mt-4 fs-4")}
-              onClick={() => navigator("/combination/detail/" + data.userId)}
-            >
+            <button type="button" className="btn btn-primary mt-4 fs-4" onClick={() => navigator("/combination/detail/" + data.userId)}>
               Xem thông tin
             </button>
           </div>
@@ -59,6 +76,12 @@ function CardStudent({ data = {}, resp = "pc" }) {
             {typeBadge(data.status).title}
           </span>
         </div>
+        <FontAwesomeIcon
+          icon={faBookmark}
+          onClick={() => handleSaveDoc(data.id)}
+          className={cx("bookmark", { saved: saved })}
+          title={saved ? "Gỡ lưu hồ sơ" : "Lưu hồ sơ"}
+        />
       </div>
     </div>
   );

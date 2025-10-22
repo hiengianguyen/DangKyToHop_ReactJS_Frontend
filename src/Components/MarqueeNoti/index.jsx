@@ -15,7 +15,7 @@ function MarqueeNoti() {
     axios.get("http://localhost:4001/notification").then((axiosData) => {
       setListNoti(axiosData.data.notifications);
     });
-  }, [navigator]);
+  }, []);
   return (
     <div className={cx("ShortArticle")}>
       <Marquee className={cx("marquee-box")} pauseOnHover scrollamount="5" scrolldelay="5" direction="left">

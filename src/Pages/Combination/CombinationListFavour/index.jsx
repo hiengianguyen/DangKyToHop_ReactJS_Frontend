@@ -14,6 +14,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
+import NonDataImg from "../../ClassDivide/Students/Component/NonDataImg";
 
 function CombinationListFavour() {
   const formRef = useRef();
@@ -235,12 +236,15 @@ function CombinationListFavour() {
         </Row>
 
         <Row as={Col} className="mt-4 position-relative">
-          {submittedOfPage &&
+          {submittedOfPage.length ? (
             submittedOfPage.map((item, index) => (
               <Col xs={"auto"} key={index}>
                 <CardStudent data={item} />
               </Col>
-            ))}
+            ))
+          ) : (
+            <NonDataImg />
+          )}
           {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
         </Row>
         <Stack spacing={2}>
