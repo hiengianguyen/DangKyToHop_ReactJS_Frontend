@@ -14,6 +14,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { useMediaQuery } from "react-responsive";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import NonDataImg from "../../ClassDivide/Students/Component/NonDataImg";
 
 const Pc = ({ children }) => {
   const isPc = useMediaQuery({ minWidth: 1400 });
@@ -255,7 +256,7 @@ function CombinationList() {
         </div>
 
         <Row className="mt-4 position-relative py-10">
-          {taskOfPage &&
+          {taskOfPage.length ? (
             taskOfPage.map((item, index) => (
               <Col xs={"auto"} key={index}>
                 <Pc>
@@ -266,7 +267,10 @@ function CombinationList() {
                   <CardStudent data={item} resp="desktop" />
                 </Desktop>
               </Col>
-            ))}
+            ))
+          ) : (
+            <NonDataImg />
+          )}
           {isLoadingList && <Loading height="100%" position="absolute" color="rgb(244 244 244)" zIndex="9998" />}
         </Row>
         <Stack spacing={2}>
