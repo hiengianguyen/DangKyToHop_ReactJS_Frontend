@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Loading from "../../../../../Components/Loading";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(style);
 
@@ -33,6 +34,7 @@ function ModalAddClass({
   const [isValidated, setIsValidated] = useState(false);
   const [error, setError] = useState("");
   const [isLoadingModal, setIsLoadingModal] = useState(false);
+  const navigator = useNavigate();
 
   useEffect(() => {
     if (!data.id) return;
@@ -88,6 +90,7 @@ function ModalAddClass({
             return { ...prev, classes: [...prev.classes, res.data.docAfter] };
           }
         });
+        navigator(0);
       });
   };
   return (
