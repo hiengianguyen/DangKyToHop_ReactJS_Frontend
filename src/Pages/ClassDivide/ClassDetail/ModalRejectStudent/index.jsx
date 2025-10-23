@@ -40,13 +40,13 @@ function ModalRejectStudent({ setStudents = () => {}, setShowModal = () => {}, d
           <div className="flex w-100 mt-4">
             <div className="flex flex-col items-center w-1/2 mx-3">
               <span className="mb-2 fs-2">Nguyện vọng 1</span>
-              <div className="shadow w-100  flex justify-center items-center text-green-500 h-40 rounded-xl bg-slate-100">
+              <div className="shadow w-100 flex justify-center items-center text-green-500 h-40 rounded-xl bg-slate-100">
                 {data.combination1}
               </div>
             </div>
             <div className="flex flex-col items-center w-1/2 mx-3">
               <span className="mb-2 fs-2">Nguyện vọng 2</span>
-              <div className="shadow  w-100 flex justify-center items-center text-green-500 h-40 rounded-xl bg-slate-100">
+              <div className="shadow w-100 flex justify-center items-center text-green-500 h-40 rounded-xl bg-slate-100">
                 {data.combination2}
               </div>
             </div>
@@ -54,7 +54,7 @@ function ModalRejectStudent({ setStudents = () => {}, setShowModal = () => {}, d
           <div className="flex flex-col px-4">
             <div className="flex gap-4 mt-4">
               <span>- Điểm thi tuyển: </span>
-              <span className="fs-2 text-green-700 flex items-center">
+              <span className="fs-2 text-green-700  flex items-center fw-bolder">
                 {Number(data.mathPoint) + Number(data.literaturePoint) + Number(data.englishPoint)}
               </span>
             </div>
