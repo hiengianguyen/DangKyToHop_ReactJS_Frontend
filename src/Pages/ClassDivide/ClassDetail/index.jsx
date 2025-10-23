@@ -80,7 +80,7 @@ function ClassDetail() {
             students.map((item, index) => (
               <div className="d-flex align-items-center" key={index}>
                 <span className={cx("count")}>{index + 1}</span>
-                <CardStudent data={item} setStudents={setStudents} />
+                <CardStudent data={item} setStudents={setStudents} classDetail={classDetail} />
               </div>
             ))
           ) : (
