@@ -57,7 +57,7 @@ function CardClass({ data = {}, setUpdateModal = () => {}, setShowDeleteModal = 
             <li
               onClick={(e) => {
                 e.stopPropagation();
-                setShowDeleteModal({ bol: true, info: { name: data.name, id: data.id } });
+                setShowDeleteModal({ bol: true, info: { name: data.name, id: data.id, studentCount: studentCount } });
               }}
             >
               Xoá
