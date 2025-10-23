@@ -6,11 +6,13 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import AddClassCard from "./AddClassCard";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModalAddClass from "./CardClass/ModalAddClass";
 import ModalDeleteClass from "./CardClass/ModalDeleteClass";
 import Loading from "../../../Components/Loading";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(style);
 
@@ -64,6 +66,12 @@ function Classmate() {
             </Col>
           ))}
         </Row>
+        <div className="flex justify-start mt-10 text-blue-600">
+          <Link to="/ad/students" className="flex gap-2 items-center">
+            <FontAwesomeIcon icon={faArrowLeft} className="" />
+            Chế độ phân chia lớp
+          </Link>
+        </div>
       </Container>
       <ModalAddClass
         show={showModal || updateModal?.bol}

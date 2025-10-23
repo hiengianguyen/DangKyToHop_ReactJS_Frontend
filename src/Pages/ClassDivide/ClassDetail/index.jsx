@@ -75,7 +75,7 @@ function ClassDetail() {
           <FillterBoxDetail handleSubmit={() => handleSubmit(sortList)} handleSubmitHaveSort={handleSubmit} />
         </form>
 
-        <div className={cx("list-student")}>
+        <div className={cx("list-student", "mb-10")}>
           {students && students?.length > 0 ? (
             students.map((item, index) => (
               <div className="d-flex align-items-center" key={index}>
