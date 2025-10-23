@@ -5,11 +5,14 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function ModalDeleteClass({ show = false, setShowDeleteModal = () => {}, setClasses = () => {}, classInfo = {} }) {
+function ModalDeleteClass({
+  show = false,
+  setShowDeleteModal = () => {},
+  setClasses = () => {},
+  classInfo = {},
+}) {
   const [count, setCount] = useState(10);
   const [disabled, setDisabled] = useState(true);
-
-  console.log(count, show, disabled);
 
   useEffect(() => {
     if (classInfo.studentCount === 0) {
@@ -36,15 +39,30 @@ function ModalDeleteClass({ show = false, setShowDeleteModal = () => {}, setClas
     ? () => {}
     : () => {
         toast
-          .promise(axios.post("http://localhost:4001/ad/classes/delete", { id: classInfo.id }), {
-            loading: "Đang xoá lớp...",
-            success: <b>Xoá thành công!</b>,
-            error: <b>Xoá thất bại.</b>
-          })
+          .promise(
+            axios.post(
+              classInfo.studentCount !== 0
+                ? "http://localhost:4001/ad/classes/delete/m"
+                : "http://localhost:4001/ad/classes/delete",
+              {
+                id: classInfo.id,
+              }
+            ),
+            {
+              loading: "Đang xoá lớp...",
+              success: <b>Xoá thành công!</b>,
+              error: <b>Xoá thất bại.</b>,
+            }
+          )
           .then(() => {
             setShowDeleteModal({ bol: false });
             setClasses((prev) => {
-              return { ...prev, classes: prev.classes.filter((item) => item.id !== classInfo.id) };
+              return {
+                ...prev,
+                classes: prev.classes.filter(
+                  (item) => item.id !== classInfo.id
+                ),
+              };
             });
           });
       };
@@ -60,15 +78,30 @@ function ModalDeleteClass({ show = false, setShowDeleteModal = () => {}, setClas
           <div className="my-10 px-10">
             <p className="fs-3 fw-bolder mb-2">⚠️ Lưu ý khi xóa lớp học</p>
             <ol className="list-decimal fs-4 text-justify px-10">
-              <li>Khi xóa lớp, tất cả học sinh trong lớp đó sẽ được đưa trở lại trạng thái “đang cần xét lớp”.</li>
+              <li>
+                Khi xóa lớp, tất cả học sinh trong lớp đó sẽ được đưa trở lại
+                trạng thái “đang cần xét lớp”.
+              </li>
 
-              <li>Việc xóa lớp chỉ nên thực hiện khi lớp chưa chính thức được chốt hoặc bắt đầu học.</li>
+              <li>
+                Việc xóa lớp chỉ nên thực hiện khi lớp chưa chính thức được chốt
+                hoặc bắt đầu học.
+              </li>
 
-              <li>Toàn bộ thông tin phân lớp, giáo viên chủ nhiệm và danh sách học sinh của lớp sẽ bị xóa khỏi hệ thống.</li>
+              <li>
+                Toàn bộ thông tin phân lớp, giáo viên chủ nhiệm và danh sách học
+                sinh của lớp sẽ bị xóa khỏi hệ thống.
+              </li>
 
-              <li>Hành động này không thể hoàn tác, trừ khi bạn tạo lại lớp và phân học sinh thủ công.</li>
+              <li>
+                Hành động này không thể hoàn tác, trừ khi bạn tạo lại lớp và
+                phân học sinh thủ công.
+              </li>
 
-              <li>Hãy kiểm tra kỹ và xác nhận trước khi thực hiện để tránh mất dữ liệu quan trọng.</li>
+              <li>
+                Hãy kiểm tra kỹ và xác nhận trước khi thực hiện để tránh mất dữ
+                liệu quan trọng.
+              </li>
             </ol>
           </div>
         ) : (
@@ -76,7 +109,12 @@ function ModalDeleteClass({ show = false, setShowDeleteModal = () => {}, setClas
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="danger" className="fs-3" disabled={disabled} onClick={handleDeleteClass}>
+        <Button
+          variant="danger"
+          className="fs-3"
+          disabled={disabled}
+          onClick={handleDeleteClass}
+        >
           Xoá lớp {disabled ? `(${count})s` : ""}
         </Button>
         <Button
