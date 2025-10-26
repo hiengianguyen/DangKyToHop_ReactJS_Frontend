@@ -4,29 +4,52 @@ import { formatDayOfBirth, typeBadge } from "../../../../../utils";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 const cx = classNames.bind(style);
 
-function CardStudent({ data = {}, resp = "pc" }) {
-  const [saved, setSaved] = useState(data.favourite);
+function CardStudent({ data = {}, resp = "pc", setSubmittedList = () => {} }) {
+  const [saved, setSaved] = useState(false);
   const navigator = useNavigate();
+  useEffect(() => {
+    setSaved(data.favourite);
+  }, [data]);
 
   const handleSaveDoc = (docId) => {
     setSaved((prev) => !prev);
     saved
-      ? toast.promise(axios.post("http://localhost:4001/combination/unsave", { docId: docId }), {
-          loading: "Đang gỡ lưu hồ sơ...",
-          success: <b>Gỡ lưu thành công!</b>,
-          error: <b>Gỡ lưu thất bại.</b>
-        })
-      : toast.promise(axios.post("http://localhost:4001/combination/save", { docId: docId }), {
-          loading: "Đang lưu hồ sơ...",
-          success: <b>Lưu thành công!</b>,
-          error: <b>Lưu thất bại.</b>
-        });
+      ? toast
+          .promise(axios.post("http://localhost:4001/combination/unsave", { docId: docId }), {
+            loading: "Đang gỡ lưu hồ sơ...",
+            success: <b>Gỡ lưu thành công!</b>,
+            error: <b>Gỡ lưu thất bại.</b>
+          })
+          .then(() =>
+            setSubmittedList((prev) =>
+              prev.map((item) => {
+                if (item.id === docId) {
+                  return { ...item, favourite: false };
+                } else return item;
+              })
+            )
+          )
+      : toast
+          .promise(axios.post("http://localhost:4001/combination/save", { docId: docId }), {
+            loading: "Đang lưu hồ sơ...",
+            success: <b>Lưu thành công!</b>,
+            error: <b>Lưu thất bại.</b>
+          })
+          .then(() =>
+            setSubmittedList((prev) =>
+              prev.map((item) => {
+                if (item.id === docId) {
+                  return { ...item, favourite: true };
+                } else return item;
+              })
+            )
+          );
   };
   return (
     <div className={cx("wrapper", "shadow", resp)}>
@@ -63,11 +86,15 @@ function CardStudent({ data = {}, resp = "pc" }) {
                 {data.registeredAt}
               </span>
             </div>
-            <button type="button" className="btn btn-primary mt-4 fs-4" onClick={() => navigator("/combination/detail/" + data.userId)}>
+            <button
+              type="button"
+              className={cx("btn mt-4 fs-4 text-white border-none", "btn-checkinfo")}
+              onClick={() => navigator("/combination/detail/" + data.userId)}
+            >
               Xem thông tin
             </button>
           </div>
-
+          {/* chưa xử lý lưu riêng biệt */}
           <span
             className={cx("badge", "badge-" + data.status, "position-absolute")}
             title="Trạng thái"
