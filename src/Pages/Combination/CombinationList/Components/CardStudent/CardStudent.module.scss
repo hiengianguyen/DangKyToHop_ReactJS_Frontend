@@ -109,3 +109,15 @@
     color: var(--primary);
   }
 }
+
+.btn-checkinfo {
+  background: linear-gradient(90deg, rgb(0, 212, 255) 0%, rgb(41, 169, 239) 80%, rgb(17, 147, 212) 100%);
+  border: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #b1b1b1;
+    box-shadow: 1px 1px 5px rgb(41, 169, 239);
+    transition: all 0.3s ease;
+  }
+}

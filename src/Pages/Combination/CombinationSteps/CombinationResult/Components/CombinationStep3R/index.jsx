@@ -12,11 +12,11 @@ const cx = classNames.bind(style);
 
 function CombinationStep3R({ valueStudent = {}, role = "student" }) {
   return (
-    <div className={cx("card-body", "container")}>
+    <div className={cx("card-body", "container")} style={{ fontSize: "17px" }}>
       {role === "manager" && (
         <h3>
           Trạng thái:{" "}
-          <Badge className="p-3" bg={typeBadge(valueStudent.status).color}>
+          <Badge className="p-3 shadow" bg={typeBadge(valueStudent.status).color}>
             {typeBadge(valueStudent.status).title}
           </Badge>
         </h3>
