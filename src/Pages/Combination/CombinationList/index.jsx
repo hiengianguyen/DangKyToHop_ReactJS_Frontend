@@ -118,10 +118,10 @@ function CombinationList() {
       <div className="d-flex justify-content-between" style={{ height: "3pc" }}>
         <h2>Danh sách đăng ký</h2>
         <DropdownButton drop="start" size="lg" title="Xuất file Excel">
-          <Dropdown.Item className="fs-2 p-3" href="http://localhost:4001/file/excel/submited-list">
+          <Dropdown.Item className="fs-4 p-3" href="http://localhost:4001/file/excel/submited-list">
             Tất cả hồ sơ
           </Dropdown.Item>
-          <Dropdown.Item className="fs-2 p-3" onClick={handleExportExcel}>
+          <Dropdown.Item className="fs-4 p-3" onClick={handleExportExcel}>
             Hồ sơ đã lọc
           </Dropdown.Item>
         </DropdownButton>
