@@ -1,6 +1,9 @@
 .title {
   padding-top: 30px;
   margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .list-student {
